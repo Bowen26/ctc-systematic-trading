@@ -1,0 +1,4 @@
+{
+  "live_allowed": false,
+  "strategies": {"s3": {"edge_ref": "mid", "limit_cost_frac": 0.5}}
+}

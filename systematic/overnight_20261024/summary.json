@@ -1,0 +1,127 @@
+{
+ "242": {
+  "season": "242",
+  "final": {
+   "pnl": 12777.3,
+   "rounds": [
+    6827.2,
+    3930.3,
+    2019.8
+   ],
+   "cost": 4664.0,
+   "violations": 0,
+   "exceptions": 0
+  },
+  "old_s3_80s": {
+   "pnl": 16591.2,
+   "rounds": [
+    10202.3,
+    4233.6,
+    2155.3
+   ],
+   "cost": 5091.1,
+   "violations": 0,
+   "exceptions": 0
+  }
+ },
+ "243": {
+  "season": "243",
+  "final": {
+   "pnl": 15627.5,
+   "rounds": [
+    10881.1,
+    370.4,
+    4375.9
+   ],
+   "cost": 6935.6,
+   "violations": 0,
+   "exceptions": 0
+  },
+  "old_s3_80s": {
+   "pnl": 16454.9,
+   "rounds": [
+    11227.3,
+    2023.2,
+    3204.4
+   ],
+   "cost": 7744.2,
+   "violations": 0,
+   "exceptions": 0
+  }
+ },
+ "244": {
+  "season": "244",
+  "final": {
+   "pnl": 19581.9,
+   "rounds": [
+    12822.6,
+    5249.1,
+    1510.2
+   ],
+   "cost": 6952.7,
+   "violations": 0,
+   "exceptions": 0
+  },
+  "old_s3_80s": {
+   "pnl": 18868.5,
+   "rounds": [
+    13073.7,
+    4790.2,
+    1004.5
+   ],
+   "cost": 7177.5,
+   "violations": 0,
+   "exceptions": 0
+  }
+ },
+ "245": {
+  "season": "245",
+  "final": {
+   "pnl": 613.9,
+   "rounds": [
+    3511.4,
+    7912.0,
+    -10809.5
+   ],
+   "cost": 10136.5,
+   "violations": 0,
+   "exceptions": 0
+  },
+  "old_s3_80s": {
+   "pnl": 216.0,
+   "rounds": [
+    2338.7,
+    6415.0,
+    -8537.6
+   ],
+   "cost": 10801.2,
+   "violations": 0,
+   "exceptions": 0
+  }
+ },
+ "246": {
+  "season": "246",
+  "final": {
+   "pnl": 3517.4,
+   "rounds": [
+    -2454.4,
+    -521.7,
+    6493.6
+   ],
+   "cost": 8493.4,
+   "violations": 0,
+   "exceptions": 0
+  },
+  "old_s3_80s": {
+   "pnl": 12961.7,
+   "rounds": [
+    36.9,
+    2144.9,
+    10779.9
+   ],
+   "cost": 9170.6,
+   "violations": 0,
+   "exceptions": 0
+  }
+ }
+}

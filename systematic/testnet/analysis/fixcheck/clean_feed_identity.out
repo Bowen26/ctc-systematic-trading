@@ -1,0 +1,24 @@
+225+snapshots stream: 962 messages (24 testnet official advisories swapped in, 96 snapshots)
+
+stream           params                     library  msgs state!= ret!= evals  fv!=  max|dmu|  max|dsd|  max|dp|   secs
+season 401       engine_params.json          1-400    869       0     0   234     0  0.00e+00  0.00e+00 0.00e+00   12.6
+season 402       engine_params.json          1-400    869       0     0   234     0  0.00e+00  0.00e+00 0.00e+00   15.0
+season 403       engine_params.json          1-400    869       0     0   234     0  0.00e+00  0.00e+00 0.00e+00   13.8
+season 404       engine_params.json          1-400    874       0     0   234     0  0.00e+00  0.00e+00 0.00e+00   12.6
+season 405       engine_params.json          1-400    858       0     0   234     0  0.00e+00  0.00e+00 0.00e+00   14.4
+225+snapshots    engine_params.json          1-400    962       0     0   234     0  0.00e+00  0.00e+00 0.00e+00   11.0
+season 401       engine_params_fast.json   226-600    869       0     0   234     0  0.00e+00  0.00e+00 0.00e+00    5.1
+season 402       engine_params_fast.json   226-600    869       0     0   234     0  0.00e+00  0.00e+00 0.00e+00    6.1
+season 403       engine_params_fast.json   226-600    869       0     0   234     0  0.00e+00  0.00e+00 0.00e+00    5.5
+season 404       engine_params_fast.json   226-600    874       0     0   234     0  0.00e+00  0.00e+00 0.00e+00    5.0
+season 405       engine_params_fast.json   226-600    858       0     0   234     0  0.00e+00  0.00e+00 0.00e+00    5.8
+225+snapshots    engine_params_fast.json   226-600    962       0     0   234     0  0.00e+00  0.00e+00 0.00e+00    4.4
+control          engine_params_fast.json   226-600    961     299     0   234    75  2.73e+01  2.02e+00 6.68e-01    4.4  first diff ('msg', 'snapshot', None, 18)
+
+negative control (225+snapshots minus official r1 #1, recovered from the next snapshot): 75 of 234 evaluations differ, max |dmu| 27.304, max |dp| 0.668 -> harness sees the fix
+  original engine on the control stream vs the full stream (engine_params_fast.json): 9 of 234 evaluations differ; max |dmu| 27.304 (ARCH at r1 s=90: 281.24 vs 308.54)
+  patched engine on the control stream vs the full stream (engine_params_fast.json): 0 of 234 evaluations differ; max |dmu| 0.000
+
+research seasons 401-405: 2340 evaluations x 12 symbols, 0 differ
+all streams: 2808 evaluations, 0 with any fair value or posterior difference; 0 message-level state or return differences
+RESULT: IDENTICAL

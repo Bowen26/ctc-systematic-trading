@@ -1,0 +1,173 @@
+{
+  "version": 2,
+  "live_allowed": true,
+  "exchange": {
+    "host": null, "rest_base": null, "ws_url": null, "case_url": null,
+    "user_agent": "ctc26-se-bot/1.0 (python-stdlib)",
+    "key_env": "CTC_BOT_KEY",
+    "timeout_order_s": 2.0, "timeout_get_s": 3.0, "get_retries": 1,
+    "workers": 12, "kill_workers": 1, "idle_recycle_s": 10.0,
+    "price_decimals": 2, "allow_market_orders": false,
+    "team_actions_per_min": 180, "exchange_max_resting_per_symbol": 200, "requests_per_s_team": 600,
+    "max_queue_age_s": 0.5
+  },
+  "feed": {
+    "connections": [{"name": "ws0", "local_addr": null}, {"name": "ws1", "local_addr": null}],
+    "channels": ["news", "quotes", "trades", "orderbook"],
+    "ws_open_timeout_s": 5.0, "ws_ping_interval_s": 20.0, "ws_ping_timeout_s": 20.0, "ws_max_size": 8388608,
+    "reconnect_first_s": 0.25, "reconnect_every_s": 0.5, "reconnect_jitter_s": 0.1, "reconnect_max_s": 2.0,
+    "reconnect_auth_s": 5.0, "reconnect_throttle_max_s": 10.0,
+    "watchdog_s": {"storm": 3.0, "pre_storm": 8.0, "aftermath": 8.0, "closed": 35.0, "unknown": 35.0},
+    "snapshot_hold_s": 1.0, "season_reset_seq_drop": 50, "trade_id_cache": 50000,
+    "provisional_feed_resets": true, "season_confirm_s": 60.0, "reset_merge_s": 180.0, "pending_buffer_max": 5000,
+    "feed_down_cancel_s": 10.0, "storm_obs_stale_s": 6.0, "record_raw": true
+  },
+  "clock": {
+    "server_poll_s": 1.0, "server_fresh_s": 3.0, "feed_fresh_s": 10.0, "snapshot_fresh_s": 35.0,
+    "offset_window": 30, "pause_same_time_s": 20.0, "max_extrapolate_s": 40.0
+  },
+  "app": {
+    "tick_s": 0.25, "reconcile_s": 0.5, "persist_s": 5.0, "status_s": 2.0,
+    "kill_file": "KILL", "adjust_file": "adjust.json", "run_root": "runs",
+    "restart_auto_resume": false, "kill_followup_s": 0.25, "shutdown_wait_s": 2.0, "exceptions_per_min_hold": 10,
+    "shutdown_kill_wait_s": 5.0, "persist_debounce_s": 1.0
+  },
+  "orders": {"target_ttl_s": 0.6, "rest_tolerance_frac": 0.05, "rest_max_orders_per_key": 2, "price_eq_tol": 0.005},
+  "engine": {
+    "dir": "../engine", "params": "engine_params_fast.json", "mode": "thread",
+    "library_seasons": [1, 600], "library_exclude_seasons": [],
+    "persist_file": "engine_state_{run_id}_e{epoch}.jsonl", "stale_s": 6.0, "periodic_compute_s": 1.0,
+    "compute_warn_ms": 150, "slow_alert_ms": 1000, "down_after_errors": 3,
+    "forward_snapshots": "relevant", "require_snapshot_fix": true,
+    "probe_file": "ctcbot/models/data/snapshot_probe.jsonl"
+  },
+  "laws": {"module": "../laws/se_laws.py", "mode": "thread"},
+  "cost": {
+    "model": "../testnet/analysis/books/cost_model.json",
+    "thr_mult": 2.0, "fo_allow_bp": {"stock": 36.0, "etf": 17.28}, "fo_window_s": 8.0, "check_tolerance_bp": 3.0,
+    "phases": [
+      ["open", ["open", 0], ["open", 3]], ["pre", ["open", 3], ["storm_start", -10]],
+      ["h1_entry", ["storm_start", -10], ["storm_start", -2]], ["pre", ["storm_start", -2], ["storm_start", 0]],
+      ["early", ["storm_start", 0], ["storm_start", 12]], ["h1_exit", ["storm_start", 12], ["storm_start", 20]],
+      ["s3_start", ["storm_start", 20], ["storm_start", 60]], ["storm", ["storm_start", 60], ["storm_end", 0]],
+      ["after", ["storm_end", 0], ["prelim", -2]], ["rep_prelim", ["prelim", -2], ["prelim", 30]],
+      ["after", ["prelim", 30], ["final", -2]], ["rep_final", ["final", -2], ["final", 20]],
+      ["after", ["final", 20], ["close", 0]]
+    ]
+  },
+  "symbols": {
+    "PORT":  {"kind": "stock", "h1_dir": 1,  "entry_cost_bp": {"s3_start": 315, "storm": 123, "after": 101}, "exit_band_bp": {"s3_start": 114.4, "storm": 24.2}, "eps": 0.07, "eps_wide": 0.25, "laws_tol": 0.25},
+    "ISLE":  {"kind": "stock", "h1_dir": 1,  "entry_cost_bp": {"s3_start": 165, "storm": 107, "after": 99},  "exit_band_bp": {"s3_start": 43.2, "storm": 16.4},  "eps": 0.02, "eps_wide": 0.02, "laws_tol": 0.02},
+    "AQUA":  {"kind": "stock", "h1_dir": 1,  "entry_cost_bp": {"s3_start": 170, "storm": 112, "after": 98},  "exit_band_bp": {"s3_start": 46.7, "storm": 18.5},  "eps": 0.02, "eps_wide": 0.02, "laws_tol": 0.02},
+    "GRID":  {"kind": "stock", "h1_dir": 1,  "entry_cost_bp": {"s3_start": 205, "storm": 107, "after": 99},  "exit_band_bp": {"s3_start": 62.8, "storm": 17.1},  "eps": 0.06, "eps_wide": 0.25, "laws_tol": 0.25},
+    "FERRY": {"kind": "stock", "h1_dir": 1,  "entry_cost_bp": {"s3_start": 138, "storm": 117, "after": 102}, "exit_band_bp": {"s3_start": 31.7, "storm": 21.4},  "eps": 0.09, "eps_wide": 0.25, "laws_tol": 0.25},
+    "RECON": {"kind": "stock", "h1_dir": -1, "entry_cost_bp": {"s3_start": 195, "storm": 110, "after": 99},  "exit_band_bp": {"s3_start": 57.2, "storm": 18.4},  "eps": 0.02, "eps_wide": 0.02, "laws_tol": 0.02},
+    "MAT":   {"kind": "stock", "h1_dir": -1, "entry_cost_bp": {"s3_start": 164, "storm": 110, "after": 100}, "exit_band_bp": {"s3_start": 42.8, "storm": 18.0},  "eps": 0.02, "eps_wide": 0.02, "laws_tol": 0.02},
+    "GEN":   {"kind": "stock", "h1_dir": -1, "entry_cost_bp": {"s3_start": 161, "storm": 109, "after": 100}, "exit_band_bp": {"s3_start": 42.0, "storm": 17.8},  "eps": 0.11, "eps_wide": 0.25, "laws_tol": 0.25},
+    "HAVEN": {"kind": "stock", "h1_dir": 1,  "entry_cost_bp": {"s3_start": 342, "storm": 138, "after": 104}, "exit_band_bp": {"s3_start": 125.4, "storm": 31.2}, "eps": 0.02, "eps_wide": 0.02, "laws_tol": 0.02},
+    "REIN":  {"kind": "stock", "h1_dir": 0,  "entry_cost_bp": {"s3_start": 100, "storm": 100, "after": 98},  "exit_band_bp": {"s3_start": 13.1, "storm": 13.0},  "eps": 0.02, "eps_wide": 0.02, "laws_tol": 0.02},
+    "ARCH":  {"kind": "etf",   "h1_dir": 1,  "entry_cost_bp": {"s3_start": 129, "storm": 73, "after": 58},   "exit_band_bp": {"s3_start": 46.2, "storm": 19.1},  "eps": 0.17, "eps_wide": 0.25, "laws_tol": 0.25},
+    "REBLD": {"kind": "etf",   "h1_dir": -1, "entry_cost_bp": {"s3_start": 101, "storm": 69, "after": 55},   "exit_band_bp": {"s3_start": 33.1, "storm": 17.3},  "eps": 0.12, "eps_wide": 0.25, "laws_tol": 0.25}
+  },
+  "sizing": {"scale": 1.0, "clip_div": {"s3": 12, "h1": 4, "h1_exit": 8, "flatten": 12, "flatten_max": 4, "leadlag": 2}},
+  "rate": {
+    "bot_cap_per_min": 150, "window_s": 61.0,
+    "floors": {"KILL": 0, "SNIPE": 1, "HEDGE": 4, "TAKE": 10},
+    "kill_overdraft": 20, "throttle_freeze_s": 5.0, "requests_per_s_cap": 50
+  },
+  "risk": {
+    "drawdown_usd": 20000.0, "pnl_source": "auto",
+    "unknown_hold_s": 3.0, "unknown_grace_s": 1.0,
+    "fat_finger_frac": 0.25, "snipe_band_frac": 0.60, "max_marketable_from_mid": 0.015,
+    "max_clip_frac": 0.5, "max_snipe_frac": 2.0, "max_resting_per_symbol": 8,
+    "block_marketable_before": ["open", 3.0],
+    "fill_sanity_n": 3, "fill_sanity_mult": 3.0,
+    "reject_disable_n": 5, "reject_disable_window_s": 30.0,
+    "http_5xx_streak": 3, "http_5xx_hold_s": 10.0, "reconcile_fail_hold_n": 5, "pos_skip_alert_s": 5.0,
+    "feed_resume_storm_obs": 2, "strategy_exceptions_disable": 3, "strategy_exceptions_window_s": 60.0,
+    "strategy_reenable_s": 30.0, "strategy_reenable_max": 2, "reconcile_stale_hold_s": 10.0
+  },
+  "guards": {
+    "opening": {"enabled": true, "until": ["open", 3.0], "max_half_spread_bp": 300.0},
+    "engine_sanity": {"sd_mult": 6.0, "mid_frac": 0.15, "clear_after_s": 10.0}
+  },
+  "strategies": {
+    "h1": {
+      "enabled": true, "rounds": [1, 2, 3],
+      "symbols": ["PORT", "ISLE", "AQUA", "GRID", "FERRY", "HAVEN", "ARCH", "RECON", "MAT", "GEN", "REBLD"],
+      "size_r1": 0.5, "auto_size_from_check": true, "size_on_pass": 1.0, "size_on_fail": 0.5,
+      "ref_mid_at": ["storm_start", -12], "entry_start": ["storm_start", -10], "entry_last": ["storm_start", -4],
+      "clip_interval_s": 2.0, "ttl_s": 2.0, "cap_bp": 50.0, "max_from_mid_bp": 150.0, "off_if_half_spread_bp": 100.0,
+      "rebuilders": ["RECON", "MAT", "GEN", "REBLD"], "drop_rebuilders_cost_ratio": 1.5,
+      "check_symbols": ["HAVEN", "PORT", "ARCH"], "check_t0": ["storm_start", -2], "check_t1": ["storm_start", 30],
+      "check_cost_frac": 0.3333,
+      "fallback_deadline": ["storm_start", 16], "fallback_start": ["storm_start", 24], "fallback_last": ["storm_start", 38],
+      "fallback_through_touch_bp": 50.0, "clock_quality": ["server", "feed"]
+    },
+    "s3": {
+      "enabled": true, "rounds": [1, 2, 3], "start": ["storm_start", 20], "end": ["storm_end", 0],
+      "k_r12": 0.1, "k_r3": 0.2, "xk": 0.0, "cost_source": "config", "cost_mult": 1.0,
+      "edge_ref": "touch", "limit_cost_frac": 1.0,
+      "clip_interval_s": 2.0, "ttl_s": 2.0, "through_touch_bp": 50.0,
+      "max_from_mid_bp": 150.0, "require_marketable": true, "exclude": ["REIN"], "max_engine_age_s": 2.0
+    },
+    "flatten": {
+      "enabled": true, "rounds": [1, 2], "start": ["storm_end", 0], "end": ["prelim", -2],
+      "behind_alert_at": ["prelim", -10],
+      "clip_interval_s": 2.0, "ttl_s": 2.0, "through_touch_bp": 50.0, "max_from_mid_bp": 150.0, "exclude": ["REIN"]
+    },
+    "s1r3": {
+      "enabled": true,
+      "symbols": ["PORT", "ISLE", "AQUA", "GRID", "FERRY", "RECON", "MAT", "GEN", "HAVEN", "REIN", "ARCH", "REBLD"],
+      "engine_wait_s": 1.0, "laws_fallback": true,
+      "fast_until": ["final", 10], "fast_s": 0.5, "slow_s": 2.0, "sweep_end": ["close", -2],
+      "sanity_at": ["final", 16], "sanity_eps_mult": 3.0, "sanity_min_frac": 0.005,
+      "block_from": ["final", -60], "prewarm_at": ["final", -3], "announce_lock_from": ["final", -40],
+      "late_trigger_ok_until": ["close", -5], "require_law_check": true, "long_gap_s": 10.0
+    },
+    "rein_ask": {
+      "enabled": true, "symbol": "REIN", "offset": 0.02, "cap": 90.0, "attach": 1300.0, "slope": 0.035,
+      "refresh_s": 5.0, "start": ["open", 0], "end_r12": ["close", 0], "end_r3": ["final", 0]
+    },
+    "etf_leadlag": {
+      "enabled": false, "rounds": [1, 2, 3], "symbols": ["ARCH", "REBLD"],
+      "start": ["storm_start", 0], "end": ["final", -2],
+      "enter_gap_min": 0.005, "enter_hs_mult": 3.0, "exit_gap": 0.001, "hold_s": 8.0, "decision_s": 1.0,
+      "cap_gap_frac": 0.5, "ttl_s": 1.0, "exit_through_touch_bp": 50.0
+    },
+    "announce": {
+      "enabled": true, "freeze_etfs": true, "freeze_all_if_no_symbols": true,
+      "adjust_window_s": 45.0, "adjust_cap_frac": 0.5, "adjust_stop_coverage": 0.8,
+      "links": {
+        "HAVEN": ["REIN", "MAT"], "REIN": ["HAVEN", "MAT"], "MAT": ["HAVEN", "REIN"],
+        "GRID": ["GEN", "RECON", "HAVEN", "REIN", "MAT"], "PORT": ["RECON", "HAVEN", "REIN", "MAT"],
+        "FERRY": ["RECON", "HAVEN", "REIN", "MAT"], "ISLE": ["HAVEN", "REIN", "MAT"], "AQUA": ["HAVEN", "REIN", "MAT"],
+        "RECON": [], "GEN": [], "ARCH": [], "REBLD": []
+      }
+    }
+  },
+  "law_check": {
+    "enabled": true, "horizon_s": 16.0, "min_move_frac": 0.005, "fail_sign_n": 2, "fail_size_frac": 0.5,
+    "slopes": {
+      "prelim": {"PORT": [0.66, 0.82, 1.03], "ISLE": [0.76, 0.86, 1.00], "AQUA": [0.71, 0.79, 0.97], "GRID": [0.63, 0.74, 0.93],
+                 "FERRY": [0.71, 0.84, 0.97], "RECON": [0.47, 0.68, 1.01], "MAT": [0.42, 0.65, 1.01], "HAVEN": [0.49, 0.59, 0.82]},
+      "final": {"PORT": [0.65, 0.80], "ISLE": [0.76, 0.87], "AQUA": [0.72, 0.80], "GRID": [0.65, 0.80],
+                "FERRY": [0.72, 0.86], "RECON": [0.46, 0.69], "MAT": [0.43, 0.65], "HAVEN": [0.48, 0.59]}
+    }
+  },
+  "paths": {
+    "research_case": "../data/case.json",
+    "recording": "../testnet/recordings/testnet_s224_s225.jsonl",
+    "history_dir": null, "fv_cache_dir": null
+  },
+  "sim": {
+    "api_latency_s": 0.0, "engine_latency_s": 0.0, "lat_rows": 0, "lat_rep_rows": 1,
+    "pause_between_rounds_s": 30.0, "team_actions_per_min": 180,
+    "follow_on": true, "impact": true, "impact_credit": true, "replenish": true, "cost_mult": 1.0,
+    "fo_window_s": 8.0, "beta_bp_per_L": {"stock": 100.0, "etf": 48.0},
+    "impact_kernel_t": [0.0, 2.0, 4.0, 10.0, 20.0, 30.0], "impact_kernel_bp": [27.6, 29.7, 31.4, 41.0, 35.8, 26.8],
+    "impact_tau_s": 47.0, "impact_cut_s": 150.0, "book_levels_x": [0.1, 0.17, 0.45, 0.7, 3.0],
+    "recorded_latency_s": 0.3, "recorded_follow_on": true, "recorded_library_seasons": [226, 600],
+    "cancel_at_close": true, "workers": 8
+  }
+}

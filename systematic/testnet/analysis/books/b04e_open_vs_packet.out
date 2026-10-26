@@ -1,0 +1,22 @@
+symbol  book(3-10s)  packet  book-packet(bp)  cons(rows1-5)  book-cons(bp)  first trade px (0-10 s)  trades in 0-10 s
+PORT        72.04    72.48        -61        74.08         -276        77.81   n_trades<10s=2
+ISLE        50.22    50.26         -9        49.22         +203        54.23   n_trades<10s=1
+AQUA        27.35    27.33         +7        26.77         +218        27.31   n_trades<10s=7
+GRID        36.59    36.41        +48        36.51          +20        36.52   n_trades<10s=8
+FERRY       18.50    17.91       +329        17.57         +529        18.46   n_trades<10s=10
+RECON       52.31    52.38        -13        52.21          +20        52.40   n_trades<10s=7
+MAT         35.79    35.81         -6        35.80           -2        35.82   n_trades<10s=4
+GEN         40.20    40.30        -24        40.27          -17        36.98   n_trades<10s=1
+HAVEN       38.97    39.55       -148        39.51         -138        42.04   n_trades<10s=3
+REIN        89.56    89.36        +22        89.58           -3        89.46   n_trades<10s=1
+ARCH       289.07   289.20         -4       288.00          +37       312.20   n_trades<10s=2
+REBLD      216.86   216.68         +8       216.60          +12       199.50   n_trades<10s=3
+
+wall fills at the open: trades in real 0-3 s of every round priced > 3% away from the book level at 3-10 s
+  1802-05-10 PORT   t= 0.46s px    77.81 x200   vs level    72.04 (+801 bp, cost $1154)
+  1802-05-10 ISLE   t= 0.48s px    54.23 x300   vs level    50.22 (+800 bp, cost $1204)
+  1802-05-10 MAT    t= 0.77s px    32.99 x275   vs level    35.79 (-782 bp, cost $770)
+  1802-05-10 GEN    t= 0.46s px    36.98 x558   vs level    40.20 (-802 bp, cost $1800)
+  1802-05-10 HAVEN  t= 0.46s px    42.04 x250   vs level    38.97 (+789 bp, cost $769)
+  1802-05-10 ARCH   t= 0.68s px   312.20 x50    vs level   289.07 (+800 bp, cost $1156)
+  1802-05-10 REBLD  t= 1.83s px   199.50 x100   vs level   216.86 (-800 bp, cost $1736)

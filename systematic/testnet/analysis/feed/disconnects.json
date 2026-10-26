@@ -1,0 +1,630 @@
+{
+ "clock_resid_by_type": {
+  "advisory": {
+   "n": 66,
+   "median": 0.019468188285827637,
+   "max": 0.20039772987365723,
+   "min": -0.19040989875793457
+  },
+  "damage_report": {
+   "n": 8,
+   "median": 0.1624394655227661,
+   "max": 0.30750489234924316,
+   "min": 0.05214667320251465
+  },
+  "impact": {
+   "n": 3,
+   "median": -0.10133957862854004,
+   "max": 0.05742454528808594,
+   "min": -0.1462574005126953
+  },
+  "storm": {
+   "n": 865,
+   "median": 0.0,
+   "max": 0.3981595039367676,
+   "min": -0.21590042114257812
+  },
+  "storm_dissipated": {
+   "n": 4,
+   "median": 0.15727245807647705,
+   "max": 0.2413334846496582,
+   "min": 0.04692578315734863
+  },
+  "storm_formed": {
+   "n": 3,
+   "median": -0.11288952827453613,
+   "max": -0.06570696830749512,
+   "min": -0.21599960327148438
+  },
+  "track": {
+   "n": 88,
+   "median": 0.00503993034362793,
+   "max": 0.23552942276000977,
+   "min": -0.17681241035461426
+  }
+ },
+ "clock": {
+  "1802-05-10": {
+   "lin_resid_sd": 0.0602082600922799,
+   "lin_resid_min": -0.10652470588684082,
+   "lin_resid_max": 0.11355948448181152,
+   "season_round": [
+    225,
+    1
+   ],
+   "n_storm_frames": 240,
+   "open_wall_median": 1792767650.0372925,
+   "open_hms": "11:00:50.037",
+   "open_min_minus_median": -0.19720244407653809,
+   "resid_sd": 0.09680834153306445,
+   "resid_p05": -0.1511232852935791,
+   "resid_p95": 0.1715714931488037,
+   "resid_max": 0.23547649383544922,
+   "slope": 1.0005456470325107,
+   "span_s": 480.0
+  },
+  "1802-05-11": {
+   "lin_resid_sd": 0.05944735709500747,
+   "lin_resid_min": -0.11896109580993652,
+   "lin_resid_max": 0.10236263275146484,
+   "season_round": [
+    225,
+    2
+   ],
+   "n_storm_frames": 225,
+   "open_wall_median": 1792768610.536879,
+   "open_hms": "11:16:50.536",
+   "open_min_minus_median": -0.1903982162475586,
+   "resid_sd": 0.09008302092366743,
+   "resid_p05": -0.13450002670288086,
+   "resid_p95": 0.15715599060058594,
+   "resid_max": 0.20713496208190918,
+   "slope": 1.0004735454408693,
+   "span_s": 480.0
+  },
+  "1802-05-12": {
+   "lin_resid_sd": 0.06999583452576236,
+   "lin_resid_min": -0.1279737949371338,
+   "lin_resid_max": 0.2956235408782959,
+   "season_round": [
+    225,
+    3
+   ],
+   "n_storm_frames": 240,
+   "open_wall_median": 1792769571.1265554,
+   "open_hms": "11:32:51.126",
+   "open_min_minus_median": -0.21590042114257812,
+   "resid_sd": 0.10639216383377147,
+   "resid_p05": -0.15388035774230957,
+   "resid_p95": 0.16058945655822754,
+   "resid_max": 0.3981595039367676,
+   "slope": 1.0005760897708487,
+   "span_s": 480.0
+  },
+  "1803-05-11": {
+   "lin_resid_sd": 0.06229757723117408,
+   "lin_resid_min": -0.10768008232116699,
+   "lin_resid_max": 0.24778389930725098,
+   "season_round": [
+    224,
+    3
+   ],
+   "n_storm_frames": 160,
+   "open_wall_median": 1792766628.4557905,
+   "open_hms": "10:43:48.455",
+   "open_min_minus_median": -0.12816858291625977,
+   "resid_sd": 0.0723617319244341,
+   "resid_p05": -0.11049532890319824,
+   "resid_p95": 0.1288294792175293,
+   "resid_max": 0.2580282688140869,
+   "slope": 1.0003951755296268,
+   "span_s": 320.0
+  }
+ },
+ "connections": [
+  {
+   "conn": 1,
+   "ack": "10:47:26.800",
+   "last_frame": "10:49:17.890",
+   "lifetime_s": 111.09042835235596,
+   "frames": 1491,
+   "bytes": 459222,
+   "gap_to_next_ack_s": 1.6211278438568115,
+   "inferred_failed_attempts": 0,
+   "sum_backoff_s": 1,
+   "drop_window": [
+    "10:49:17.890",
+    "10:49:18.511"
+   ],
+   "drop_window_len_s": 0.6211278438568115,
+   "date": "1803-05-11",
+   "season_round": [
+    224,
+    3
+   ],
+   "s_at_drop": 329.4350097179413,
+   "mkt_at_drop": "12:14:43",
+   "phase": "storm",
+   "s_at_reconnect": 331.0561375617981
+  },
+  {
+   "conn": 2,
+   "ack": "10:49:19.511",
+   "last_frame": "11:01:42.756",
+   "lifetime_s": 743.2447328567505,
+   "frames": 5180,
+   "bytes": 1603090,
+   "gap_to_next_ack_s": 1.1910369396209717,
+   "inferred_failed_attempts": 0,
+   "sum_backoff_s": 1,
+   "drop_window": [
+    "11:01:42.756",
+    "11:01:42.947"
+   ],
+   "drop_window_len_s": 0.19103693962097168,
+   "date": "1802-05-10",
+   "season_round": [
+    225,
+    1
+   ],
+   "s_at_drop": 52.71936845779419,
+   "mkt_at_drop": "09:56:22",
+   "phase": "pre-storm",
+   "s_at_reconnect": 53.91040539741516
+  },
+  {
+   "conn": 3,
+   "ack": "11:01:43.947",
+   "last_frame": "11:08:50.231",
+   "lifetime_s": 426.2833902835846,
+   "frames": 8377,
+   "bytes": 2517882,
+   "gap_to_next_ack_s": 1.8853428363800049,
+   "inferred_failed_attempts": 0,
+   "sum_backoff_s": 1,
+   "drop_window": [
+    "11:08:50.231",
+    "11:08:51.116"
+   ],
+   "drop_window_len_s": 0.8853428363800049,
+   "date": "1802-05-10",
+   "season_round": [
+    225,
+    1
+   ],
+   "s_at_drop": 480.19379568099976,
+   "mkt_at_drop": "13:30:06",
+   "phase": "storm",
+   "s_at_reconnect": 482.07913851737976
+  },
+  {
+   "conn": 4,
+   "ack": "11:08:52.116",
+   "last_frame": "11:20:31.609",
+   "lifetime_s": 699.4935131072998,
+   "frames": 8927,
+   "bytes": 2695661,
+   "gap_to_next_ack_s": 31.715914011001587,
+   "inferred_failed_attempts": 4,
+   "sum_backoff_s": 31,
+   "drop_window": [
+    "11:20:31.609",
+    "11:20:32.325"
+   ],
+   "drop_window_len_s": 0.7159140110015869,
+   "date": "1802-05-11",
+   "season_round": [
+    225,
+    2
+   ],
+   "s_at_drop": 221.07306504249573,
+   "mkt_at_drop": "11:20:32",
+   "phase": "storm",
+   "s_at_reconnect": 252.78897905349731
+  },
+  {
+   "conn": 5,
+   "ack": "11:21:03.325",
+   "last_frame": "11:40:21.875",
+   "lifetime_s": 1158.5493359565735,
+   "frames": 15251,
+   "bytes": 4689386,
+   "gap_to_next_ack_s": 1.3155078887939453,
+   "inferred_failed_attempts": 0,
+   "sum_backoff_s": 1,
+   "drop_window": [
+    "11:40:21.875",
+    "11:40:22.190"
+   ],
+   "drop_window_len_s": 0.3155078887939453,
+   "date": "1802-05-12",
+   "season_round": [
+    225,
+    3
+   ],
+   "s_at_drop": 450.74863862991333,
+   "mkt_at_drop": "13:15:22",
+   "phase": "storm",
+   "s_at_reconnect": 452.0641465187073
+  },
+  {
+   "conn": 6,
+   "ack": "11:40:23.190",
+   "last_frame": "11:50:44.983",
+   "lifetime_s": 621.7931129932404,
+   "frames": 5070,
+   "bytes": 1527174
+  }
+ ],
+ "losses": [
+  {
+   "drop": 1,
+   "season": 224,
+   "last_seq_before": 745,
+   "first_seq_after": 748,
+   "lost_seqs": [
+    746,
+    747
+   ],
+   "lost_types": {
+    "advisory/official": 1,
+    "storm": 1
+   },
+   "lost_mkt_times": [
+    "1803-05-11T12:15:00",
+    "1803-05-11T12:15:00"
+   ],
+   "lost_detail": [
+    [
+     746,
+     "advisory",
+     "official",
+     "12:15:00",
+     270,
+     5
+    ]
+   ]
+  },
+  {
+   "drop": 2,
+   "season": 224,
+   "last_seq_before": 876,
+   "first_seq_after": 0,
+   "lost_seqs": [],
+   "lost_types": {},
+   "lost_mkt_times": null,
+   "lost_detail": []
+  },
+  {
+   "drop": 3,
+   "season": 225,
+   "last_seq_before": 249,
+   "first_seq_after": 251,
+   "lost_seqs": [
+    250
+   ],
+   "lost_types": {
+    "storm": 1
+   },
+   "lost_mkt_times": [
+    "1802-05-10T13:31:00",
+    "1802-05-10T13:31:00"
+   ],
+   "lost_detail": []
+  },
+  {
+   "drop": 4,
+   "season": 225,
+   "last_seq_before": 385,
+   "first_seq_after": 406,
+   "lost_seqs": [
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392,
+    393,
+    394,
+    395,
+    396,
+    397,
+    398,
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    405
+   ],
+   "lost_types": {
+    "storm": 16,
+    "advisory/wire": 3,
+    "track": 1
+   },
+   "lost_mkt_times": [
+    "1802-05-11T11:21:00",
+    "1802-05-11T11:36:00"
+   ],
+   "lost_detail": [
+    [
+     391,
+     "advisory",
+     "wire",
+     "11:25:30",
+     171,
+     null
+    ],
+    [
+     397,
+     "track",
+     null,
+     "11:30:00",
+     180,
+     null
+    ],
+    [
+     398,
+     "advisory",
+     "wire",
+     "11:30:00",
+     180,
+     null
+    ],
+    [
+     400,
+     "advisory",
+     "wire",
+     "11:31:30",
+     183,
+     null
+    ]
+   ]
+  },
+  {
+   "drop": 5,
+   "season": 225,
+   "last_seq_before": 811,
+   "first_seq_after": 813,
+   "lost_seqs": [
+    812
+   ],
+   "lost_types": {
+    "storm": 1
+   },
+   "lost_mkt_times": [
+    "1802-05-12T13:16:00",
+    "1802-05-12T13:16:00"
+   ],
+   "lost_detail": []
+  }
+ ],
+ "recovery": [
+  {
+   "drop": 1,
+   "seq": 746,
+   "type": "advisory",
+   "source": "official",
+   "recovery": "full (snapshot.advisory, testnet version)"
+  },
+  {
+   "drop": 1,
+   "seq": 747,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 3,
+   "seq": 250,
+   "type": "storm",
+   "source": null,
+   "recovery": "full (snapshot.obs)"
+  },
+  {
+   "drop": 4,
+   "seq": 386,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 387,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 388,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 389,
+   "type": "storm",
+   "source": null,
+   "recovery": "position+radius only (snapshot.track; no intensity/velocity)"
+  },
+  {
+   "drop": 4,
+   "seq": 390,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 391,
+   "type": "advisory",
+   "source": "wire",
+   "recovery": "headline text only; outlook parsable from text -> erratic (true erratic)"
+  },
+  {
+   "drop": 4,
+   "seq": 392,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 393,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 394,
+   "type": "storm",
+   "source": null,
+   "recovery": "position+radius only (snapshot.track; no intensity/velocity)"
+  },
+  {
+   "drop": 4,
+   "seq": 395,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 396,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 397,
+   "type": "track",
+   "source": null,
+   "recovery": "superseded (snapshot.track, thinned)"
+  },
+  {
+   "drop": 4,
+   "seq": 398,
+   "type": "advisory",
+   "source": "wire",
+   "recovery": "headline text only; outlook parsable from text -> stall (true stall)"
+  },
+  {
+   "drop": 4,
+   "seq": 399,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 400,
+   "type": "advisory",
+   "source": "wire",
+   "recovery": "headline text only; outlook parsable from text -> recurve (true recurve)"
+  },
+  {
+   "drop": 4,
+   "seq": 401,
+   "type": "storm",
+   "source": null,
+   "recovery": "position+radius only (snapshot.track; no intensity/velocity)"
+  },
+  {
+   "drop": 4,
+   "seq": 402,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 403,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 404,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  },
+  {
+   "drop": 4,
+   "seq": 405,
+   "type": "storm",
+   "source": null,
+   "recovery": "position+radius only (snapshot.track; no intensity/velocity)"
+  },
+  {
+   "drop": 5,
+   "seq": 812,
+   "type": "storm",
+   "source": null,
+   "recovery": "interpolated only (between snapshot.track points)"
+  }
+ ],
+ "snapshot_adv_consistency": {
+  "identical": 102,
+  "different": 0
+ },
+ "mtbf_s": 752.0909027099609,
+ "lifetime_cv": 0.5554009198137958,
+ "drops_by_phase": {
+  "drops": {
+   "storm": 4,
+   "pre-storm": 1
+  },
+  "connected_s": {
+   "storm": 1725.2189518446958,
+   "aftermath": 960.0000000001497,
+   "pause": 846.5000000001239,
+   "pre-storm": 228.7391475200566
+  }
+ },
+ "tick_proximity": {
+  "band": [
+   -0.5649902820587158,
+   1.7889790534973145
+  ],
+  "coverage": 0.15333333333333332,
+  "p_chance": 0.0005527723456790122
+ },
+ "fast_retry_single_saved": [
+  2,
+  13
+ ],
+ "sim": {
+  "recorded": {
+   "mean_still_lost_of_22": 0.2341,
+   "p_zero": 0.93735,
+   "p99": 9,
+   "max": 21
+  },
+  "fast-retry": {
+   "mean_still_lost_of_22": 0.1551,
+   "p_zero": 0.9589,
+   "p99": 5,
+   "max": 20
+  },
+  "recorded_per_season": {
+   "one_conn_mean": 8.38675,
+   "two_conn_mean": 0.08775,
+   "one_conn_p_any": 0.79375,
+   "two_conn_p_any": 0.02775
+  },
+  "fast-retry_per_season": {
+   "one_conn_mean": 6.04,
+   "two_conn_mean": 0.0525,
+   "one_conn_p_any": 0.638,
+   "two_conn_p_any": 0.01425
+  }
+ }
+}

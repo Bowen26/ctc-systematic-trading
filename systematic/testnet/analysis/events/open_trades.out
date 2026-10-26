@@ -1,0 +1,34 @@
+-- (225, 1)
+   PORT   trade   200 (100% L) at 77.81 real  0.62 s; book mid at 20 s 72.22 -> +7.73%; cost vs 20-s mid $1117; full ladder first seen at 2.39 s
+   ISLE   trade   300 (100% L) at 54.23 real  0.64 s; book mid at 20 s 50.22 -> +8.00%; cost vs 20-s mid $1204; full ladder first seen at 2.65 s
+   AQUA   trade    50 (10% L) at 27.31 real  0.62 s; book mid at 20 s 27.35 -> -0.15%; cost vs 20-s mid $2; full ladder first seen at 0.47 s
+   AQUA   trade    35 (7% L) at 27.33 real  2.00 s; book mid at 20 s 27.35 -> -0.07%; cost vs 20-s mid $1; full ladder first seen at 0.47 s
+   GRID   trade    40 (10% L) at 36.52 real  0.62 s; book mid at 20 s 36.59 -> -0.18%; cost vs 20-s mid $3; full ladder first seen at 0.47 s
+   GRID   trade    28 (7% L) at 36.56 real  1.98 s; book mid at 20 s 36.59 -> -0.07%; cost vs 20-s mid $1; full ladder first seen at 0.47 s
+   FERRY  trade    80 (10% L) at 18.46 real  0.62 s; book mid at 20 s 18.50 -> -0.19%; cost vs 20-s mid $3; full ladder first seen at 0.47 s
+   FERRY  trade    80 (10% L) at 18.49 real  1.98 s; book mid at 20 s 18.50 -> -0.03%; cost vs 20-s mid $0; full ladder first seen at 0.47 s
+   FERRY  trade    56 (7% L) at 18.51 real  2.15 s; book mid at 20 s 18.50 -> +0.08%; cost vs 20-s mid $1; full ladder first seen at 0.47 s
+   RECON  trade    50 (10% L) at 52.4 real  1.09 s; book mid at 20 s 52.31 -> +0.17%; cost vs 20-s mid $4; full ladder first seen at 0.47 s
+   RECON  trade    35 (7% L) at 52.35 real  2.00 s; book mid at 20 s 52.31 -> +0.08%; cost vs 20-s mid $1; full ladder first seen at 0.47 s
+   MAT    trade    70 (10% L) at 35.82 real  0.93 s; book mid at 20 s 35.79 -> +0.08%; cost vs 20-s mid $2; full ladder first seen at 0.75 s
+   MAT    trade    49 (7% L) at 35.79 real  0.93 s; book mid at 20 s 35.79 -> +0.00%; cost vs 20-s mid $0; full ladder first seen at 0.75 s
+   MAT    trade   275 (39% L) at 32.99 real  0.93 s; book mid at 20 s 35.79 -> -7.82%; cost vs 20-s mid $770; full ladder first seen at 0.75 s
+   GEN    trade   558 (93% L) at 36.98 real  0.62 s; book mid at 20 s 40.20 -> -8.02%; cost vs 20-s mid $1800; full ladder first seen at 0.75 s
+   HAVEN  trade   250 (100% L) at 42.04 real  0.62 s; book mid at 20 s 39.02 -> +7.74%; cost vs 20-s mid $755; full ladder first seen at 1.58 s
+   ARCH   trade    50 (100% L) at 312.2 real  0.83 s; book mid at 20 s 289.07 -> +8.00%; cost vs 20-s mid $1156; full ladder first seen at 1.85 s
+   REBLD  trade   100 (100% L) at 199.5 real  1.98 s; book mid at 20 s 216.70 -> -7.94%; cost vs 20-s mid $1720; full ladder first seen at 2.13 s
+   total paid vs 20-s mid by these opening prints: $8540
+-- (225, 2)
+   ISLE   trade    30 (10% L) at 53.28 real  2.45 s; book mid at 20 s 53.39 -> -0.20%; cost vs 20-s mid $3; full ladder first seen at 1.33 s
+   HAVEN  trade    25 (10% L) at 52.66 real  2.05 s; book mid at 20 s 52.87 -> -0.39%; cost vs 20-s mid $5; full ladder first seen at 0.19 s
+   total paid vs 20-s mid by these opening prints: $8
+-- (225, 3)
+   GRID   trade    40 (10% L) at 44.66 real  1.13 s; book mid at 20 s 44.73 -> -0.16%; cost vs 20-s mid $3; full ladder first seen at 0.46 s
+   GRID   trade    28 (7% L) at 44.7 real  1.13 s; book mid at 20 s 44.73 -> -0.07%; cost vs 20-s mid $1; full ladder first seen at 0.46 s
+   FERRY  trade    80 (10% L) at 22.78 real  1.13 s; book mid at 20 s 22.83 -> -0.22%; cost vs 20-s mid $4; full ladder first seen at 0.49 s
+   FERRY  trade    56 (7% L) at 22.81 real  1.13 s; book mid at 20 s 22.83 -> -0.09%; cost vs 20-s mid $1; full ladder first seen at 0.49 s
+   ARCH   trade    20 (40% L) at 364.36 real  2.38 s; book mid at 20 s 365.78 -> -0.39%; cost vs 20-s mid $28; full ladder first seen at 1.25 s
+   ARCH   trade     5 (10% L) at 364.72 real  2.38 s; book mid at 20 s 365.78 -> -0.29%; cost vs 20-s mid $5; full ladder first seen at 1.25 s
+   REBLD  trade    40 (40% L) at 192.59 real  2.53 s; book mid at 20 s 192.38 -> +0.11%; cost vs 20-s mid $8; full ladder first seen at 1.52 s
+   REBLD  trade    10 (10% L) at 192.78 real  2.53 s; book mid at 20 s 192.38 -> +0.21%; cost vs 20-s mid $4; full ladder first seen at 1.52 s
+   total paid vs 20-s mid by these opening prints: $55

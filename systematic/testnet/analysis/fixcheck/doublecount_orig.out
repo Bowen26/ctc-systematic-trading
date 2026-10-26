@@ -1,0 +1,9 @@
+A   classifier: official labels 1, wire labels 0, obs 15 -> 16, track pts 6; posterior direct 0.036, chain 0.928, recurve 0.028, stall 0.000, eyewall 0.006, erratic 0.003
+B   classifier: official labels 1, wire labels 0, obs 15 -> 1, track pts 0; posterior direct 0.027, chain 0.914, recurve 0.043, stall 0.003, eyewall 0.010, erratic 0.003
+B1  classifier: official labels 2, wire labels 0, obs 15 -> 16, track pts 7; posterior direct 0.003, chain 0.991, recurve 0.003, stall 0.000, eyewall 0.001, erratic 0.003
+B2  classifier: official labels 1, wire labels 0, obs 15 -> 16, track pts 7; posterior direct 0.036, chain 0.928, recurve 0.028, stall 0.000, eyewall 0.006, erratic 0.003
+A_snap_after classifier: official labels 1, wire labels 0, obs 15 -> 16, track pts 7; posterior direct 0.036, chain 0.928, recurve 0.028, stall 0.000, eyewall 0.006, erratic 0.003
+B   vs A: max |dp| 0.0149; fair value diff: PORT +0.300, ISLE -0.134, AQUA -0.111, GRID +0.033, FERRY +0.002, RECON -0.092, MAT -0.013, GEN -0.016, HAVEN +0.115, REIN +0.000, ARCH +0.095, REBLD -0.227
+B1  vs A: max |dp| 0.0629; fair value diff: PORT +0.406, ISLE +0.104, AQUA +0.120, GRID +0.077, FERRY +0.005, RECON -0.090, MAT -0.080, GEN -0.058, HAVEN +0.458, REIN +0.000, ARCH +1.295, REBLD -0.397
+B2  vs A: max |dp| 0.0000; fair value diff: PORT +0.000, ISLE +0.000, AQUA +0.000, GRID +0.000, FERRY +0.000, RECON +0.000, MAT +0.000, GEN +0.000, HAVEN +0.000, REIN +0.000, ARCH +0.000, REBLD +0.000
+A_snap_after vs A: max |dp| 0.0000; fair value diff: PORT +0.000, ISLE +0.000, AQUA +0.000, GRID +0.000, FERRY +0.000, RECON +0.000, MAT +0.000, GEN +0.000, HAVEN +0.000, REIN +0.000, ARCH +0.000, REBLD +0.000

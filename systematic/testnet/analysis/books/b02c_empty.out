@@ -1,0 +1,7 @@
+  1 level/side  in session                       15
+  1 level/side  open 0-3 s                       30
+  1 level/side  pre-open/pause (t<0 or t>=780)   12
+  empty         close 776-780 s                  12
+  empty         pre-open/pause (t<0 or t>=780)   60
+  one-sided     open 0-3 s                       2
+  in-session 1 level/side: [('PORT', '1801-05-11', 45.17), ('PORT', '1801-05-11', 45.39), ('RECON', '1801-05-11', 45.17), ('RECON', '1801-05-11', 45.39), ('MAT', '1801-05-11', 45.17), ('MAT', '1801-05-11', 45.39), ('GEN', '1801-05-11', 45.17), ('GEN', '1801-05-11', 45.45), ('HAVEN', '1801-05-11', 45.17), ('HAVEN', '1801-05-11', 45.39), ('REIN', '1801-05-11', 45.17), ('ARCH', '1801-05-11', 45.17)]

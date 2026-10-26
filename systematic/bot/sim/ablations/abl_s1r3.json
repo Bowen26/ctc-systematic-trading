@@ -1,0 +1,5 @@
+{
+  "live_allowed": false,
+  "strategies": {"s1r3": {"symbols": ["PORT", "ISLE", "AQUA", "GRID", "FERRY", "RECON", "MAT", "GEN", "HAVEN", "ARCH", "REBLD"],
+                          "require_law_check": false}}
+}

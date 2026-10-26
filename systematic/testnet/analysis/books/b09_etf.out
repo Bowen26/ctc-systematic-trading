@@ -1,0 +1,14 @@
+ARCH pre  : RMS(gap - mean) at lag 0 21.1 bp (mean -1.9); best lag 20.0 s -> 18.9 bp; lags 2/4/6/8/10 s: 21 21 21 20 20
+ARCH storm: RMS(gap - mean) at lag 0 69.6 bp (mean -9.8); best lag 7.0 s -> 38.1 bp; lags 2/4/6/8/10 s: 57 46 39 41 52
+ARCH after: RMS(gap - mean) at lag 0 25.4 bp (mean +1.2); best lag 6.5 s -> 17.7 bp; lags 2/4/6/8/10 s: 22 20 18 18 22
+ARCH all  : RMS(gap - mean) at lag 0 56.6 bp (mean -5.6); best lag 7.0 s -> 31.7 bp; lags 2/4/6/8/10 s: 47 38 32 34 42
+  ARCH: share of 60-780 s with ETF touch through NAV_book by >25 bp: 16.7% (115 episodes, median 2.0 s)
+  ARCH: share of 60-780 s with ETF touch through NAV_book by >50 bp: 7.8% (65 episodes, median 1.5 s)
+  ARCH: share of 60-780 s with ETF touch through NAV_book by >100 bp: 4.1% (23 episodes, median 3.5 s)
+REBLD pre  : RMS(gap - mean) at lag 0 10.6 bp (mean +7.7); best lag 0.0 s -> 10.6 bp; lags 2/4/6/8/10 s: 11 11 11 11 12
+REBLD storm: RMS(gap - mean) at lag 0 46.6 bp (mean +5.1); best lag 7.0 s -> 32.1 bp; lags 2/4/6/8/10 s: 41 36 33 33 38
+REBLD after: RMS(gap - mean) at lag 0 20.5 bp (mean +6.1); best lag 3.0 s -> 20.2 bp; lags 2/4/6/8/10 s: 20 20 21 21 21
+REBLD all  : RMS(gap - mean) at lag 0 38.3 bp (mean +5.6); best lag 7.0 s -> 28.0 bp; lags 2/4/6/8/10 s: 34 30 28 29 32
+  REBLD: share of 60-780 s with ETF touch through NAV_book by >25 bp: 16.5% (92 episodes, median 2.0 s)
+  REBLD: share of 60-780 s with ETF touch through NAV_book by >50 bp: 5.3% (46 episodes, median 1.5 s)
+  REBLD: share of 60-780 s with ETF touch through NAV_book by >100 bp: 1.7% (12 episodes, median 3.2 s)

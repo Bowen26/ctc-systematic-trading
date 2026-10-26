@@ -1,0 +1,72 @@
+{
+ "news": {
+  "duplicates": 0,
+  "order_violations": 0,
+  "tick_groups": {
+   "storm < track": 82,
+   "storm < advisory/wire": 19,
+   "advisory/official < storm": 28,
+   "storm < impact": 2,
+   "storm < track < advisory/wire": 2,
+   "storm < track < storm_dissipated": 4,
+   "storm_formed < storm": 3
+  }
+ },
+ "snapshot": {
+  "last_seq_cmp": {
+   "last_seq == max seq received before it": 110,
+   "no prior news on this connection": 13
+  },
+  "obs_eq": 106,
+  "obs_ne": 0,
+  "size_max": 4314
+ },
+ "trade_dup_ids": 37,
+ "rates": {
+  "pre-storm": {
+   "heartbeat": 0.026230752650129117,
+   "news:snapshot": 0.030602544758483972,
+   "news:storm": 0.013115376325064558,
+   "news:storm_formed": 0.013115376325064558,
+   "orderbook": 3.6985361236682057,
+   "quote": 3.392510676083366,
+   "subscription_ack": 0.004371792108354853,
+   "trade": 2.177152469960717
+  },
+  "storm": {
+   "heartbeat": 0.03130037491314382,
+   "news:advisory": 0.03825601378273134,
+   "news:impact": 0.0017389097173968792,
+   "news:snapshot": 0.03130037491314382,
+   "news:storm": 0.4973281791755074,
+   "news:track": 0.04868947208711261,
+   "orderbook": 6.949262867290395,
+   "quote": 6.547574722571715,
+   "subscription_ack": 0.002898182862328132,
+   "trade": 3.883565035519697
+  },
+  "aftermath": {
+   "heartbeat": 0.033333333333328136,
+   "news:damage_report": 0.008333333333332034,
+   "news:snapshot": 0.033333333333328136,
+   "news:storm": 0.004166666666666017,
+   "news:storm_dissipated": 0.004166666666666017,
+   "news:track": 0.004166666666666017,
+   "orderbook": 4.217708333332675,
+   "quote": 4.096874999999361,
+   "trade": 2.824999999999559
+  },
+  "pause": {
+   "heartbeat": 0.03544004725339115,
+   "news:snapshot": 0.03544004725339115,
+   "orderbook": 0.12640283520376178,
+   "quote": 0.1204961606615299
+  }
+ },
+ "book": {
+  "crossed": 0,
+  "locked": 0,
+  "quote_match": 14208,
+  "quote_mismatch": 1818
+ }
+}

@@ -1,0 +1,37 @@
+== round open fit (open = received_at - market_seconds/30, storm observations) ==
+1803-05-11 season 224 round 3: open 10:43:48.455 local; storm obs n=160 resid sd 72 ms, p5 -110 p95 129 min -128 max 258 ms; median-min 128 ms; news t range 220.0..872.7 s
+    resid by type (median ms, n): {'storm': (0, 160), 'track': (23, 17), 'advisory': (55, 12), 'snapshot': (612, 21), 'impact': (-101, 1), 'storm_dissipated': (164, 1), 'damage_report': (191, 2)}
+1802-05-10 season 225 round 1: open 11:00:50.037 local; storm obs n=240 resid sd 97 ms, p5 -151 p95 172 min -197 max 235 ms; median-min 197 ms; news t range -120.1..904.2 s
+    resid by type (median ms, n): {'snapshot': (482, 35), 'storm_formed': (-113, 1), 'storm': (0, 240), 'track': (-1, 24), 'advisory': (-4, 18), 'storm_dissipated': (241, 1), 'damage_report': (134, 2)}
+1802-05-11 season 225 round 2: open 11:16:50.536 local; storm obs n=225 resid sd 90 ms, p5 -135 p95 157 min -190 max 207 ms; median-min 190 ms; news t range -26.2..902.8 s
+    resid by type (median ms, n): {'snapshot': (455, 31), 'storm_formed': (-66, 1), 'storm': (0, 225), 'advisory': (12, 21), 'track': (11, 23), 'storm_dissipated': (47, 1), 'damage_report': (212, 2)}
+1802-05-12 season 225 round 3: open 11:32:51.126 local; storm obs n=240 resid sd 106 ms, p5 -154 p95 161 min -216 max 398 ms; median-min 216 ms; news t range -27.8..873.0 s
+    resid by type (median ms, n): {'snapshot': (493, 30), 'storm_formed': (-216, 1), 'storm': (0, 240), 'track': (-6, 24), 'advisory': (-1, 15), 'impact': (-44, 2), 'storm_dissipated': (151, 1), 'damage_report': (143, 2)}
+1801-05-11 season None round None: open 11:49:09.921 local; storm obs n=0 resid sd 44981 ms, p5 -75350 p95 45246 min -75350 max 45437 ms; median-min 75350 ms; news t range -75.4..75.4 s
+    resid by type (median ms, n): {'snapshot': (0, 6)}
+== gaps between consecutive round opens (s) ==
+  1803-05-11 -> 1802-05-10: 1021.6 s (pause after close 241.6 s)
+  1802-05-10 -> 1802-05-11: 960.5 s (pause after close 180.5 s)
+  1802-05-11 -> 1802-05-12: 960.6 s (pause after close 180.6 s)
+  1802-05-12 -> 1801-05-11: 978.8 s (pause after close 198.8 s)
+== connection segments ==
+  seg 0: 10:47:26.800 -> 10:49:17.890 (111.1 s)  [1803-05-11 t=218.3 -> 1803-05-11 t=329.4]
+  seg 1: 10:49:19.511 -> 11:01:42.756 (743.2 s)  [1803-05-11 t=331.1 -> 1802-05-10 t=52.7]
+  seg 2: 11:01:43.947 -> 11:08:50.231 (426.3 s)  [1802-05-10 t=53.9 -> 1802-05-10 t=480.2]
+  seg 3: 11:08:52.116 -> 11:20:31.609 (699.5 s)  [1802-05-10 t=482.1 -> 1802-05-11 t=221.1]
+  seg 4: 11:21:03.325 -> 11:40:21.875 (1158.5 s)  [1802-05-11 t=252.8 -> 1802-05-12 t=450.7]
+  seg 5: 11:40:23.190 -> 11:50:44.983 (621.8 s)  [1802-05-12 t=452.1 -> 1801-05-11 t=95.1]
+== book-frame coverage per round and phase (seconds of real time covered by >=1 book frame per 2-s bin, any symbol) ==
+  1803-05-11 (s224 r3): {'pre': '0/60', 'early': '0/60', 'storm': '322/420', 'after': '236/240', 'rep_prelim': '32/32', 'rep_final': '22/22'}
+  1802-05-10 (s225 r1): {'pre': '58/60', 'early': '60/60', 'storm': '418/420', 'after': '232/240', 'rep_prelim': '32/32', 'rep_final': '22/22'}
+  1802-05-11 (s225 r2): {'pre': '60/60', 'early': '60/60', 'storm': '388/420', 'after': '226/240', 'rep_prelim': '32/32', 'rep_final': '22/22'}
+  1802-05-12 (s225 r3): {'pre': '60/60', 'early': '60/60', 'storm': '418/420', 'after': '240/240', 'rep_prelim': '32/32', 'rep_final': '22/22'}
+  1801-05-11 (sNone rNone): {'pre': '16/60', 'early': '30/60', 'storm': '0/420', 'after': '0/240', 'rep_prelim': '0/32', 'rep_final': '0/22'}
+== frames outside [0,780) of a round (pauses) ==
+  1803-05-11: 12 book frames with t in [898.0, 898.0]
+  1802-05-10: 39 book frames with t in [780.1, 780.5]
+  1802-05-11: 30 book frames with t in [-0.0, 780.5]
+  1802-05-12: 26 book frames with t in [780.0, 900.2]
+== server timestamp vs received_at (orderbook frames): received_at - server_ts (ms) ==
+  n=16991 p1 -7.4 p50 15.9 p90 28.8 p99 106.1 max 433.7 ms
+  trades: n=9910 p1 1.7 p50 18.8 p99 236.7 max 35301.8 ms (large values = replayed last trade on (re)subscribe)

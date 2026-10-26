@@ -1,0 +1,4 @@
+{
+  "live_allowed": false,
+  "strategies": {"rein_ask": {"enabled": false}}
+}

@@ -1,0 +1,122 @@
+trades within [0,780) of the 4 analysed rounds; replayed-on-subscribe trades (server lag > 1 s) dropped
+orders = trades grouped by (received_at bundle, side); rates per covered second of book data
+
+PORT (L=200): 1043 trades, 945 taker orders
+  pre        orders   31 (0.17/s),   3.2 sh/s, size p10/50/90/max 1/11/20/200 (p50 5.5% L), buy share of volume 91%, sides {'B': 25, 'S': 8}, multi-level 2, ia p50 4.01s
+  early      orders  166 (0.92/s),  14.5 sh/s, size p10/50/90/max 5/14/28/60 (p50 7.0% L), buy share of volume 25%, sides {'S': 123, 'B': 53, 'I': 1}, multi-level 11, ia p50 0.80s
+  storm      orders  489 (0.32/s),   3.4 sh/s, size p10/50/90/max 2/8/20/128 (p50 4.0% L), buy share of volume 49%, sides {'S': 262, 'B': 281}, multi-level 48, ia p50 1.51s
+  after      orders  259 (0.27/s),   4.3 sh/s, size p10/50/90/max 2/14/26/129 (p50 7.0% L), buy share of volume 64%, sides {'B': 163, 'S': 127}, multi-level 27, ia p50 2.00s
+  rep_prelim orders   47 (0.37/s),   7.0 sh/s, size p10/50/90/max 4/10/55/80 (p50 5.0% L), buy share of volume 70%, sides {'B': 36, 'S': 21}, multi-level 9, ia p50 1.71s
+  rep_final  orders   57 (0.65/s),  13.9 sh/s, size p10/50/90/max 2/14/48/129 (p50 7.0% L), buy share of volume 68%, sides {'S': 31, 'B': 39}, multi-level 10, ia p50 0.85s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: +0.21, 1802-05-10: -2.54, 1802-05-11: +0.10, 1802-05-12: -4.87
+  most common trade sizes: [(20, 205), (1, 92), (10, 84), (5, 76), (2, 69), (14, 64), (4, 56), (8, 52)]
+
+ISLE (L=300): 719 trades, 644 taker orders
+  pre        orders   28 (0.16/s),   4.6 sh/s, size p10/50/90/max 3/24/30/300 (p50 8.0% L), buy share of volume 86%, sides {'B': 21, 'S': 10}, multi-level 3, ia p50 3.75s
+  early      orders  103 (0.57/s),  13.2 sh/s, size p10/50/90/max 4/23/31/90 (p50 7.7% L), buy share of volume 30%, sides {'B': 40, 'S': 71}, multi-level 8, ia p50 1.40s
+  storm      orders  328 (0.21/s),   3.3 sh/s, size p10/50/90/max 2/10/30/90 (p50 3.3% L), buy share of volume 38%, sides {'B': 172, 'S': 195}, multi-level 37, ia p50 2.76s
+  after      orders  185 (0.19/s),   3.7 sh/s, size p10/50/90/max 2/16/37/115 (p50 5.3% L), buy share of volume 72%, sides {'S': 84, 'B': 126}, multi-level 23, ia p50 1.71s
+  rep_prelim orders   28 (0.22/s),   3.1 sh/s, size p10/50/90/max 1/11/33/39 (p50 3.7% L), buy share of volume 68%, sides {'S': 14, 'B': 21}, multi-level 6, ia p50 2.25s
+  rep_final  orders   41 (0.47/s),  12.5 sh/s, size p10/50/90/max 5/25/60/90 (p50 8.3% L), buy share of volume 86%, sides {'B': 33, 'S': 10}, multi-level 2, ia p50 1.01s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: -0.58, 1802-05-10: -2.86, 1802-05-11: -2.37, 1802-05-12: -1.61
+  most common trade sizes: [(30, 128), (1, 52), (7, 46), (2, 42), (5, 38), (6, 30), (4, 29), (8, 28)]
+
+AQUA (L=500): 769 trades, 684 taker orders
+  pre        orders   26 (0.15/s),   6.5 sh/s, size p10/50/90/max 4/46/80/150 (p50 9.2% L), buy share of volume 86%, sides {'B': 26, 'S': 6}, multi-level 6, ia p50 2.52s
+  early      orders   85 (0.47/s),  20.2 sh/s, size p10/50/90/max 5/50/78/150 (p50 10.0% L), buy share of volume 26%, sides {'S': 60, 'B': 28}, multi-level 3, ia p50 1.47s
+  storm      orders  377 (0.24/s),   6.5 sh/s, size p10/50/90/max 4/16/50/150 (p50 3.2% L), buy share of volume 43%, sides {'B': 211, 'S': 209}, multi-level 38, ia p50 2.25s
+  after      orders  196 (0.20/s),   7.0 sh/s, size p10/50/90/max 5/24/73/200 (p50 4.8% L), buy share of volume 74%, sides {'B': 143, 'S': 86}, multi-level 29, ia p50 2.08s
+  rep_prelim orders   25 (0.20/s),   4.5 sh/s, size p10/50/90/max 2/13/55/95 (p50 2.6% L), buy share of volume 79%, sides {'B': 20, 'S': 9}, multi-level 4, ia p50 2.50s
+  rep_final  orders   33 (0.38/s),  19.8 sh/s, size p10/50/90/max 10/40/150/200 (p50 8.0% L), buy share of volume 85%, sides {'S': 13, 'B': 26}, multi-level 4, ia p50 1.86s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: +0.64, 1802-05-10: -2.95, 1802-05-11: -2.49, 1802-05-12: -1.58
+  most common trade sizes: [(50, 146), (13, 43), (1, 43), (35, 32), (10, 28), (6, 24), (9, 22), (3, 20)]
+
+GRID (L=400): 763 trades, 686 taker orders
+  pre        orders   22 (0.12/s),   3.6 sh/s, size p10/50/90/max 1/20/81/120 (p50 5.0% L), buy share of volume 91%, sides {'B': 16, 'S': 8}, multi-level 2, ia p50 2.05s
+  early      orders  121 (0.67/s),  24.7 sh/s, size p10/50/90/max 5/34/100/120 (p50 8.5% L), buy share of volume 13%, sides {'S': 103, 'B': 27, 'I': 2}, multi-level 10, ia p50 1.11s
+  storm      orders  333 (0.22/s),   4.3 sh/s, size p10/50/90/max 2/14/40/120 (p50 3.5% L), buy share of volume 45%, sides {'B': 183, 'S': 187}, multi-level 35, ia p50 3.02s
+  after      orders  210 (0.22/s),   5.7 sh/s, size p10/50/90/max 3/20/47/120 (p50 5.0% L), buy share of volume 73%, sides {'S': 91, 'B': 146}, multi-level 25, ia p50 1.84s
+  rep_prelim orders   29 (0.23/s),   6.0 sh/s, size p10/50/90/max 4/13/58/120 (p50 3.2% L), buy share of volume 66%, sides {'S': 18, 'B': 17}, multi-level 5, ia p50 1.75s
+  rep_final  orders   47 (0.53/s),  19.5 sh/s, size p10/50/90/max 5/32/80/120 (p50 8.0% L), buy share of volume 80%, sides {'S': 15, 'B': 36}, multi-level 4, ia p50 1.25s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: -0.57, 1802-05-10: -2.76, 1802-05-11: -0.52, 1802-05-12: -5.93
+  most common trade sizes: [(40, 134), (1, 35), (3, 33), (2, 31), (28, 29), (6, 28), (4, 26), (7, 25)]
+
+FERRY (L=800): 842 trades, 760 taker orders
+  pre        orders   47 (0.26/s),  20.4 sh/s, size p10/50/90/max 22/80/136/240 (p50 10.0% L), buy share of volume 91%, sides {'B': 43, 'S': 10}, multi-level 6, ia p50 2.11s
+  early      orders  103 (0.57/s),  44.0 sh/s, size p10/50/90/max 13/80/200/240 (p50 10.0% L), buy share of volume 16%, sides {'B': 27, 'S': 83}, multi-level 7, ia p50 1.32s
+  storm      orders  404 (0.26/s),  10.8 sh/s, size p10/50/90/max 6/28/80/240 (p50 3.5% L), buy share of volume 44%, sides {'S': 210, 'B': 228, 'I': 1}, multi-level 32, ia p50 1.79s
+  after      orders  206 (0.21/s),  11.6 sh/s, size p10/50/90/max 7/40/124/283 (p50 5.0% L), buy share of volume 68%, sides {'B': 135, 'S': 104, 'I': 1}, multi-level 32, ia p50 2.02s
+  rep_prelim orders   32 (0.25/s),  13.5 sh/s, size p10/50/90/max 9/45/90/281 (p50 5.6% L), buy share of volume 64%, sides {'B': 19, 'S': 19}, multi-level 6, ia p50 2.51s
+  rep_final  orders   44 (0.50/s),  33.6 sh/s, size p10/50/90/max 10/79/146/283 (p50 9.9% L), buy share of volume 72%, sides {'S': 16, 'B': 32, 'I': 1}, multi-level 5, ia p50 1.18s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: -0.45, 1802-05-10: -2.71, 1802-05-11: -2.16, 1802-05-12: -3.82
+  most common trade sizes: [(80, 133), (21, 49), (40, 43), (56, 33), (20, 30), (1, 22), (7, 18), (10, 17)]
+
+RECON (L=500): 761 trades, 696 taker orders
+  pre        orders   20 (0.11/s),   5.1 sh/s, size p10/50/90/max 5/50/100/150 (p50 10.0% L), buy share of volume 10%, sides {'S': 16, 'B': 5}, multi-level 1, ia p50 5.28s
+  early      orders  105 (0.58/s),  29.1 sh/s, size p10/50/90/max 6/50/125/150 (p50 10.0% L), buy share of volume 80%, sides {'B': 78, 'S': 34}, multi-level 7, ia p50 1.44s
+  storm      orders  360 (0.23/s),   6.6 sh/s, size p10/50/90/max 4/21/50/296 (p50 4.2% L), buy share of volume 44%, sides {'S': 218, 'B': 179}, multi-level 34, ia p50 2.50s
+  after      orders  211 (0.22/s),   6.2 sh/s, size p10/50/90/max 4/19/50/155 (p50 3.8% L), buy share of volume 41%, sides {'S': 128, 'B': 103}, multi-level 18, ia p50 2.02s
+  rep_prelim orders   26 (0.20/s),   4.8 sh/s, size p10/50/90/max 5/18/50/80 (p50 3.6% L), buy share of volume 35%, sides {'B': 12, 'S': 19}, multi-level 5, ia p50 3.34s
+  rep_final  orders   62 (0.70/s),  32.5 sh/s, size p10/50/90/max 11/41/85/155 (p50 8.2% L), buy share of volume 44%, sides {'B': 36, 'S': 32}, multi-level 5, ia p50 1.05s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: -0.35, 1802-05-10: +0.43, 1802-05-11: -2.06, 1802-05-12: +5.75
+  most common trade sizes: [(50, 152), (1, 38), (6, 28), (5, 25), (35, 23), (14, 22), (4, 21), (12, 20)]
+
+MAT (L=700): 674 trades, 603 taker orders
+  pre        orders   18 (0.10/s),   4.5 sh/s, size p10/50/90/max 4/16/60/394 (p50 2.3% L), buy share of volume 26%, sides {'S': 14, 'B': 7}, multi-level 2, ia p50 6.54s
+  early      orders   98 (0.54/s),  35.6 sh/s, size p10/50/90/max 7/60/175/238 (p50 8.6% L), buy share of volume 79%, sides {'S': 32, 'B': 76}, multi-level 9, ia p50 1.16s
+  storm      orders  317 (0.21/s),   7.9 sh/s, size p10/50/90/max 5/27/70/329 (p50 3.9% L), buy share of volume 50%, sides {'S': 185, 'B': 172, 'I': 1}, multi-level 38, ia p50 2.43s
+  after      orders  170 (0.18/s),   8.3 sh/s, size p10/50/90/max 6/37/70/259 (p50 5.3% L), buy share of volume 27%, sides {'S': 116, 'B': 71}, multi-level 16, ia p50 2.52s
+  rep_prelim orders   33 (0.26/s),   8.7 sh/s, size p10/50/90/max 10/22/70/112 (p50 3.1% L), buy share of volume 29%, sides {'S': 28, 'B': 11}, multi-level 6, ia p50 1.84s
+  rep_final  orders   47 (0.53/s),  40.7 sh/s, size p10/50/90/max 14/70/180/259 (p50 10.0% L), buy share of volume 21%, sides {'S': 36, 'B': 16}, multi-level 5, ia p50 1.25s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: +0.28, 1802-05-10: +0.93, 1802-05-11: -0.45, 1802-05-12: +4.55
+  most common trade sizes: [(70, 123), (49, 27), (1, 19), (6, 19), (3, 17), (11, 17), (5, 15), (12, 14)]
+
+GEN (L=600): 671 trades, 604 taker orders
+  pre        orders   18 (0.10/s),   4.7 sh/s, size p10/50/90/max 5/15/27/558 (p50 2.5% L), buy share of volume 21%, sides {'S': 8, 'B': 10}, multi-level 0, ia p50 5.03s
+  early      orders  104 (0.58/s),  31.9 sh/s, size p10/50/90/max 5/60/150/180 (p50 10.0% L), buy share of volume 82%, sides {'S': 28, 'B': 85}, multi-level 9, ia p50 1.17s
+  storm      orders  319 (0.21/s),   6.6 sh/s, size p10/50/90/max 2/22/60/180 (p50 3.7% L), buy share of volume 58%, sides {'B': 191, 'S': 160}, multi-level 28, ia p50 2.85s
+  after      orders  163 (0.17/s),   6.1 sh/s, size p10/50/90/max 6/28/65/180 (p50 4.7% L), buy share of volume 34%, sides {'B': 77, 'S': 112}, multi-level 25, ia p50 2.76s
+  rep_prelim orders   25 (0.20/s),   4.9 sh/s, size p10/50/90/max 3/21/60/75 (p50 3.5% L), buy share of volume 29%, sides {'B': 9, 'S': 19}, multi-level 3, ia p50 2.51s
+  rep_final  orders   32 (0.36/s),  19.4 sh/s, size p10/50/90/max 8/57/112/180 (p50 9.5% L), buy share of volume 29%, sides {'B': 17, 'S': 20}, multi-level 4, ia p50 1.51s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: +0.21, 1802-05-10: +3.24, 1802-05-11: +0.03, 1802-05-12: +5.38
+  most common trade sizes: [(60, 120), (1, 26), (2, 23), (11, 23), (4, 19), (6, 18), (42, 17), (3, 17)]
+
+HAVEN (L=250): 1165 trades, 1050 taker orders
+  pre        orders   44 (0.25/s),   7.7 sh/s, size p10/50/90/max 4/25/62/250 (p50 10.0% L), buy share of volume 96%, sides {'B': 45, 'S': 5}, multi-level 6, ia p50 2.11s
+  early      orders  163 (0.91/s),  21.4 sh/s, size p10/50/90/max 6/14/57/305 (p50 5.6% L), buy share of volume 21%, sides {'S': 132, 'B': 49, 'I': 1}, multi-level 17, ia p50 0.91s
+  storm      orders  596 (0.39/s),   4.9 sh/s, size p10/50/90/max 2/10/25/62 (p50 4.0% L), buy share of volume 47%, sides {'B': 354, 'S': 303}, multi-level 60, ia p50 1.25s
+  after      orders  247 (0.26/s),   5.7 sh/s, size p10/50/90/max 3/18/60/100 (p50 7.2% L), buy share of volume 70%, sides {'S': 109, 'B': 167}, multi-level 28, ia p50 1.51s
+  rep_prelim orders   43 (0.34/s),   8.4 sh/s, size p10/50/90/max 3/10/93/100 (p50 4.0% L), buy share of volume 77%, sides {'B': 34, 'S': 17}, multi-level 8, ia p50 1.14s
+  rep_final  orders   48 (0.55/s),  13.2 sh/s, size p10/50/90/max 4/21/50/78 (p50 8.4% L), buy share of volume 69%, sides {'B': 30, 'S': 23}, multi-level 5, ia p50 0.97s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: +0.98, 1802-05-10: -3.63, 1802-05-11: -3.10, 1802-05-12: -4.88
+  most common trade sizes: [(25, 224), (12, 94), (6, 92), (1, 75), (7, 73), (18, 58), (3, 55), (4, 46)]
+
+REIN (L=200): 541 trades, 462 taker orders
+  pre        orders   17 (0.10/s),   0.7 sh/s, size p10/50/90/max 1/6/12/32 (p50 3.0% L), buy share of volume 42%, sides {'S': 13, 'B': 6}, multi-level 1, ia p50 7.30s
+  early      orders   36 (0.20/s),   1.8 sh/s, size p10/50/90/max 1/6/20/32 (p50 3.0% L), buy share of volume 33%, sides {'B': 16, 'S': 23}, multi-level 3, ia p50 3.02s
+  storm      orders  277 (0.18/s),   1.6 sh/s, size p10/50/90/max 1/6/20/52 (p50 3.0% L), buy share of volume 51%, sides {'B': 170, 'S': 157}, multi-level 43, ia p50 3.66s
+  after      orders  132 (0.14/s),   1.4 sh/s, size p10/50/90/max 1/7/22/32 (p50 3.5% L), buy share of volume 61%, sides {'S': 67, 'B': 89}, multi-level 22, ia p50 2.87s
+  rep_prelim orders   24 (0.19/s),   1.5 sh/s, size p10/50/90/max 1/5/20/22 (p50 2.5% L), buy share of volume 68%, sides {'S': 9, 'B': 19}, multi-level 4, ia p50 2.52s
+  rep_final  orders   38 (0.43/s),   5.8 sh/s, size p10/50/90/max 2/15/24/32 (p50 7.5% L), buy share of volume 73%, sides {'B': 29, 'S': 17}, multi-level 7, ia p50 1.21s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: +0.03, 1802-05-10: -0.21, 1802-05-11: +0.20, 1802-05-12: -0.24
+  most common trade sizes: [(1, 97), (20, 61), (2, 44), (3, 41), (4, 41), (5, 34), (6, 29), (7, 22)]
+
+ARCH (L=50): 1044 trades, 1017 taker orders
+  pre        orders   27 (0.15/s),   1.3 sh/s, size p10/50/90/max 1/4/12/50 (p50 8.0% L), buy share of volume 84%, sides {'B': 22, 'S': 7}, multi-level 2, ia p50 2.76s
+  early      orders  157 (0.87/s),   7.0 sh/s, size p10/50/90/max 1/4/20/60 (p50 8.0% L), buy share of volume 35%, sides {'S': 110, 'B': 49}, multi-level 2, ia p50 0.81s
+  storm      orders  607 (0.39/s),   2.1 sh/s, size p10/50/90/max 1/2/18/60 (p50 4.0% L), buy share of volume 46%, sides {'B': 322, 'S': 284, 'I': 3}, multi-level 2, ia p50 1.04s
+  after      orders  226 (0.24/s),   2.2 sh/s, size p10/50/90/max 1/3/25/58 (p50 6.0% L), buy share of volume 61%, sides {'S': 115, 'B': 132}, multi-level 21, ia p50 1.77s
+  rep_prelim orders   34 (0.27/s),   1.6 sh/s, size p10/50/90/max 1/2/20/50 (p50 4.0% L), buy share of volume 66%, sides {'S': 20, 'B': 17}, multi-level 3, ia p50 3.02s
+  rep_final  orders   59 (0.67/s),   9.2 sh/s, size p10/50/90/max 1/8/34/58 (p50 16.0% L), buy share of volume 70%, sides {'B': 38, 'S': 25}, multi-level 4, ia p50 0.75s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: -1.22, 1802-05-10: -3.06, 1802-05-11: -1.90, 1802-05-12: -5.48
+  most common trade sizes: [(1, 308), (2, 264), (20, 92), (5, 89), (3, 58), (12, 50), (4, 33), (8, 21)]
+
+REBLD (L=100): 730 trades, 715 taker orders
+  pre        orders   24 (0.13/s),   1.6 sh/s, size p10/50/90/max 1/3/50/100 (p50 3.0% L), buy share of volume 26%, sides {'S': 17, 'B': 9}, multi-level 2, ia p50 3.81s
+  early      orders   92 (0.51/s),  11.8 sh/s, size p10/50/90/max 2/23/40/85 (p50 23.0% L), buy share of volume 59%, sides {'S': 43, 'B': 53}, multi-level 4, ia p50 1.10s
+  storm      orders  388 (0.25/s),   2.7 sh/s, size p10/50/90/max 1/4/30/109 (p50 4.0% L), buy share of volume 55%, sides {'B': 211, 'S': 177}, multi-level 0, ia p50 2.29s
+  after      orders  211 (0.22/s),   2.9 sh/s, size p10/50/90/max 1/6/40/68 (p50 6.0% L), buy share of volume 46%, sides {'S': 118, 'B': 102}, multi-level 8, ia p50 2.28s
+  rep_prelim orders   35 (0.27/s),   4.8 sh/s, size p10/50/90/max 1/4/40/68 (p50 4.0% L), buy share of volume 48%, sides {'B': 18, 'S': 21}, multi-level 3, ia p50 1.99s
+  rep_final  orders   41 (0.47/s),   7.8 sh/s, size p10/50/90/max 2/10/38/66 (p50 10.0% L), buy share of volume 45%, sides {'B': 22, 'S': 19}, multi-level 0, ia p50 1.10s
+  net signed taker flow (buy - sell)/L, 60-540 s: 1803-05-11: -0.28, 1802-05-10: +2.06, 1802-05-11: -1.47, 1802-05-12: +7.37
+  most common trade sizes: [(1, 133), (10, 86), (2, 81), (40, 60), (3, 53), (4, 52), (5, 41), (25, 37)]

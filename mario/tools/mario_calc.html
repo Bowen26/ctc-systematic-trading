@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mario Markets Calculator</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: the race-entry card (left) feeds the price boards (right); one column on phones. */
+:root {
+  --bg: #f2f3f5;
+  --panel: #ffffff;
+  --ink: #16191e;
+  --muted: #5a6270;
+  --line: #d9dde4;
+  --soft: #edf0f4;
+  --accent: #c8283a;
+  --accent-ink: #ffffff;
+  --info: #1e5cb0;
+  --good: #17784a;
+  --warn: #985a05;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-num: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1115; --panel: #161a20; --ink: #e7eaef; --muted: #98a1af; --line: #2b313a; --soft: #1d222a;
+    --accent: #ff5f6e; --accent-ink: #14171c; --info: #78acff; --good: #52c891; --warn: #e8a948;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1115; --panel: #161a20; --ink: #e7eaef; --muted: #98a1af; --line: #2b313a; --soft: #1d222a;
+  --accent: #ff5f6e; --accent-ink: #14171c; --info: #78acff; --good: #52c891; --warn: #e8a948;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45; }
+.flag { height: 10px; background: repeating-conic-gradient(var(--ink) 0 25%, var(--panel) 0 50%) 0 0 / 10px 10px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top { padding-block: 16px 8px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; }
+h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--muted); max-width: 62ch; }
+.status { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); font-weight: 600; }
+.status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); flex: none; }
+.status.busy .dot { background: var(--warn); }
+main { display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: 18px; align-items: start; padding-block: 10px 40px; }
+@media (max-width: 940px) { main { grid-template-columns: minmax(0, 1fr); } }
+.col { display: grid; gap: 18px; min-width: 0; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px 16px; min-width: 0; }
+.card.lead { border-top: 4px solid var(--accent); }
+h2 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 700; font-size: 21px; letter-spacing: 0.04em; text-transform: uppercase; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+h2 small { font-family: var(--font-body); font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); }
+h3 { margin: 14px 0 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); }
+p { margin: 0; }
+.scroll { overflow-x: auto; min-width: 0; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+tbody tr:last-child td, tbody tr:last-child th { border-bottom: none; }
+.n { font-family: var(--font-num); font-size: 14px; }
+.fv { font-family: var(--font-num); font-size: 15px; font-weight: 600; }
+.dim { color: var(--muted); }
+.who { font-weight: 600; }
+.bar { display: inline-block; width: 48px; height: 6px; margin-left: 8px; border-radius: 3px; background: var(--soft); vertical-align: middle; overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--info); border-radius: 3px; }
+.sym { text-transform: none; letter-spacing: 0; font-family: var(--font-num); }
+.chip { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--soft); font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); vertical-align: 1px; }
+.chip.good { color: var(--good); }
+.chip.warn { color: var(--warn); }
+.foot { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.note { margin-top: 10px; padding: 8px 10px; border-left: 3px solid var(--info); background: var(--soft); font-size: 13px; border-radius: 0 6px 6px 0; }
+.note.warn { border-left-color: var(--warn); }
+.kpis { display: flex; flex-wrap: wrap; gap: 6px 28px; align-items: flex-end; margin-bottom: 6px; }
+.kpi .l { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.kpi .v { font-family: var(--font-num); font-size: 30px; font-weight: 600; line-height: 1.15; color: var(--info); }
+.kpi .s { font-size: 13px; color: var(--muted); max-width: 34ch; }
+/* race entry */
+.races th, .races td { padding: 3px 3px; border-bottom: none; text-align: center; }
+.races thead th { padding-bottom: 6px; }
+.races tbody th { text-align: left; font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--muted); padding-right: 6px; }
+.races tr.next th { color: var(--accent); }
+.races .sep th { text-align: left; padding: 10px 0 4px; font-family: var(--font-body); font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--line); }
+.races input { width: 100%; min-width: 44px; max-width: 70px; padding: 8px 2px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); font: 600 17px/1.1 var(--font-num); text-align: center; }
+.races input.name { font: 600 13px/1.1 var(--font-body); padding: 6px 2px; text-transform: none; letter-spacing: 0; }
+.races input::-webkit-outer-spin-button, .races input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.races input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+.races tr.bad input[type="number"] { border-color: var(--warn); }
+.races tr.done input[type="number"] { background: var(--panel); }
+.races .pts { display: block; height: 15px; font: 11px/15px var(--font-num); color: var(--muted); }
+.races td.t { font-family: var(--font-num); font-size: 14px; color: var(--muted); min-width: 30px; }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+button { font: 600 14px/1 var(--font-body); padding: 9px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+button:hover { border-color: var(--muted); }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.msgs { margin-top: 10px; display: grid; gap: 4px; font-size: 13px; color: var(--warn); }
+.cmd { display: flex; gap: 8px; align-items: center; margin-top: 6px; min-width: 0; }
+.cmd code { flex: 1 1 auto; min-width: 0; overflow-x: auto; white-space: nowrap; padding: 7px 9px; border-radius: 6px; background: var(--soft); font: 12px/1.4 var(--font-num); }
+dl { margin: 0; display: grid; gap: 8px; }
+dt { font-weight: 600; }
+dd { margin: 0; color: var(--muted); }
+.settings { display: grid; gap: 10px; margin-top: 4px; }
+.settings label { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+select { font: 500 14px/1.2 var(--font-body); padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); max-width: 100%; }
+input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width 0.25s ease; } }
+</style>
+
+<div class="flag" aria-hidden="true"></div>
+<header class="wrap top">
+  <div>
+    <h1>Mario Markets Calculator</h1>
+    <p class="lede">Type the four humans' overall places after each race. Every fair value below updates from the playbook's model.</p>
+  </div>
+  <div class="status" id="status" role="status"><span class="dot"></span><span id="status-text">Loading…</span></div>
+</header>
+
+<main class="wrap">
+  <div class="col">
+    <section class="card lead" aria-labelledby="entry-h">
+      <h2 id="entry-h">Race results <small>overall place among all 12, 1–12</small></h2>
+      <div class="scroll">
+        <table class="races">
+          <thead id="race-head"></thead>
+          <tbody id="race-body"></tbody>
+        </table>
+      </div>
+      <div class="msgs" id="msgs"></div>
+      <div class="note warn" id="example-note" hidden>Example data from the playbook (Races 1–2). Press Clear all before the real Race 1.</div>
+      <div class="actions">
+        <button type="button" id="btn-example">Load example</button>
+        <button type="button" id="btn-clear">Clear all</button>
+        <span id="clear-confirm" hidden>Clear every race? <button type="button" class="primary" id="btn-clear-yes">Clear</button> <button type="button" id="btn-clear-no">Keep</button></span>
+      </div>
+      <p class="foot">Points: 1st 15 · 2nd 12 · then 13 − place. T is the four humans' points in that race. Click a name to rename it to match the contracts.</p>
+    </section>
+
+    <section class="card" aria-labelledby="read-h">
+      <h2 id="read-h">Skill read <small id="read-sub"></small></h2>
+      <div class="kpis">
+        <div class="kpi">
+          <div class="l"><span class="sym">m̂</span> · average human</div>
+          <div class="v" id="mhat">–</div>
+        </div>
+        <div class="kpi">
+          <div class="l">Read</div>
+          <div class="s" id="mhat-note">–</div>
+        </div>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Human</th><th title="Expected points per race for this human"><span class="sym">m<sub>i</sub></span> pts/race</th><th>Race-win %</th><th>Quote</th></tr></thead>
+          <tbody id="read-body"></tbody>
+        </table>
+      </div>
+      <p class="foot" id="read-foot">Race-win % is the fair value of that human's race-winner contract in any future race (pays 100).</p>
+    </section>
+  </div>
+
+  <div class="col">
+    <section class="card lead" aria-labelledby="cur-h">
+      <h2 id="cur-h"><span id="cur-title">Series 1</span> <small id="cur-sub"></small></h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Human</th><th>Score</th><th>Series winner</th><th>Quote</th></tr></thead>
+          <tbody id="cur-sw"></tbody>
+        </table>
+      </div>
+      <h3>Score contracts</h3>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Contract</th><th>Fair</th><th>sd</th><th>5–95%</th><th>Hard bounds</th><th>Quote</th></tr></thead>
+          <tbody id="cur-sc"></tbody>
+        </table>
+      </div>
+      <p class="foot" id="cur-foot"></p>
+      <div class="note" id="cur-note" hidden></div>
+    </section>
+
+    <section class="card" aria-labelledby="s2-h" id="s2-card">
+      <h2 id="s2-h">Series 2 <small id="s2-sub">before it starts</small></h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Human</th><th>Series winner</th><th>Quote</th><th id="s2-rw-h">Race-win %</th></tr></thead>
+          <tbody id="s2-sw"></tbody>
+        </table>
+      </div>
+      <h3>Score contracts</h3>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Contract</th><th>Fair</th><th>sd</th><th>5–95%</th><th>Quote</th></tr></thead>
+          <tbody id="s2-sc"></tbody>
+        </table>
+      </div>
+      <div class="note" id="s2-note" hidden></div>
+    </section>
+
+    <section class="card" aria-labelledby="s1f-h" id="s1f-card" hidden>
+      <h2 id="s1f-h">Series 1 <small>final, settled</small></h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Human</th><th>Score</th><th>Series winner pays</th></tr></thead>
+          <tbody id="s1f-sw"></tbody>
+        </table>
+      </div>
+      <p class="foot" id="s1f-foot"></p>
+    </section>
+
+    <section class="card" aria-labelledby="help-h">
+      <h2 id="help-h">What the numbers mean</h2>
+      <dl>
+        <div><dt>m̂ (m-hat)</dt><dd>Points the average human is expected to score per race, given every race so far. Before Race 1 it is 8.4, about a 5th–6th place finish. 6.8 means the humans are no better than the CPUs; 10.5 means three of the four usually finish in the top 4.</dd></div>
+        <div><dt>m<sub>i</sub></dt><dd>The same thing for one human. Stronger humans sit above m̂. They drive the score contracts: #1 is roughly the leader's score + races left × the leader's m<sub>i</sub> + a premium for "best of four".</dd></div>
+        <div><dt>Race-win %</dt><dd>Chance this human is the best-placed human in a future race, so the fair value of their race-winner contract. It is the same for every future race.</dd></div>
+        <div><dt>Series winner</dt><dd>Fair value of the series-winner contract: pays 100 for finishing top alone, 50 to each human tied for the lead.</dd></div>
+        <div><dt>#1 · #2 · Top-2</dt><dd>Expected final series total of the best human, of the second best, and their sum. sd is the uncertainty; 5–95% covers nine outcomes in ten. Each point is 1,000 on a full position.</dd></div>
+        <div><dt>Quote</dt><dd>Fair value ± the playbook's half-spread for this stage: wide before Race 1, tighter as the series goes on.</dd></div>
+        <div><dt>Hard bounds</dt><dd>Values the contract cannot settle outside, whatever happens. A price outside them is free money.</dd></div>
+      </dl>
+      <h3>Between races (aim for 60 seconds)</h3>
+      <p class="dim">Type the four places → call out what moved → hit stale quotes 2+ points off → requote → cancel everything before the green light.</p>
+    </section>
+
+    <section class="card" aria-labelledby="model-h">
+      <h2 id="model-h">Model</h2>
+      <div class="settings">
+        <label for="opt-shock">Race-to-race luck
+          <select id="opt-shock">
+            <option value="0.5">Central (shock sd 0.5, playbook default)</option>
+            <option value="0.8">Noisier races (shock sd 0.8)</option>
+            <option value="0">None (shock-free, matches fv_calc.py)</option>
+          </select>
+        </label>
+        <label for="opt-same"><input type="checkbox" id="opt-same"> Same four humans in Series 2 (Series-1 races inform Series 2)</label>
+      </div>
+      <p class="foot" id="model-foot"></p>
+      <h3>Same numbers from the terminal</h3>
+      <div class="cmd"><code id="cmd"></code><button type="button" id="btn-copy">Copy</button></div>
+      <p class="foot">fv_calc.py is shock-free, so after Race 1 move about 85% of the way from the prior to its number.</p>
+    </section>
+  </div>
+</main>
+
+<script id="mm-model">
+"use strict";
+/* Plackett-Luce race model with Bayesian skill learning (same model as the playbook's verify3.py).
+   12 racers: 4 humans with log-strength theta_i, 8 CPUs at 0. Human theta_i = mu + delta_i,
+   mu ~ N(0.9, 0.8^2), delta_i ~ N(0, tau^2), tau uniform over {0.2,...,1.2}.
+   Optional per-race shock eps ~ N(0, s^2) added to all four humans in that race. */
+const MM = (function () {
+  const PTS = [15, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+  const TAUS = [0.2, 0.4, 0.6, 0.8, 1.0, 1.2];
+  const GHX = [-2.8569700138728056, -1.3556261799742657, 0, 1.3556261799742657, 2.8569700138728056];
+  const GHW = [0.011257411327720691, 0.22207592200561266, 0.5333333333333333, 0.22207592200561266, 0.011257411327720691];
+
+  function makeRng(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function makeGauss(rand) {
+    let spare = null;
+    return function () {
+      if (spare !== null) { const v = spare; spare = null; return v; }
+      let u = 0;
+      while (u === 0) u = rand();
+      const r = Math.sqrt(-2 * Math.log(u)), th = 2 * Math.PI * rand();
+      spare = r * Math.sin(th);
+      return r * Math.cos(th);
+    };
+  }
+
+  let priorCache = null;
+  function prior(K, mu0, smu) {
+    const key = K + "|" + mu0 + "|" + smu;
+    if (priorCache && priorCache.key === key) return priorCache;
+    const rand = makeRng(20261024), g = makeGauss(rand);
+    const ew = new Float64Array(4 * K);
+    for (let k = 0; k < K; k++) {
+      const tau = TAUS[Math.floor(rand() * TAUS.length)];
+      const mu = mu0 + smu * g();
+      for (let i = 0; i < 4; i++) ew[4 * k + i] = Math.exp(mu + tau * g());
+    }
+    priorCache = { key: key, K: K, ew: ew };
+    return priorCache;
+  }
+
+  // Exact PL probability of the observed human places. slot[k] = human index at place k+1, or -1 for a CPU.
+  function plProb(w0, w1, w2, w3, slot) {
+    let rh = w0 + w1 + w2 + w3, rc = 8, L = 1, left = 4;
+    for (let k = 0; k < 12 && left > 0; k++) {
+      const tot = rh + rc, h = slot[k];
+      if (h < 0) { L *= rc / tot; rc -= 1; }
+      else {
+        const w = h === 0 ? w0 : h === 1 ? w1 : h === 2 ? w2 : w3;
+        L *= w / tot; rh -= w; left -= 1;
+      }
+    }
+    return L;
+  }
+
+  function posterior(pr, races, s) {
+    const K = pr.K, ew = pr.ew, lw = new Float64Array(K);
+    const slots = races.map(function (pos) {
+      const sl = new Int8Array(12).fill(-1);
+      for (let i = 0; i < 4; i++) sl[pos[i] - 1] = i;
+      return sl;
+    });
+    const f = GHX.map(function (x) { return Math.exp(s * x); });
+    for (let k = 0; k < K; k++) {
+      const a = ew[4 * k], b = ew[4 * k + 1], c = ew[4 * k + 2], d = ew[4 * k + 3];
+      let ll = 0;
+      for (let j = 0; j < slots.length; j++) {
+        const sl = slots[j];
+        if (s === 0) ll += Math.log(plProb(a, b, c, d, sl));
+        else {
+          let L = 0;
+          for (let q = 0; q < 5; q++) { const m = f[q]; L += GHW[q] * plProb(a * m, b * m, c * m, d * m, sl); }
+          ll += Math.log(L);
+        }
+      }
+      lw[k] = ll;
+    }
+    let mx = -Infinity;
+    for (let k = 0; k < K; k++) if (lw[k] > mx) mx = lw[k];
+    const w = new Float64Array(K);
+    let S = 0;
+    for (let k = 0; k < K; k++) { const v = Math.exp(lw[k] - mx); w[k] = v; S += v; }
+    let S2 = 0;
+    for (let k = 0; k < K; k++) { w[k] /= S; S2 += w[k] * w[k]; }
+    return { w: w, ess: 1 / S2 };
+  }
+
+  // Race-winner fair values: P(human i is the best-placed human) = w_i / sum(w), whatever the CPUs or the shock do.
+  function raceWin(pr, post) {
+    const out = [0, 0, 0, 0], ew = pr.ew, w = post.w;
+    for (let k = 0; k < pr.K; k++) {
+      const wk = w[k];
+      if (wk === 0) continue;
+      const a = ew[4 * k], b = ew[4 * k + 1], c = ew[4 * k + 2], d = ew[4 * k + 3], S = a + b + c + d;
+      out[0] += wk * a / S; out[1] += wk * b / S; out[2] += wk * c / S; out[3] += wk * d / S;
+    }
+    return out.map(function (x) { return 100 * x; });
+  }
+
+  // Systematic resampling: how many of M simulated series each prior draw gets.
+  function resampleCounts(w, M, rand) {
+    const K = w.length, n = new Uint32Array(K), U = rand();
+    let k = 0, c = w[0];
+    for (let j = 0; j < M; j++) {
+      const t = (j + U) / M;
+      while (c < t && k < K - 1) { k++; c += w[k]; }
+      n[k]++;
+    }
+    return n;
+  }
+
+  // One race: points for the four humans (sequential PL draw; CPUs are interchangeable).
+  function simRace(a, b, c, d, rand, out) {
+    let u0 = true, u1 = true, u2 = true, u3 = true, rc = 8, left = 4;
+    for (let k = 0; k < 12 && left > 0; k++) {
+      const rh = (u0 ? a : 0) + (u1 ? b : 0) + (u2 ? c : 0) + (u3 ? d : 0);
+      let x = rand() * (rh + rc);
+      if (u0) { if (x < a) { out[0] = PTS[k]; u0 = false; left--; continue; } x -= a; }
+      if (u1) { if (x < b) { out[1] = PTS[k]; u1 = false; left--; continue; } x -= b; }
+      if (u2) { if (x < c) { out[2] = PTS[k]; u2 = false; left--; continue; } x -= c; }
+      if (u3) { if (x < d) { out[3] = PTS[k]; u3 = false; left--; continue; } x -= d; }
+      if (rc > 0) { rc--; continue; }
+      if (u0) { out[0] = PTS[k]; u0 = false; }
+      else if (u1) { out[1] = PTS[k]; u1 = false; }
+      else if (u2) { out[2] = PTS[k]; u2 = false; }
+      else { out[3] = PTS[k]; u3 = false; }
+      left--;
+    }
+  }
+
+  function pctl(H, total, qs) {
+    return qs.map(function (q) {
+      let c = 0, v = 0;
+      for (; v < H.length; v++) { c += H[v]; if (c >= q * total - 1e-9) break; }
+      return v;
+    });
+  }
+
+  // Fair values of a series with current scores and r races left, by simulating M futures from the posterior.
+  function predict(pr, post, scores, r, M, s, seed) {
+    const rand = makeRng(seed), g = makeGauss(rand);
+    const cnt = resampleCounts(post.w, M, rand);
+    const ew = pr.ew, out = new Int32Array(4);
+    const sw = [0, 0, 0, 0], pts = [0, 0, 0, 0];
+    let tie = 0, nRaces = 0, a1 = 0, q1 = 0, a2 = 0, q2 = 0, aT = 0, qT = 0;
+    const H1 = new Float64Array(256), H2 = new Float64Array(256), HT = new Float64Array(512);
+    for (let k = 0; k < pr.K; k++) {
+      const nk = cnt[k];
+      if (nk === 0) continue;
+      const w0 = ew[4 * k], w1 = ew[4 * k + 1], w2 = ew[4 * k + 2], w3 = ew[4 * k + 3];
+      for (let m = 0; m < nk; m++) {
+        let f0 = scores[0], f1 = scores[1], f2 = scores[2], f3 = scores[3];
+        for (let j = 0; j < r; j++) {
+          const z = s > 0 ? Math.exp(s * g()) : 1;
+          simRace(w0 * z, w1 * z, w2 * z, w3 * z, rand, out);
+          f0 += out[0]; f1 += out[1]; f2 += out[2]; f3 += out[3];
+          pts[0] += out[0]; pts[1] += out[1]; pts[2] += out[2]; pts[3] += out[3];
+        }
+        nRaces += r;
+        let t1 = -1, t2 = -1;
+        if (f0 > t1) { t2 = t1; t1 = f0; } else if (f0 > t2) t2 = f0;
+        if (f1 > t1) { t2 = t1; t1 = f1; } else if (f1 > t2) t2 = f1;
+        if (f2 > t1) { t2 = t1; t1 = f2; } else if (f2 > t2) t2 = f2;
+        if (f3 > t1) { t2 = t1; t1 = f3; } else if (f3 > t2) t2 = f3;
+        const nt = (f0 === t1) + (f1 === t1) + (f2 === t1) + (f3 === t1);
+        const pay = nt === 1 ? 100 : 50;
+        if (f0 === t1) sw[0] += pay;
+        if (f1 === t1) sw[1] += pay;
+        if (f2 === t1) sw[2] += pay;
+        if (f3 === t1) sw[3] += pay;
+        if (nt > 1) tie++;
+        const T = t1 + t2;
+        a1 += t1; q1 += t1 * t1; a2 += t2; q2 += t2 * t2; aT += T; qT += T * T;
+        H1[t1]++; H2[t2]++; HT[T]++;
+      }
+    }
+    const e1 = a1 / M, e2 = a2 / M, eT = aT / M, Q = [0.05, 0.5, 0.95];
+    return {
+      final: false,
+      sw: sw.map(function (v) { return v / M; }),
+      e1: e1, e2: e2, eT: eT,
+      sd1: Math.sqrt(Math.max(0, q1 / M - e1 * e1)),
+      sd2: Math.sqrt(Math.max(0, q2 / M - e2 * e2)),
+      sdT: Math.sqrt(Math.max(0, qT / M - eT * eT)),
+      p1: pctl(H1, M, Q), p2: pctl(H2, M, Q), pT: pctl(HT, M, Q),
+      ptie: tie / M,
+      mi: nRaces > 0 ? pts.map(function (v) { return v / nRaces; }) : null
+    };
+  }
+
+  // A finished series: settlement values.
+  function settled(f) {
+    let t1 = -1, t2 = -1;
+    for (let i = 0; i < 4; i++) { const v = f[i]; if (v > t1) { t2 = t1; t1 = v; } else if (v > t2) t2 = v; }
+    const nt = f.filter(function (v) { return v === t1; }).length;
+    return {
+      final: true,
+      sw: f.map(function (v) { return v === t1 ? (nt === 1 ? 100 : 50) : 0; }),
+      e1: t1, e2: t2, eT: t1 + t2, sd1: 0, sd2: 0, sdT: 0,
+      p1: [t1, t1, t1], p2: [t2, t2, t2], pT: [t1 + t2, t1 + t2, t1 + t2],
+      ptie: nt > 1 ? 1 : 0, mi: null
+    };
+  }
+
+  return { PTS: PTS, prior: prior, posterior: posterior, raceWin: raceWin, predict: predict, settled: settled };
+})();
+</script>
+
+<script>
+(function () {
+  "use strict";
+  const NR = 8, K = 120000, M = 150000;
+  const STORE = "mario-calc-v1";
+  const DEF_NAMES = ["Daisy", "Peach", "Birdo", "Yoshi"];
+  const EXAMPLE = [[4, 1, 7, 9], [6, 2, 5, 10]];
+  const SHOCKS = [0.5, 0.8, 0];
+  const $ = function (id) { return document.getElementById(id); };
+
+  function blank() {
+    return { names: DEF_NAMES.slice(), places: Array.from({ length: NR }, function () { return [null, null, null, null]; }), shock: 0.5, same: true, example: false };
+  }
+  let state = blank();
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORE);
+      if (!raw) return;
+      const s = JSON.parse(raw);
+      if (!s || !Array.isArray(s.places) || s.places.length !== NR || !Array.isArray(s.names) || s.names.length !== 4) return;
+      state.names = s.names.map(function (v, i) { return typeof v === "string" && v.trim() ? v.trim().slice(0, 16) : DEF_NAMES[i]; });
+      state.places = s.places.map(function (r) {
+        return Array.isArray(r) && r.length === 4 ? r.map(function (v) { return typeof v === "number" && isFinite(v) ? v : null; }) : [null, null, null, null];
+      });
+      if (SHOCKS.indexOf(s.shock) >= 0) state.shock = s.shock;
+      state.same = s.same !== false;
+      state.example = !!s.example;
+    } catch (e) { /* storage blocked or corrupt: start blank */ }
+  }
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* not available */ } }
+
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function f1(x) { return (Math.round(x * 10) / 10).toFixed(1); }
+  function clamp(x, lo, hi) { return Math.min(hi, Math.max(lo, x)); }
+  function quote(fv, h, lo, hi) { return f1(clamp(fv - h, lo, hi)) + " / " + f1(clamp(fv + h, lo, hi)); }
+  function bar(v) { return '<span class="bar" aria-hidden="true"><i style="width:' + clamp(v, 0, 100).toFixed(1) + '%"></i></span>'; }
+
+  // ---------- table ----------
+  function build() {
+    let h = '<tr><th scope="col">Race</th>';
+    for (let i = 0; i < 4; i++) h += '<th scope="col"><input class="name" id="name-' + i + '" maxlength="16" autocomplete="off" spellcheck="false" aria-label="Name of human ' + (i + 1) + '"></th>';
+    h += '<th scope="col" title="Total human points in that race">T</th></tr>';
+    $("race-head").innerHTML = h;
+    let b = "";
+    for (let r = 0; r < NR; r++) {
+      if (r === 0 || r === 4) b += '<tr class="sep"><th colspan="6">Series ' + (r === 0 ? 1 : 2) + '</th></tr>';
+      b += '<tr id="row-' + r + '"><th scope="row">R' + (r + 1) + '</th>';
+      for (let i = 0; i < 4; i++) b += '<td><input id="p-' + r + '-' + i + '" type="number" inputmode="numeric" min="1" max="12" step="1" autocomplete="off" aria-label="Race ' + (r + 1) + ', human ' + (i + 1) + ' place"><span class="pts" id="pt-' + r + '-' + i + '"></span></td>';
+      b += '<td class="t" id="t-' + r + '"></td></tr>';
+    }
+    $("race-body").innerHTML = b;
+  }
+  function fill() {
+    for (let i = 0; i < 4; i++) $("name-" + i).value = state.names[i];
+    for (let r = 0; r < NR; r++) for (let i = 0; i < 4; i++) {
+      const v = state.places[r][i];
+      $("p-" + r + "-" + i).value = v === null ? "" : String(v);
+    }
+    $("opt-shock").value = String(state.shock);
+    $("opt-same").checked = state.same;
+    $("example-note").hidden = !state.example;
+  }
+
+  function analyse() {
+    const rows = state.places.map(function (p) {
+      const filled = p.filter(function (v) { return v !== null; });
+      if (filled.length === 0) return { st: "empty" };
+      if (p.some(function (v) { return v !== null && (!Number.isInteger(v) || v < 1 || v > 12); })) return { st: "bad", msg: "places run from 1 to 12" };
+      if (new Set(filled).size < filled.length) return { st: "bad", msg: "two humans can't share a place" };
+      if (filled.length < 4) return { st: "partial" };
+      const pts = p.map(function (v) { return MM.PTS[v - 1]; });
+      return { st: "ok", pts: pts, T: pts[0] + pts[1] + pts[2] + pts[3] };
+    });
+    let n = 0;
+    while (n < NR && rows[n].st === "ok") n++;
+    const msgs = [];
+    rows.forEach(function (r, k) {
+      if (r.st === "bad") msgs.push("R" + (k + 1) + ": " + r.msg + ".");
+      else if (k > n && r.st !== "empty") msgs.push("R" + (k + 1) + " is ignored until R" + (n + 1) + " is complete.");
+    });
+    return { rows: rows, n: n, msgs: msgs };
+  }
+
+  function paintRows(a) {
+    for (let r = 0; r < NR; r++) {
+      const row = a.rows[r], tr = $("row-" + r);
+      tr.classList.toggle("bad", row.st === "bad");
+      tr.classList.toggle("done", row.st === "ok" && r < a.n);
+      tr.classList.toggle("next", r === a.n);
+      for (let i = 0; i < 4; i++) $("pt-" + r + "-" + i).textContent = row.st === "ok" ? row.pts[i] + " pts" : "";
+      $("t-" + r).textContent = row.st === "ok" ? row.T : "";
+    }
+    $("msgs").innerHTML = a.msgs.map(function (m) { return "<div>" + esc(m) + "</div>"; }).join("");
+  }
+
+  // ---------- model run ----------
+  function sum4(list) {
+    const s = [0, 0, 0, 0];
+    list.forEach(function (row) { for (let i = 0; i < 4; i++) s[i] += row.pts[i]; });
+    return s;
+  }
+
+  function compute(a) {
+    const n = a.n, sh = state.shock;
+    const okRows = a.rows.slice(0, n);
+    const races = state.places.slice(0, n);
+    const cur = n < 4 ? { series: 1, done: n, left: 4 - n } : { series: 2, done: n - 4, left: 8 - n };
+    const s1Scores = sum4(okRows.slice(0, 4)), s2Scores = sum4(okRows.slice(4));
+    const curScores = cur.series === 1 ? s1Scores : s2Scores;
+    const pr = MM.prior(K, 0.9, 0.8);
+    const curObs = state.same ? races : (cur.series === 1 ? races.slice(0, 4) : races.slice(4));
+    const post = MM.posterior(pr, curObs, sh);
+    const res = { n: n, cur: cur, curScores: curScores, s1Scores: s1Scores, ess: post.ess };
+    res.raceWin = MM.raceWin(pr, post);
+    res.fresh = MM.predict(pr, post, [0, 0, 0, 0], 4, M, sh, 101);
+    res.m = res.fresh.mi;
+    res.mhat = (res.m[0] + res.m[1] + res.m[2] + res.m[3]) / 4;
+    if (cur.left === 0) res.curPred = MM.settled(curScores);
+    else if (cur.left === 4) res.curPred = res.fresh;
+    else res.curPred = MM.predict(pr, post, curScores, cur.left, M, sh, 202);
+    if (n < 4) {
+      if (state.same) { res.s2 = res.fresh; res.s2RaceWin = res.raceWin; }
+      else { res.s2 = MM.predict(pr, MM.posterior(pr, [], sh), [0, 0, 0, 0], 4, M, sh, 303); res.s2RaceWin = [25, 25, 25, 25]; }
+    }
+    if (n >= 4) res.s1Final = MM.settled(s1Scores);
+    return res;
+  }
+
+  // ---------- half-spreads from the playbook's phase plan ----------
+  const OPEN = { race: 4, series: 5, n1: 4.5, n2: 4, top2: 6 };
+  function spreads(res) {
+    const c = res.cur;
+    if (res.n === 0) return OPEN;
+    if (c.series === 2 && c.done === 0) return { race: 3, series: 3, n1: 3, n2: 3, top2: 3 };
+    if (c.done <= 2) return { race: 3, series: 4, n1: 2, n2: 2, top2: 3 };
+    return { race: 3, series: 2.5, n1: 1, n2: 1, top2: 1.5 };
+  }
+  function s2Spreads(res) {
+    if (res.n === 0) return OPEN;
+    if (res.n <= 2) return { series: 4, n1: 4, n2: 4, top2: 4 };
+    return { series: 3, n1: 3, n2: 3, top2: 3 };
+  }
+
+  function levelRead(m) {
+    if (m < 7.7) return "Weak humans: close to the CPUs (S1 ≈ 6.8).";
+    if (m < 9.7) return "Average humans: a typical human finishes 5th–6th (S2 ≈ 8.5).";
+    return "Strong humans: they fill the top places (S3 ≈ 10.5).";
+  }
+
+  function scoreRows(p, sp, bounds) {
+    const rows = [["#1", p.e1, p.sd1, p.p1, sp.n1, bounds ? bounds.n1 : null], ["#2", p.e2, p.sd2, p.p2, sp.n2, bounds ? bounds.n2 : null], ["Top-2", p.eT, p.sdT, p.pT, sp.top2, bounds ? bounds.top2 : null]];
+    return rows.map(function (r) {
+      const lo = r[5] ? r[5][0] : 0, hi = r[5] ? r[5][1] : 120;
+      let h = '<tr><td class="who">' + r[0] + '</td><td class="fv">' + f1(r[1]) + '</td><td class="n dim">' + (p.final ? "–" : f1(r[2])) + '</td><td class="n dim">' + (p.final ? "settled" : r[3][0] + "–" + r[3][2]) + '</td>';
+      if (bounds) h += '<td class="n dim">' + (p.final ? "–" : lo + "–" + hi) + '</td>';
+      h += '<td class="n">' + (p.final ? "–" : quote(r[1], r[4], lo, hi)) + '</td></tr>';
+      return h;
+    }).join("");
+  }
+
+  function render(a, res, ms) {
+    const names = state.names.map(esc), c = res.cur, sp = spreads(res);
+    // status
+    let st;
+    if (res.n === 0) st = "Before Race 1";
+    else if (res.n === 8) st = "All 8 races done";
+    else if (res.n === 4) st = "Series 1 over · Series 2 next";
+    else st = "After Race " + res.n + " of 8 · " + c.left + " left in Series " + c.series;
+    $("status-text").textContent = st;
+
+    // skill read
+    $("read-sub").textContent = res.n === 0 ? "prior, before any race" : "after " + res.n + (res.n === 1 ? " race" : " races");
+    $("mhat").textContent = f1(res.mhat);
+    $("mhat-note").textContent = levelRead(res.mhat) + (res.n === 0 ? "" : " Prior was 8.4.");
+    let rb = "";
+    for (let i = 0; i < 4; i++) {
+      const rw = res.raceWin[i];
+      rb += '<tr><td class="who">' + names[i] + '</td><td class="fv">' + f1(res.m[i]) + '</td><td class="n">' + f1(rw) + bar(rw) + '</td><td class="n">' + (res.n === 8 ? "–" : quote(rw, sp.race, 0, 100)) + '</td></tr>';
+    }
+    $("read-body").innerHTML = rb;
+    $("read-foot").textContent = state.same || c.series === 2 ? "Race-win % is the fair value of that human's race-winner contract in any future race (pays 100)." : "Race-win % here covers the rest of Series 1.";
+
+    // current series
+    const sc = res.curScores, r = c.left, p = res.curPred;
+    $("cur-title").textContent = "Series " + c.series;
+    $("cur-sub").textContent = r === 0 ? "final, settled" : (c.done === 0 ? "4 races to go" : c.done + " of 4 done · " + r + (r === 1 ? " race" : " races") + " left");
+    const sorted = sc.slice().sort(function (x, y) { return y - x; });
+    const s1 = sorted[0], s2 = sorted[1];
+    let swb = "";
+    for (let i = 0; i < 4; i++) {
+      const gap = s1 - sc[i];
+      let chip = "";
+      if (r > 0) {
+        const second = sc[i] === s1 ? Math.max.apply(null, sc.filter(function (v, j) { return j !== i; })) : null;
+        if (second !== null && s1 - second > 14 * r) chip = '<span class="chip good">locked</span>';
+        else if (gap > 14 * r) chip = '<span class="chip">out</span>';
+        else if (gap === 14 * r && gap > 0) chip = '<span class="chip warn">tie at best</span>';
+      } else if (p.sw[i] > 0) chip = '<span class="chip good">' + (p.sw[i] === 100 ? "won" : "tied") + '</span>';
+      swb += '<tr><td class="who">' + names[i] + chip + '</td><td class="n">' + sc[i] + '</td><td class="fv">' + f1(p.sw[i]) + bar(p.sw[i]) + '</td><td class="n">' + (r === 0 ? "–" : quote(p.sw[i], sp.series, 0, 100)) + '</td></tr>';
+    }
+    $("cur-sw").innerHTML = swb;
+    const bounds = { n1: [s1 + r, s1 + 15 * r], n2: [s2 + r, Math.floor((s1 + s2 + 27 * r) / 2)], top2: [s1 + s2 + 3 * r, s1 + s2 + 27 * r] };
+    $("cur-sc").innerHTML = scoreRows(p, sp, bounds);
+    const basket = p.sw[0] + p.sw[1] + p.sw[2] + p.sw[3];
+    $("cur-foot").textContent = r === 0 ? "This series has settled." : "Tie for the lead: " + f1(100 * p.ptie) + "% · series-winner basket " + f1(basket) + " (never below 100: tied leaders get 50 each).";
+    const cn = $("cur-note");
+    if (res.n === 0) { cn.hidden = false; cn.textContent = "Before Race 1 these are priors. Quote wide and small; inside #1 36–52, #2 29–45, Top-2 65–97 a price is a bet on skill, not an edge."; }
+    else if (c.series === 1 && c.done === 1) { cn.hidden = false; cn.textContent = "Race 1 is in: reprice now. Series-1 #1 and Top-2 move about three quarters as much as Series 2 (below)."; }
+    else cn.hidden = true;
+
+    // series 2 preview or series 1 final
+    const s2c = $("s2-card"), s1f = $("s1f-card");
+    if (res.n < 4) {
+      s2c.hidden = false; s1f.hidden = true;
+      const q = res.s2, sp2 = s2Spreads(res);
+      $("s2-sub").textContent = state.same ? "before it starts · learns from Series 1" : "before it starts · treated as new humans";
+      let b2 = "";
+      for (let i = 0; i < 4; i++) b2 += '<tr><td class="who">' + names[i] + '</td><td class="fv">' + f1(q.sw[i]) + bar(q.sw[i]) + '</td><td class="n">' + quote(q.sw[i], sp2.series, 0, 100) + '</td><td class="n dim">' + f1(res.s2RaceWin[i]) + '</td></tr>';
+      $("s2-sw").innerHTML = b2;
+      $("s2-sc").innerHTML = scoreRows(q, sp2, null);
+      const sn = $("s2-note");
+      if (res.n === 1) { sn.hidden = false; sn.textContent = "Key repricing. Trade Series-2 Top-2 only when the market is 4+ points from fair: 30–40% of the limit now, up to 60% if Race 2 confirms."; }
+      else if (res.n === 3) { sn.hidden = false; sn.textContent = "One race left in Series 1: have these Series-2 prices ready and fire the moment Series 1 ends."; }
+      else sn.hidden = true;
+    } else {
+      s2c.hidden = true; s1f.hidden = false;
+      const f = res.s1Final;
+      let b3 = "";
+      for (let i = 0; i < 4; i++) b3 += '<tr><td class="who">' + names[i] + '</td><td class="n">' + res.s1Scores[i] + '</td><td class="fv">' + f.sw[i] + '</td></tr>';
+      $("s1f-sw").innerHTML = b3;
+      $("s1f-foot").textContent = "#1 settles at " + f.e1 + ", #2 at " + f.e2 + ", Top-2 at " + f.eT + ".";
+    }
+
+    // model footer and terminal command
+    const shockTxt = state.shock === 0 ? "no race-to-race shock" : "race-to-race shock sd " + state.shock;
+    $("model-foot").textContent = "Plackett-Luce race model, " + shockTxt + ". Prior: human level μ ~ N(0.9, 0.8²), skill spread τ from 0.2 to 1.2. Effective sample " + Math.round(res.ess).toLocaleString() + " of " + K.toLocaleString() + "; " + M.toLocaleString() + " simulated series per board; updated in " + (ms / 1000).toFixed(1) + " s.";
+    $("cmd").textContent = command(res);
+  }
+
+  function command(res) {
+    const hist = state.places.slice(0, res.n).map(function (p) { return p.join(","); }).join(";");
+    let cmd = "python3 -I tools/fv_calc.py";
+    if (hist) cmd += ' --hist "' + hist + '"';
+    const c = res.cur;
+    if (c.left > 0 && c.done > 0) cmd += " --scores " + res.curScores.join(" ") + " --left " + c.left;
+    return cmd;
+  }
+
+  // ---------- events ----------
+  let timer = null;
+  function setBusy(b) { $("status").classList.toggle("busy", b); if (b) $("status-text").textContent = "Updating…"; }
+  function schedule() { clearTimeout(timer); setBusy(true); timer = setTimeout(run, 60); }
+  function run() {
+    const a = analyse();
+    paintRows(a);
+    const t0 = Date.now();
+    const res = compute(a);
+    render(a, res, Date.now() - t0);
+    setBusy(false);
+  }
+
+  function onInput(e) {
+    const id = e.target.id || "";
+    let m = /^p-(\d)-(\d)$/.exec(id);
+    if (m) {
+      const v = e.target.value.trim();
+      const num = v === "" ? null : Number(v);
+      state.places[+m[1]][+m[2]] = num === null || isFinite(num) ? num : null;
+      save(); schedule(); return;
+    }
+    m = /^name-(\d)$/.exec(id);
+    if (m) { state.names[+m[1]] = e.target.value.trim().slice(0, 16) || DEF_NAMES[+m[1]]; save(); schedule(); }
+  }
+
+  build();
+  load();
+  fill();
+  $("race-head").addEventListener("input", onInput);
+  $("race-body").addEventListener("input", onInput);
+  $("opt-shock").addEventListener("change", function (e) { state.shock = Number(e.target.value); save(); schedule(); });
+  $("opt-same").addEventListener("change", function (e) { state.same = e.target.checked; save(); schedule(); });
+  $("btn-example").addEventListener("click", function () {
+    state.places = Array.from({ length: NR }, function (_, r) { return EXAMPLE[r] ? EXAMPLE[r].slice() : [null, null, null, null]; });
+    state.example = true; save(); fill(); schedule();
+  });
+  $("btn-clear").addEventListener("click", function () { $("clear-confirm").hidden = false; });
+  $("btn-clear-no").addEventListener("click", function () { $("clear-confirm").hidden = true; });
+  $("btn-clear-yes").addEventListener("click", function () {
+    const keepNames = state.names.slice(), keepShock = state.shock, keepSame = state.same;
+    state = blank(); state.names = keepNames; state.shock = keepShock; state.same = keepSame;
+    $("clear-confirm").hidden = true; save(); fill(); schedule();
+  });
+  $("btn-copy").addEventListener("click", function () {
+    const text = $("cmd").textContent, btn = $("btn-copy");
+    const done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1200); };
+    try {
+      navigator.clipboard.writeText(text).then(done, function () { selectCmd(); });
+    } catch (e) { selectCmd(); }
+  });
+  function selectCmd() { const range = document.createRange(); range.selectNodeContents($("cmd")); const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range); }
+  schedule();
+})();
+</script>
+
+</html>

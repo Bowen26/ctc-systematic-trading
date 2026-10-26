@@ -1,0 +1,30 @@
+A. Foreign (non-house) order arrivals
+   pre 0-60      :    30 arrivals; size % of limit p50 23.0 p90 25.6; inside spread 0, at touch 29, behind 1
+   storm 60-540  :   461 arrivals; size % of limit p50 9.0 p90 25.0; inside spread 32, at touch 351, behind 78
+   after 540-780 :   185 arrivals; size % of limit p50 9.2 p90 27.4; inside spread 19, at touch 128, behind 38
+   examples inside the spread: (224, 3) FERRY 423.1s ask 23.2 x72; (224, 3) FERRY 740.7s ask 23.37 x70; (224, 3) RECON 740.8s bid 56.49 x34; (224, 3) REBLD 740.5s bid 227.72 x35; (225, 1) ISLE 767.9s bid 53.42 x29; (225, 1) AQUA 151.6s ask 27.34 x28; (225, 1) GRID 764.1s bid 40.48 x37; (225, 1) FERRY 762.4s bid 20.69 x66
+
+B. Trades by round and phase: count, volume in team-limits (sum over symbols of qty/limit), buy share
+   (224, 3): 0-60:    0 tr,   0.0 L, buy   0% | 60-540:  849 tr,  39.0 L, buy  48% | 540-740:  370 tr,  16.8 L, buy  54% | 740-780:  154 tr,  11.2 L, buy  44%
+   (225, 1): 0-60:  122 tr,  15.4 L, buy  70% | 60-540: 2132 tr, 117.4 L, buy  44% | 540-740:  434 tr,  21.4 L, buy  54% | 740-780:  286 tr,  27.6 L, buy  71%
+   (225, 2): 0-60:  111 tr,   6.3 L, buy  76% | 60-540: 1787 tr, 116.7 L, buy  43% | 540-740:  452 tr,  33.2 L, buy  51% | 740-780:  216 tr,  21.5 L, buy  78%
+   (225, 3): 0-60:  121 tr,  10.3 L, buy  78% | 60-540: 1912 tr, 175.0 L, buy  48% | 540-740:  515 tr,  37.5 L, buy  63% | 740-780:  283 tr,  35.7 L, buy  49%
+   largest single prints (qty as % of limit):
+     HAVEN    305 (122% L) at 43.92 (pre-trade mid 44.510000000000005) round (225, 1) real 74.1 s
+     ARCH      60 (120% L) at 362.7 (pre-trade mid 363.53) round (225, 3) real 270.8 s
+     ARCH      60 (120% L) at 363.53 (pre-trade mid 362.485) round (225, 3) real 257.9 s
+     ARCH      60 (120% L) at 361.64 (pre-trade mid 360.43) round (225, 3) real 94.3 s
+     ARCH      58 (116% L) at 358.41 (pre-trade mid 358.405) round (225, 3) real 311.2 s
+     ARCH      58 (116% L) at 378.64 (pre-trade mid 378.125) round (225, 3) real 172.0 s
+     ARCH      58 (116% L) at 323.8 (pre-trade mid 323.53499999999997) round (225, 1) real 752.0 s
+     ARCH      58 (116% L) at 315.36 (pre-trade mid 315.19) round (225, 1) real 176.0 s
+     REBLD    109 (109% L) at 195.92 (pre-trade mid 195.925) round (225, 3) real 313.9 s
+     ARCH      51 (102% L) at 366.04 (pre-trade mid 365.39) round (225, 3) real 436.1 s
+
+C. Touch half-spread (bp) and touch size (% of limit, min of bid/ask) around events, median over 0.5-s samples
+   formation stocks [-10,+0)  11.0bp   10%  [+0,+3)  11.2bp   10%  [+3,+6)  10.5bp   10%  [+6,+10)  15.0bp   10%  [+10,+20)  36.4bp   10%  [+20,+40)  47.8bp   10%
+   formation ETFs   [-10,+0)  10.1bp   38%  [+0,+3)  10.1bp   39%  [+3,+6)  10.1bp   39%  [+6,+10)  10.1bp   36%  [+10,+20)   0.2bp   40%  [+20,+40)  28.9bp   40%
+   prelim    stocks [-10,+0)  14.0bp    8%  [+0,+3)  13.4bp    8%  [+3,+6)  13.4bp    9%  [+6,+10)  14.1bp    9%  [+10,+20)  14.9bp    7%  [+20,+40)  13.4bp    9%
+   prelim    ETFs   [-10,+0)  13.2bp   39%  [+0,+3)  13.0bp   38%  [+3,+6)  14.3bp   38%  [+6,+10)  13.9bp   40%  [+10,+20)  13.2bp   38%  [+20,+40)  12.4bp   38%
+   final     stocks [-10,+0)  11.1bp    9%  [+0,+3)  11.4bp    8%  [+3,+6)  12.0bp    9%  [+6,+10)  15.0bp   10%  [+10,+20)  14.5bp   10%  [+20,+40)  12.2bp   10%
+   final     ETFs   [-10,+0)  10.2bp   40%  [+0,+3)  10.4bp   40%  [+3,+6)  14.9bp   40%  [+6,+10)  13.7bp   39%  [+10,+20)  12.2bp   40%  [+20,+40)  12.2bp   40%

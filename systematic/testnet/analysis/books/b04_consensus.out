@@ -1,0 +1,133 @@
+bps = (book mid - consensus)/consensus * 1e4; book sampled at real 2i + delta vs consensus row i
+
+PORT
+  touch  quiet_pre: best d=+7.5s rms 168.9 (mean -140.0) | d=+1 rms 172.3 ; storm: best d=+6.5s rms 161.8 (mean -43.4) | d=+1 rms 163.5 ; quiet_after: best d=-3.0s rms 79.3 (mean -29.6) | d=+1 rms 79.3 ; all: best d=+3.0s rms 144.3 (mean -46.8) | d=+1 rms 146.3
+  l2     quiet_pre: best d=+7.5s rms 169.4 (mean -140.5) | d=+1 rms 172.3 ; storm: best d=+3.0s rms 161.9 (mean -41.1) | d=+1 rms 162.7 ; quiet_after: best d=-2.5s rms 80.3 (mean -30.6) | d=+1 rms 80.4 ; all: best d=+1.5s rms 144.0 (mean -48.2) | d=+1 rms 144.6
+  ladder quiet_pre: best d=-8.0s rms 143.8 (mean -121.2) | d=+1 rms 153.9 ; storm: best d=+8.0s rms 158.0 (mean -42.6) | d=+1 rms 162.3 ; quiet_after: best d=-7.0s rms 80.6 (mean -34.7) | d=+1 rms 80.7 ; all: best d=+4.0s rms 140.2 (mean -45.7) | d=+1 rms 142.4
+  xcorr touch  quiet_pre  : k-4:0.23 k-3:0.11 k-2:-0.06 k-1:0.00 k+0:-0.16 k+1:0.06 k+2:0.01 k+3:-0.03 k+4:-0.19  -> peak k=-4; rms d_book 4.0 bp, d_cons 9.4 bp (n=82)
+  xcorr touch  storm      : k-4:0.13 k-3:-0.01 k-2:0.03 k-1:0.08 k+0:0.37 k+1:-0.07 k+2:-0.05 k+3:-0.08 k+4:0.06  -> peak k=+0; rms d_book 37.2 bp, d_cons 55.3 bp (n=768)
+  xcorr touch  quiet_after: k-4:0.08 k-3:-0.05 k-2:0.03 k-1:0.01 k+0:-0.11 k+1:0.12 k+2:0.04 k+3:0.03 k+4:0.00  -> peak k=+1; rms d_book 2.6 bp, d_cons 8.5 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.14 k-3:0.13 k-2:-0.01 k-1:0.11 k+0:-0.08 k+1:-0.02 k+2:-0.07 k+3:-0.11 k+4:-0.05  -> peak k=-4; rms d_book 16.7 bp, d_cons 9.5 bp (n=73)
+  xcorr ladder storm      : k-4:0.09 k-3:0.02 k-2:0.06 k-1:0.13 k+0:0.17 k+1:-0.06 k+2:-0.02 k+3:-0.07 k+4:0.12  -> peak k=+0; rms d_book 41.8 bp, d_cons 55.2 bp (n=758)
+  xcorr ladder quiet_after: k-4:0.03 k-3:-0.07 k-2:0.11 k-1:-0.13 k+0:0.06 k+1:0.02 k+2:-0.05 k+3:-0.03 k+4:-0.01  -> peak k=-2; rms d_book 21.3 bp, d_cons 8.5 bp (n=276)
+
+ISLE
+  touch  quiet_pre: best d=-8.0s rms 212.2 (mean +202.7) | d=+1 rms 214.6 ; storm: best d=-7.5s rms 307.2 (mean +196.0) | d=+1 rms 309.6 ; quiet_after: best d=+7.5s rms 144.0 (mean +92.5) | d=+1 rms 144.3 ; all: best d=+0.5s rms 252.1 (mean +155.3) | d=+1 rms 252.5
+  l2     quiet_pre: best d=-8.0s rms 211.5 (mean +201.9) | d=+1 rms 212.5 ; storm: best d=-7.5s rms 307.1 (mean +196.2) | d=+1 rms 309.6 ; quiet_after: best d=+7.0s rms 143.8 (mean +92.5) | d=+1 rms 144.1 ; all: best d=+0.5s rms 251.8 (mean +155.0) | d=+1 rms 252.3
+  ladder quiet_pre: best d=+6.0s rms 206.5 (mean +196.8) | d=+1 rms 215.3 ; storm: best d=-7.5s rms 305.8 (mean +197.0) | d=+1 rms 308.1 ; quiet_after: best d=+3.5s rms 155.1 (mean +87.7) | d=+1 rms 155.2 ; all: best d=+0.5s rms 252.9 (mean +153.9) | d=+1 rms 253.1
+  xcorr touch  quiet_pre  : k-4:-0.04 k-3:-0.01 k-2:0.14 k-1:-0.06 k+0:0.18 k+1:0.08 k+2:-0.02 k+3:-0.15 k+4:-0.01  -> peak k=+0; rms d_book 12.5 bp, d_cons 9.2 bp (n=82)
+  xcorr touch  storm      : k-4:-0.02 k-3:-0.01 k-2:0.03 k-1:-0.01 k+0:0.18 k+1:0.27 k+2:-0.05 k+3:0.01 k+4:0.12  -> peak k=+1; rms d_book 12.7 bp, d_cons 22.5 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.00 k-3:-0.01 k-2:0.06 k-1:-0.03 k+0:-0.08 k+1:0.02 k+2:0.00 k+3:-0.05 k+4:-0.12  -> peak k=-2; rms d_book 3.2 bp, d_cons 7.7 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.11 k-3:0.06 k-2:-0.00 k-1:-0.10 k+0:-0.00 k+1:-0.15 k+2:0.09 k+3:0.01 k+4:0.03  -> peak k=-4; rms d_book 21.5 bp, d_cons 9.1 bp (n=78)
+  xcorr ladder storm      : k-4:-0.01 k-3:-0.05 k-2:0.05 k-1:-0.02 k+0:0.09 k+1:0.11 k+2:-0.05 k+3:0.04 k+4:0.05  -> peak k=+1; rms d_book 27.5 bp, d_cons 22.6 bp (n=762)
+  xcorr ladder quiet_after: k-4:-0.03 k-3:-0.01 k-2:0.02 k-1:0.09 k+0:0.00 k+1:0.04 k+2:0.02 k+3:-0.04 k+4:-0.13  -> peak k=-1; rms d_book 18.4 bp, d_cons 7.7 bp (n=276)
+
+AQUA
+  touch  quiet_pre: best d=-7.5s rms 228.2 (mean +211.0) | d=+1 rms 232.3 ; storm: best d=-7.5s rms 304.1 (mean +209.5) | d=+1 rms 307.3 ; quiet_after: best d=+7.0s rms 192.9 (mean +124.5) | d=+1 rms 193.4 ; all: best d=+0.5s rms 263.4 (mean +173.7) | d=+1 rms 263.6
+  l2     quiet_pre: best d=-7.0s rms 228.3 (mean +210.7) | d=+1 rms 232.0 ; storm: best d=-7.0s rms 304.8 (mean +210.4) | d=+1 rms 307.5 ; quiet_after: best d=+7.0s rms 192.1 (mean +123.7) | d=+1 rms 192.6 ; all: best d=+0.5s rms 263.5 (mean +173.0) | d=+1 rms 263.5
+  ladder quiet_pre: best d=-7.5s rms 242.7 (mean +218.5) | d=+1 rms 256.0 ; storm: best d=-6.5s rms 308.3 (mean +212.3) | d=+1 rms 310.6 ; quiet_after: best d=+1.0s rms 188.3 (mean +120.5) | d=+1 rms 188.3 ; all: best d=+1.0s rms 266.6 (mean +174.6) | d=+1 rms 266.6
+  xcorr touch  quiet_pre  : k-4:-0.14 k-3:0.09 k-2:0.14 k-1:-0.01 k+0:-0.05 k+1:0.05 k+2:0.11 k+3:-0.02 k+4:0.21  -> peak k=+4; rms d_book 6.5 bp, d_cons 8.5 bp (n=82)
+  xcorr touch  storm      : k-4:-0.01 k-3:-0.05 k-2:0.03 k-1:0.02 k+0:0.25 k+1:0.05 k+2:0.11 k+3:-0.04 k+4:0.08  -> peak k=+0; rms d_book 14.5 bp, d_cons 29.1 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.02 k-3:0.08 k-2:-0.01 k-1:-0.05 k+0:-0.09 k+1:0.14 k+2:0.15 k+3:-0.05 k+4:-0.01  -> peak k=+2; rms d_book 3.8 bp, d_cons 8.4 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.09 k-3:-0.16 k-2:-0.10 k-1:0.00 k+0:0.27 k+1:-0.01 k+2:-0.08 k+3:-0.06 k+4:0.34  -> peak k=+4; rms d_book 26.9 bp, d_cons 8.7 bp (n=75)
+  xcorr ladder storm      : k-4:0.04 k-3:-0.07 k-2:-0.00 k-1:0.09 k+0:0.12 k+1:0.04 k+2:-0.01 k+3:-0.04 k+4:0.11  -> peak k=+0; rms d_book 29.5 bp, d_cons 27.8 bp (n=760)
+  xcorr ladder quiet_after: k-4:-0.00 k-3:-0.00 k-2:-0.04 k-1:-0.03 k+0:0.00 k+1:0.14 k+2:-0.00 k+3:0.11 k+4:-0.03  -> peak k=+1; rms d_book 22.9 bp, d_cons 8.4 bp (n=276)
+
+GRID
+  touch  quiet_pre: best d=-8.0s rms 43.4 (mean +37.7) | d=+1 rms 46.6 ; storm: best d=+0.5s rms 185.2 (mean +89.1) | d=+1 rms 185.2 ; quiet_after: best d=-8.0s rms 56.7 (mean +50.6) | d=+1 rms 57.6 ; all: best d=+4.0s rms 145.9 (mean +64.5) | d=+1 rms 147.0
+  l2     quiet_pre: best d=-8.0s rms 43.4 (mean +37.3) | d=+1 rms 45.9 ; storm: best d=+0.5s rms 184.8 (mean +89.1) | d=+1 rms 184.9 ; quiet_after: best d=-7.5s rms 55.6 (mean +49.5) | d=+1 rms 56.6 ; all: best d=+2.5s rms 145.4 (mean +63.4) | d=+1 rms 146.9
+  ladder quiet_pre: best d=-8.0s rms 61.3 (mean +42.8) | d=+1 rms 68.4 ; storm: best d=+0.5s rms 185.8 (mean +94.3) | d=+1 rms 186.0 ; quiet_after: best d=-8.0s rms 70.5 (mean +50.2) | d=+1 rms 77.6 ; all: best d=+3.0s rms 148.4 (mean +71.4) | d=+1 rms 149.2
+  xcorr touch  quiet_pre  : k-4:-0.02 k-3:0.17 k-2:0.03 k-1:-0.03 k+0:-0.02 k+1:0.02 k+2:-0.13 k+3:0.00 k+4:-0.05  -> peak k=-3; rms d_book 4.4 bp, d_cons 8.0 bp (n=82)
+  xcorr touch  storm      : k-4:0.14 k-3:0.02 k-2:0.07 k-1:0.03 k+0:0.29 k+1:0.00 k+2:-0.08 k+3:-0.01 k+4:0.04  -> peak k=+0; rms d_book 14.4 bp, d_cons 21.9 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.09 k-3:0.03 k-2:0.04 k-1:-0.10 k+0:0.03 k+1:0.10 k+2:0.02 k+3:-0.01 k+4:0.03  -> peak k=+1; rms d_book 2.7 bp, d_cons 7.9 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:-0.01 k-3:0.01 k-2:0.02 k-1:-0.03 k+0:0.01 k+1:0.07 k+2:-0.20 k+3:-0.05 k+4:-0.04  -> peak k=+1; rms d_book 12.1 bp, d_cons 8.0 bp (n=78)
+  xcorr ladder storm      : k-4:0.18 k-3:0.05 k-2:-0.00 k-1:0.08 k+0:0.09 k+1:-0.01 k+2:0.01 k+3:-0.08 k+4:0.06  -> peak k=-4; rms d_book 24.5 bp, d_cons 22.0 bp (n=760)
+  xcorr ladder quiet_after: k-4:-0.00 k-3:-0.08 k-2:0.02 k-1:-0.06 k+0:-0.12 k+1:0.11 k+2:0.02 k+3:-0.09 k+4:0.03  -> peak k=+1; rms d_book 22.7 bp, d_cons 7.8 bp (n=274)
+
+FERRY
+  touch  quiet_pre: best d=+7.0s rms 434.1 (mean +418.2) | d=+1 rms 454.1 ; storm: best d=-5.5s rms 473.6 (mean +305.6) | d=+1 rms 474.4 ; quiet_after: best d=-6.5s rms 243.0 (mean +170.2) | d=+1 rms 243.1 ; all: best d=-0.5s rms 399.9 (mean +253.0) | d=+1 rms 400.7
+  l2     quiet_pre: best d=+7.0s rms 433.9 (mean +418.1) | d=+1 rms 437.0 ; storm: best d=-5.5s rms 472.8 (mean +304.2) | d=+1 rms 473.7 ; quiet_after: best d=-6.5s rms 244.1 (mean +171.1) | d=+1 rms 244.2 ; all: best d=-0.5s rms 398.9 (mean +251.7) | d=+1 rms 398.9
+  ladder quiet_pre: best d=-6.5s rms 460.9 (mean +437.5) | d=+1 rms 464.6 ; storm: best d=-7.5s rms 481.6 (mean +315.8) | d=+1 rms 484.2 ; quiet_after: best d=-6.5s rms 242.5 (mean +168.3) | d=+1 rms 245.8 ; all: best d=+0.5s rms 408.4 (mean +261.4) | d=+1 rms 408.6
+  xcorr touch  quiet_pre  : k-4:-0.22 k-3:0.06 k-2:0.02 k-1:-0.10 k+0:0.13 k+1:-0.19 k+2:0.05 k+3:0.06 k+4:-0.00  -> peak k=+0; rms d_book 78.7 bp, d_cons 10.4 bp (n=82)
+  xcorr touch  storm      : k-4:0.02 k-3:0.04 k-2:0.07 k-1:0.04 k+0:0.37 k+1:0.01 k+2:0.07 k+3:-0.03 k+4:0.07  -> peak k=+0; rms d_book 22.5 bp, d_cons 38.1 bp (n=768)
+  xcorr touch  quiet_after: k-4:0.02 k-3:-0.08 k-2:0.02 k-1:0.04 k+0:0.02 k+1:0.05 k+2:-0.05 k+3:-0.10 k+4:-0.05  -> peak k=+1; rms d_book 3.4 bp, d_cons 8.6 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:-0.13 k-3:-0.18 k-2:-0.00 k-1:0.04 k+0:-0.02 k+1:-0.05 k+2:0.00 k+3:0.08 k+4:-0.33  -> peak k=+3; rms d_book 25.5 bp, d_cons 10.3 bp (n=75)
+  xcorr ladder storm      : k-4:0.04 k-3:0.02 k-2:0.04 k-1:0.07 k+0:0.13 k+1:0.05 k+2:0.03 k+3:-0.10 k+4:0.14  -> peak k=+4; rms d_book 37.5 bp, d_cons 38.2 bp (n=761)
+  xcorr ladder quiet_after: k-4:0.06 k-3:-0.11 k-2:0.06 k-1:-0.04 k+0:-0.07 k+1:0.02 k+2:-0.08 k+3:0.00 k+4:-0.02  -> peak k=-2; rms d_book 17.7 bp, d_cons 8.6 bp (n=276)
+
+RECON
+  touch  quiet_pre: best d=-6.5s rms 38.4 (mean +19.4) | d=+1 rms 39.3 ; storm: best d=+1.0s rms 97.1 (mean -26.5) | d=+1 rms 97.1 ; quiet_after: best d=+4.0s rms 28.4 (mean -12.3) | d=+1 rms 28.4 ; all: best d=+2.5s rms 76.7 (mean -13.2) | d=+1 rms 78.1
+  l2     quiet_pre: best d=-6.5s rms 38.9 (mean +20.2) | d=+1 rms 64.6 ; storm: best d=+0.5s rms 96.1 (mean -26.3) | d=+1 rms 96.2 ; quiet_after: best d=+4.5s rms 28.4 (mean -11.9) | d=+1 rms 28.6 ; all: best d=+2.5s rms 77.8 (mean -12.6) | d=+1 rms 80.7
+  ladder quiet_pre: best d=-5.0s rms 35.9 (mean +14.1) | d=+1 rms 36.6 ; storm: best d=+5.0s rms 92.7 (mean -22.4) | d=+1 rms 93.2 ; quiet_after: best d=+0.0s rms 31.3 (mean -7.6) | d=+1 rms 32.8 ; all: best d=+3.0s rms 75.2 (mean -11.2) | d=+1 rms 75.9
+  xcorr touch  quiet_pre  : k-4:-0.07 k-3:-0.17 k-2:-0.10 k-1:0.06 k+0:-0.06 k+1:-0.29 k+2:-0.08 k+3:0.04 k+4:-0.02  -> peak k=-1; rms d_book 3.7 bp, d_cons 7.7 bp (n=82)
+  xcorr touch  storm      : k-4:0.07 k-3:-0.03 k-2:0.04 k-1:0.02 k+0:0.41 k+1:0.01 k+2:-0.09 k+3:-0.00 k+4:-0.03  -> peak k=+0; rms d_book 17.7 bp, d_cons 27.9 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.05 k-3:0.03 k-2:0.03 k-1:-0.08 k+0:-0.02 k+1:-0.05 k+2:0.07 k+3:0.03 k+4:-0.05  -> peak k=+2; rms d_book 3.5 bp, d_cons 8.3 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.07 k-3:0.04 k-2:0.09 k-1:-0.06 k+0:0.16 k+1:0.08 k+2:0.01 k+3:0.17 k+4:0.03  -> peak k=+3; rms d_book 15.7 bp, d_cons 7.6 bp (n=76)
+  xcorr ladder storm      : k-4:-0.02 k-3:0.08 k-2:0.11 k-1:-0.01 k+0:0.12 k+1:0.06 k+2:-0.02 k+3:0.02 k+4:-0.14  -> peak k=+0; rms d_book 26.2 bp, d_cons 28.0 bp (n=760)
+  xcorr ladder quiet_after: k-4:-0.06 k-3:0.01 k-2:-0.03 k-1:-0.00 k+0:0.08 k+1:-0.05 k+2:0.04 k+3:0.04 k+4:-0.14  -> peak k=+0; rms d_book 16.3 bp, d_cons 8.3 bp (n=274)
+
+MAT
+  touch  quiet_pre: best d=-8.0s rms 39.3 (mean -31.2) | d=+1 rms 58.4 ; storm: best d=+1.0s rms 125.6 (mean -64.7) | d=+1 rms 125.6 ; quiet_after: best d=-8.0s rms 55.9 (mean -41.9) | d=+1 rms 56.4 ; all: best d=+2.5s rms 101.1 (mean -48.3) | d=+1 rms 101.9
+  l2     quiet_pre: best d=-8.0s rms 39.1 (mean -30.0) | d=+1 rms 40.8 ; storm: best d=+0.5s rms 125.4 (mean -64.4) | d=+1 rms 126.4 ; quiet_after: best d=-8.0s rms 55.5 (mean -41.3) | d=+1 rms 55.9 ; all: best d=+1.5s rms 101.4 (mean -48.1) | d=+1 rms 104.8
+  ladder quiet_pre: best d=-6.5s rms 36.6 (mean -26.8) | d=+1 rms 38.2 ; storm: best d=+2.0s rms 135.9 (mean -69.1) | d=+1 rms 136.2 ; quiet_after: best d=-7.0s rms 47.9 (mean -29.9) | d=+1 rms 48.5 ; all: best d=+3.0s rms 108.5 (mean -51.0) | d=+1 rms 108.9
+  xcorr touch  quiet_pre  : k-4:0.06 k-3:-0.08 k-2:0.20 k-1:0.10 k+0:-0.23 k+1:0.11 k+2:-0.07 k+3:0.04 k+4:0.07  -> peak k=-2; rms d_book 43.2 bp, d_cons 8.5 bp (n=82)
+  xcorr touch  storm      : k-4:0.09 k-3:-0.05 k-2:-0.02 k-1:-0.01 k+0:0.52 k+1:-0.07 k+2:-0.05 k+3:-0.01 k+4:-0.05  -> peak k=+0; rms d_book 13.9 bp, d_cons 21.4 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.01 k-3:0.13 k-2:-0.01 k-1:-0.05 k+0:-0.03 k+1:0.02 k+2:0.11 k+3:-0.05 k+4:0.03  -> peak k=-3; rms d_book 2.7 bp, d_cons 8.8 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.06 k-3:-0.09 k-2:0.20 k-1:0.10 k+0:-0.15 k+1:0.04 k+2:0.22 k+3:0.12 k+4:0.03  -> peak k=+2; rms d_book 1.3 bp, d_cons 8.2 bp (n=78)
+  xcorr ladder storm      : k-4:0.09 k-3:-0.03 k-2:-0.00 k-1:0.03 k+0:0.10 k+1:0.02 k+2:-0.04 k+3:0.03 k+4:-0.06  -> peak k=+0; rms d_book 25.4 bp, d_cons 21.5 bp (n=759)
+  xcorr ladder quiet_after: k-4:0.03 k-3:-0.04 k-2:0.06 k-1:0.03 k+0:-0.13 k+1:0.01 k+2:0.09 k+3:-0.03 k+4:0.10  -> peak k=+4; rms d_book 12.4 bp, d_cons 8.8 bp (n=276)
+
+GEN
+  touch  quiet_pre: best d=-6.5s rms 43.4 (mean -36.6) | d=+1 rms 45.1 ; storm: best d=+1.5s rms 124.0 (mean -50.1) | d=+1 rms 124.0 ; quiet_after: best d=+6.0s rms 55.0 (mean -42.9) | d=+1 rms 55.2 ; all: best d=+2.5s rms 101.7 (mean -39.3) | d=+1 rms 102.1
+  l2     quiet_pre: best d=-6.5s rms 43.7 (mean -37.0) | d=+1 rms 45.4 ; storm: best d=+2.5s rms 124.9 (mean -51.1) | d=+1 rms 124.9 ; quiet_after: best d=+7.5s rms 53.9 (mean -41.6) | d=+1 rms 54.2 ; all: best d=+3.5s rms 102.1 (mean -39.9) | d=+1 rms 102.7
+  ladder quiet_pre: best d=-8.0s rms 42.3 (mean -37.1) | d=+1 rms 44.9 ; storm: best d=+1.5s rms 128.4 (mean -52.9) | d=+1 rms 128.6 ; quiet_after: best d=-0.5s rms 64.4 (mean -47.1) | d=+1 rms 65.1 ; all: best d=+3.5s rms 106.3 (mean -45.0) | d=+1 rms 106.7
+  xcorr touch  quiet_pre  : k-4:0.09 k-3:0.28 k-2:0.05 k-1:-0.07 k+0:-0.07 k+1:-0.03 k+2:0.09 k+3:-0.07 k+4:0.03  -> peak k=-3; rms d_book 1.1 bp, d_cons 7.4 bp (n=82)
+  xcorr touch  storm      : k-4:0.14 k-3:-0.04 k-2:0.09 k-1:0.02 k+0:0.42 k+1:-0.12 k+2:-0.09 k+3:0.00 k+4:0.01  -> peak k=+0; rms d_book 12.2 bp, d_cons 16.3 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.02 k-3:-0.02 k-2:0.12 k-1:0.01 k+0:0.04 k+1:0.05 k+2:-0.04 k+3:0.01 k+4:-0.03  -> peak k=-2; rms d_book 3.0 bp, d_cons 8.3 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.09 k-3:0.28 k-2:0.05 k-1:-0.08 k+0:-0.07 k+1:-0.03 k+2:0.09 k+3:-0.07 k+4:0.03  -> peak k=-3; rms d_book 0.6 bp, d_cons 7.3 bp (n=75)
+  xcorr ladder storm      : k-4:0.15 k-3:-0.08 k-2:0.01 k-1:0.02 k+0:0.03 k+1:0.02 k+2:-0.02 k+3:-0.04 k+4:-0.02  -> peak k=-4; rms d_book 32.9 bp, d_cons 16.1 bp (n=756)
+  xcorr ladder quiet_after: k-4:-0.01 k-3:-0.03 k-2:0.04 k-1:0.03 k+0:0.03 k+1:0.07 k+2:0.01 k+3:-0.00 k+4:-0.03  -> peak k=+1; rms d_book 21.1 bp, d_cons 8.3 bp (n=276)
+
+HAVEN
+  touch  quiet_pre: best d=-7.5s rms 151.7 (mean +71.3) | d=+1 rms 163.4 ; storm: best d=+0.5s rms 670.1 (mean +320.3) | d=+1 rms 670.4 ; quiet_after: best d=+7.5s rms 100.3 (mean +78.0) | d=+1 rms 100.9 ; all: best d=+4.0s rms 509.0 (mean +206.3) | d=+1 rms 511.1
+  l2     quiet_pre: best d=-7.5s rms 152.1 (mean +72.5) | d=+1 rms 155.1 ; storm: best d=+0.5s rms 669.9 (mean +320.0) | d=+1 rms 670.0 ; quiet_after: best d=+7.0s rms 99.4 (mean +77.4) | d=+1 rms 99.8 ; all: best d=+3.5s rms 509.3 (mean +206.8) | d=+1 rms 509.9
+  ladder quiet_pre: best d=+7.0s rms 148.3 (mean +84.0) | d=+1 rms 149.6 ; storm: best d=+3.5s rms 669.7 (mean +325.9) | d=+1 rms 672.4 ; quiet_after: best d=+4.0s rms 106.9 (mean +81.4) | d=+1 rms 108.0 ; all: best d=+3.5s rms 509.6 (mean +218.2) | d=+1 rms 511.9
+  xcorr touch  quiet_pre  : k-4:0.10 k-3:0.19 k-2:0.22 k-1:-0.05 k+0:0.03 k+1:0.14 k+2:-0.10 k+3:-0.10 k+4:-0.00  -> peak k=-2; rms d_book 59.2 bp, d_cons 7.5 bp (n=82)
+  xcorr touch  storm      : k-4:0.07 k-3:0.10 k-2:0.11 k-1:0.06 k+0:0.17 k+1:-0.11 k+2:-0.01 k+3:0.04 k+4:-0.08  -> peak k=+0; rms d_book 53.3 bp, d_cons 82.1 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.04 k-3:0.13 k-2:-0.06 k-1:0.04 k+0:0.11 k+1:-0.01 k+2:-0.00 k+3:-0.12 k+4:-0.02  -> peak k=-3; rms d_book 3.1 bp, d_cons 8.4 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.13 k-3:-0.01 k-2:-0.11 k-1:0.11 k+0:-0.08 k+1:0.05 k+2:0.15 k+3:-0.04 k+4:-0.02  -> peak k=+2; rms d_book 23.2 bp, d_cons 7.6 bp (n=79)
+  xcorr ladder storm      : k-4:0.04 k-3:0.17 k-2:0.14 k-1:0.07 k+0:0.14 k+1:-0.08 k+2:0.04 k+3:-0.03 k+4:-0.08  -> peak k=-3; rms d_book 50.2 bp, d_cons 82.5 bp (n=757)
+  xcorr ladder quiet_after: k-4:0.01 k-3:-0.01 k-2:0.12 k-1:0.01 k+0:-0.05 k+1:-0.10 k+2:-0.00 k+3:0.08 k+4:-0.01  -> peak k=-2; rms d_book 18.6 bp, d_cons 8.4 bp (n=274)
+
+REIN
+  touch  quiet_pre: best d=+0.0s rms 9.5 (mean +1.5) | d=+1 rms 11.7 ; storm: best d=-3.5s rms 18.8 (mean +0.5) | d=+1 rms 19.0 ; quiet_after: best d=-8.0s rms 17.1 (mean +2.8) | d=+1 rms 17.8 ; all: best d=+8.0s rms 19.1 (mean +1.0) | d=+1 rms 19.5
+  l2     quiet_pre: best d=+0.0s rms 9.5 (mean +1.5) | d=+1 rms 9.9 ; storm: best d=-2.0s rms 18.2 (mean -0.2) | d=+1 rms 18.4 ; quiet_after: best d=-8.0s rms 17.0 (mean +1.9) | d=+1 rms 17.7 ; all: best d=+8.0s rms 18.7 (mean +0.1) | d=+1 rms 18.9
+  ladder quiet_pre: best d=+2.0s rms 8.6 (mean -0.8) | d=+1 rms 8.7 ; storm: best d=+7.5s rms 27.2 (mean -2.0) | d=+1 rms 29.2 ; quiet_after: best d=-7.0s rms 18.3 (mean -7.2) | d=+1 rms 19.4 ; all: best d=+7.5s rms 27.6 (mean -4.9) | d=+1 rms 28.5
+  xcorr touch  quiet_pre  : k-4:0.12 k-3:-0.06 k-2:-0.14 k-1:0.04 k+0:-0.08 k+1:-0.04 k+2:-0.01 k+3:-0.03 k+4:-0.02  -> peak k=-4; rms d_book 6.2 bp, d_cons 7.5 bp (n=82)
+  xcorr touch  storm      : k-4:0.02 k-3:-0.03 k-2:0.04 k-1:-0.05 k+0:0.01 k+1:0.01 k+2:-0.00 k+3:0.01 k+4:-0.03  -> peak k=-2; rms d_book 3.9 bp, d_cons 8.0 bp (n=768)
+  xcorr touch  quiet_after: k-4:0.12 k-3:0.01 k-2:0.01 k-1:-0.08 k+0:-0.09 k+1:-0.02 k+2:-0.08 k+3:-0.00 k+4:0.11  -> peak k=-4; rms d_book 2.3 bp, d_cons 7.9 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.02 k-3:0.07 k-2:-0.33 k-1:0.19 k+0:0.07 k+1:0.02 k+2:-0.07 k+3:0.00 k+4:0.07  -> peak k=-1; rms d_book 0.6 bp, d_cons 7.2 bp (n=71)
+  xcorr ladder storm      : k-4:0.00 k-3:-0.07 k-2:-0.01 k-1:0.06 k+0:-0.01 k+1:0.03 k+2:-0.04 k+3:0.05 k+4:-0.01  -> peak k=-1; rms d_book 23.2 bp, d_cons 8.0 bp (n=764)
+  xcorr ladder quiet_after: k-4:-0.14 k-3:-0.02 k-2:0.09 k-1:-0.08 k+0:0.01 k+1:0.03 k+2:-0.02 k+3:-0.04 k+4:-0.06  -> peak k=-2; rms d_book 8.7 bp, d_cons 7.9 bp (n=276)
+
+ARCH
+  touch  quiet_pre: best d=+0.5s rms 116.7 (mean +107.3) | d=+1 rms 117.2 ; storm: best d=+0.5s rms 300.1 (mean +154.5) | d=+1 rms 300.3 ; quiet_after: best d=+5.5s rms 89.6 (mean +68.7) | d=+1 rms 90.1 ; all: best d=+2.0s rms 234.6 (mean +116.0) | d=+1 rms 235.1
+  l2     quiet_pre: best d=+8.0s rms 117.6 (mean +108.5) | d=+1 rms 118.7 ; storm: best d=+0.5s rms 299.5 (mean +154.6) | d=+1 rms 299.6 ; quiet_after: best d=+7.5s rms 89.6 (mean +68.1) | d=+1 rms 90.0 ; all: best d=+2.0s rms 233.9 (mean +116.7) | d=+1 rms 234.0
+  ladder quiet_pre: best d=-5.0s rms 113.7 (mean +104.8) | d=+1 rms 114.2 ; storm: best d=+1.0s rms 298.1 (mean +159.3) | d=+1 rms 298.1 ; quiet_after: best d=+5.5s rms 89.8 (mean +61.9) | d=+1 rms 90.1 ; all: best d=+2.5s rms 232.9 (mean +117.5) | d=+1 rms 233.2
+  xcorr touch  quiet_pre  : k-4:-0.15 k-3:0.18 k-2:-0.05 k-1:0.11 k+0:0.01 k+1:-0.08 k+2:-0.04 k+3:0.01 k+4:0.12  -> peak k=-3; rms d_book 10.3 bp, d_cons 7.8 bp (n=82)
+  xcorr touch  storm      : k-4:0.11 k-3:0.07 k-2:-0.03 k-1:-0.04 k+0:0.30 k+1:-0.03 k+2:-0.05 k+3:-0.02 k+4:0.11  -> peak k=+0; rms d_book 22.7 bp, d_cons 34.2 bp (n=768)
+  xcorr touch  quiet_after: k-4:-0.08 k-3:-0.01 k-2:0.02 k-1:0.07 k+0:-0.07 k+1:0.04 k+2:0.11 k+3:-0.06 k+4:0.06  -> peak k=+2; rms d_book 8.0 bp, d_cons 7.9 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:-0.08 k-3:0.10 k-2:0.00 k-1:0.06 k+0:-0.05 k+1:-0.17 k+2:0.06 k+3:0.20 k+4:-0.07  -> peak k=+3; rms d_book 2.2 bp, d_cons 8.0 bp (n=78)
+  xcorr ladder storm      : k-4:0.17 k-3:0.06 k-2:-0.02 k-1:0.00 k+0:0.17 k+1:-0.07 k+2:0.02 k+3:0.00 k+4:0.06  -> peak k=-4; rms d_book 24.9 bp, d_cons 34.2 bp (n=768)
+  xcorr ladder quiet_after: k-4:0.03 k-3:0.01 k-2:0.00 k-1:0.04 k+0:-0.10 k+1:-0.01 k+2:0.14 k+3:-0.07 k+4:0.05  -> peak k=+2; rms d_book 5.1 bp, d_cons 7.9 bp (n=269)
+
+REBLD
+  touch  quiet_pre: best d=-2.5s rms 29.8 (mean -8.7) | d=+1 rms 30.2 ; storm: best d=+1.5s rms 95.3 (mean -39.1) | d=+1 rms 95.5 ; quiet_after: best d=-8.0s rms 32.1 (mean -23.2) | d=+1 rms 32.8 ; all: best d=+1.5s rms 76.3 (mean -27.1) | d=+1 rms 76.8
+  l2     quiet_pre: best d=+0.0s rms 30.0 (mean -8.8) | d=+1 rms 49.0 ; storm: best d=+1.5s rms 95.1 (mean -38.9) | d=+1 rms 95.3 ; quiet_after: best d=-8.0s rms 31.9 (mean -22.8) | d=+1 rms 32.8 ; all: best d=+2.0s rms 76.0 (mean -27.5) | d=+1 rms 76.5
+  ladder quiet_pre: best d=+4.5s rms 33.3 (mean -8.0) | d=+1 rms 34.3 ; storm: best d=+7.0s rms 95.0 (mean -39.3) | d=+1 rms 96.4 ; quiet_after: best d=-7.0s rms 33.1 (mean -19.8) | d=+1 rms 34.9 ; all: best d=+3.5s rms 76.7 (mean -29.2) | d=+1 rms 77.2
+  xcorr touch  quiet_pre  : k-4:-0.02 k-3:-0.09 k-2:-0.05 k-1:-0.10 k+0:-0.01 k+1:-0.12 k+2:0.00 k+3:0.21 k+4:0.10  -> peak k=+3; rms d_book 3.3 bp, d_cons 7.8 bp (n=82)
+  xcorr touch  storm      : k-4:-0.03 k-3:0.04 k-2:-0.04 k-1:0.08 k+0:0.33 k+1:-0.13 k+2:0.07 k+3:0.03 k+4:0.00  -> peak k=+0; rms d_book 17.6 bp, d_cons 23.2 bp (n=768)
+  xcorr touch  quiet_after: k-4:0.01 k-3:0.03 k-2:-0.11 k-1:0.00 k+0:0.04 k+1:0.18 k+2:0.03 k+3:-0.11 k+4:-0.01  -> peak k=+1; rms d_book 3.1 bp, d_cons 8.1 bp (n=276)
+  xcorr ladder quiet_pre  : k-4:0.00 k-3:-0.09 k-2:-0.06 k-1:-0.14 k+0:-0.02 k+1:-0.10 k+2:0.01 k+3:0.24 k+4:0.11  -> peak k=+3; rms d_book 1.8 bp, d_cons 7.5 bp (n=74)
+  xcorr ladder storm      : k-4:-0.00 k-3:0.11 k-2:0.00 k-1:-0.02 k+0:0.14 k+1:-0.09 k+2:0.08 k+3:-0.12 k+4:0.15  -> peak k=+4; rms d_book 23.6 bp, d_cons 23.2 bp (n=768)
+  xcorr ladder quiet_after: k-4:0.05 k-3:0.02 k-2:-0.02 k-1:-0.18 k+0:0.00 k+1:-0.03 k+2:0.01 k+3:-0.07 k+4:0.07  -> peak k=+4; rms d_book 12.1 bp, d_cons 8.1 bp (n=276)

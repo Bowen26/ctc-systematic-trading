@@ -1,0 +1,95 @@
+== A. drops ==
+drop 1: (224, 3) real 329.44 phase storm gap 1.62 s; nearest tick advisory 330 offset of last frame -0.56 s; next ack at real 331.06
+drop 2: (225, 1) real 52.72 phase pre gap 1.19 s; nearest tick track 60 offset of last frame -7.28 s; next ack at real 53.91
+drop 3: (225, 1) real 480.19 phase storm gap 1.89 s; nearest tick track 480 offset of last frame +0.19 s; next ack at real 482.08
+drop 4: (225, 2) real 221.07 phase storm gap 31.72 s; nearest tick track 220 offset of last frame +1.07 s; next ack at real 252.79
+drop 5: (225, 3) real 450.75 phase storm gap 1.32 s; nearest tick advisory 450 offset of last frame +0.75 s; next ack at real 452.06
+long outage 31.72 s ((225, 2) real 221.1-252.8); median book latency 4.2 ms; trades received after reconnect but stamped inside the outage: 12, first stamped 11:20:59.80
+
+== B. snapshot recovery ==
+drop 1: first snapshot 30.0 s after reconnect (31.6 s after the drop), last_seq 764, highest seq before drop 745
+drop 2: first snapshot 6.6 s after reconnect (7.8 s after the drop), last_seq 1, highest seq before drop 876
+drop 3: first snapshot 0.2 s after reconnect (2.1 s after the drop), last_seq 250, highest seq before drop 249
+drop 4: first snapshot 18.1 s after reconnect (49.8 s after the drop), last_seq 416, highest seq before drop 385
+drop 5: first snapshot 29.4 s after reconnect (30.8 s after the drop), last_seq 828, highest seq before drop 811
+snapshots 123; median spacing 30.11 s
+
+== C. hygiene ==
+max inter-frame gap while connected, pre: 2.54 s at (225, 1) real 57.3
+max inter-frame gap while connected, storm: 2.12 s at (225, 1) real 376.0
+max inter-frame gap while connected, after: 5.21 s at (225, 2) real 661.9
+max inter-frame gap while connected, pause: 29.57 s at None real None
+max frames in any 1 s: 116 at (225, 3) real 741.2
+max news frames in any 1 s: 4
+duplicate trade_ids: 37; of which the repeat arrives within 40 frames after a reconnect ack: 37
+empty orderbook frames: 72; (round, real s) of those inside rounds: [((224, 3), 779), ((225, 1), 781), ((225, 2), 780), ((225, 3), 780)]
+quotes with bid or ask None: 74
+crossed or locked books: 0
+
+== D. ladder shape, pre-storm 5-55 s (median over frames; size/L and distance from mid in bp) ==
+PORT   L1 0.10L @   11  L2 0.07L @   20  L3 0.30L @   39  L4 0.24L @   75  L5 3.00L @  801
+ISLE   L1 0.10L @   11  L2 0.09L @   20  L3 0.18L @   38  L4 0.24L @   70  L5 3.00L @  801
+AQUA   L1 0.10L @   11  L2 0.07L @   22  L3 0.30L @   46  L4 0.24L @   73  L5 3.00L @  799
+GRID   L1 0.10L @   11  L2 0.09L @   20  L3 0.30L @   44  L4 0.24L @   71  L5 3.00L @  798
+FERRY  L1 0.16L @    8  L2 0.09L @   19  L3 0.18L @   49  L4 0.24L @   73  L5 3.00L @  802
+RECON  L1 0.10L @   11  L2 0.07L @   18  L3 0.18L @   44  L4 0.24L @   71  L5 3.00L @  802
+MAT    L1 0.09L @   12  L2 0.07L @   22  L3 0.30L @   38  L4 0.24L @   74  L5 3.00L @  801
+GEN    L1 0.08L @   11  L2 0.07L @   21  L3 0.30L @   38  L4 0.24L @   75  L5 3.00L @  804
+HAVEN  L1 0.11L @   10  L2 0.09L @   16  L3 0.19L @   44  L4 0.24L @   71  L5 3.00L @  798
+REIN   L1 0.09L @   11  L2 0.07L @   21  L3 0.30L @   45  L4 0.24L @   89  L5 3.00L @  797
+ARCH   L1 0.39L @   10  L2 0.28L @   20  L3 1.20L @   45  L4 0.96L @   91  L5 3.00L @  791
+REBLD  L1 0.39L @   10  L2 0.28L @   20  L3 1.20L @   64  L4 0.96L @  127  L5 3.00L @  800
+
+== E. ETF book vs basket NAV of component book mids ==
+ARCH: corr of 2-s changes ETF(t) vs NAV(t-k), k=0..12 s: +0.08 +0.10 +0.17 +0.22 +0.23 +0.28 +0.44 +0.49 +0.39 +0.33 +0.30 +0.24 +0.19  peak k=7
+ARCH: RMS (demeaned per round) of log ETF(t)/NAV(t-k), bp: 60 55 49 45 40 36 33 32 35 38 43 48 54  min k=7
+ARCH: touch through NAV by > 50 bp in 7.9% of 0.5-s samples (60-776 s); 65 episodes, median 1.5 s, p90 9.2 s
+  ARCH (225, 1) 68-80 s: NAV-ETF +0.7% to +6.5%; size priced better than NAV-/+0.3%: median 216% of limit, max 282%
+  ARCH (225, 2) 68-80 s: NAV-ETF -0.6% to +2.7%; size priced better than NAV-/+0.3%: median 216% of limit, max 284%
+  ARCH (225, 3) 68-80 s: NAV-ETF -2.4% to -0.4%; size priced better than NAV-/+0.3%: median 158% of limit, max 284%
+REBLD: corr of 2-s changes ETF(t) vs NAV(t-k), k=0..12 s: +0.10 +0.12 +0.14 +0.16 +0.11 +0.12 +0.26 +0.39 +0.34 +0.16 +0.06 +0.18 +0.26  peak k=7
+REBLD: RMS (demeaned per round) of log ETF(t)/NAV(t-k), bp: 42 39 36 34 32 30 29 28 29 32 35 37 40  min k=7
+REBLD: touch through NAV by > 50 bp in 5.3% of 0.5-s samples (60-776 s); 46 episodes, median 1.5 s, p90 8.8 s
+  REBLD (225, 1) 68-80 s: NAV-ETF -2.3% to -0.2%; size priced better than NAV-/+0.3%: median 216% of limit, max 267%
+  REBLD (225, 2) 68-80 s: NAV-ETF -0.8% to +0.9%; size priced better than NAV-/+0.3%: median 28% of limit, max 120%
+  REBLD (225, 3) 68-80 s: NAV-ETF -0.7% to +1.3%; size priced better than NAV-/+0.3%: median 0% of limit, max 120%
+
+== F. ETF lead-lag rule on the books (enter |gap| > max(0.5%, 3 hs); exit |gap| < 0.1%, 8 s, or sign flip; full limit; fills walk the ETF book at decision + latency; our fills do not deplete the book) ==
+latency 0.3 s ARCH: 224r3 -47 (3 trades)  225r1 +701 (10 trades)  225r2 -1,352 (21 trades)  225r3 -1,697 (25 trades)  total -2,395
+latency 0.3 s REBLD: 224r3 -264 (2 trades)  225r1 -929 (13 trades)  225r2 -869 (10 trades)  225r3 -1,687 (21 trades)  total -3,749
+latency 0.3 s both ETFs: -6,145 over 4 rounds (224 r3 from 222 s)
+latency 1.0 s ARCH: 224r3 -24 (3 trades)  225r1 +932 (10 trades)  225r2 -1,931 (21 trades)  225r3 -2,652 (25 trades)  total -3,676
+latency 1.0 s REBLD: 224r3 -255 (2 trades)  225r1 -806 (13 trades)  225r2 -455 (10 trades)  225r3 -2,633 (21 trades)  total -4,149
+latency 1.0 s both ETFs: -7,824 over 4 rounds (224 r3 from 222 s)
+latency 2.0 s ARCH: 224r3 -47 (3 trades)  225r1 +651 (10 trades)  225r2 -2,294 (21 trades)  225r3 -3,469 (25 trades)  total -5,160
+latency 2.0 s REBLD: 224r3 -256 (2 trades)  225r1 -971 (13 trades)  225r2 -889 (10 trades)  225r3 -2,399 (21 trades)  total -4,515
+latency 2.0 s both ETFs: -9,675 over 4 rounds (224 r3 from 222 s)
+
+== G. follow-on: cost of an L/4 same-side clip after another taker order >= 0.2 L (80-540 s) ==
+stock: n=100; L/4 clip cost vs pre-trade mid, mean (median) bp: just before 44 (27), +2 s 107 (52), +8 s 149 (49)
+etf: n=210; L/4 clip cost vs pre-trade mid, mean (median) bp: just before 24 (16), +2 s 49 (45), +8 s 86 (59)
+
+== F2. same rule, entry as a marketable limit capped at mid x (1 + gap/2) (keeps half the gap; partial fills), decision grid 1 s and 0.5 s ==
+grid 1.0 s, latency 0.3 s: ARCH 224r3 -1(3) 225r1 +1,548(9) 225r2 +900(13) 225r3 -320(19) = +2,127 | REBLD 224r3 -21(1) 225r1 +287(12) 225r2 +232(8) 225r3 +48(18) = +546 || both +2,673
+grid 1.0 s, latency 1.0 s: ARCH 224r3 +69(2) 225r1 +1,441(7) 225r2 +505(9) 225r3 +301(18) = +2,316 | REBLD 224r3 -21(1) 225r1 +344(11) 225r2 +412(7) 225r3 -36(16) = +700 || both +3,016
+grid 1.0 s, latency 2.0 s: ARCH 224r3 +141(2) 225r1 +1,529(7) 225r2 +727(8) 225r3 -25(15) = +2,372 | REBLD 224r3 -21(1) 225r1 +415(9) 225r2 +193(6) 225r3 +270(13) = +858 || both +3,230
+grid 0.5 s, latency 0.3 s: ARCH 224r3 -26(3) 225r1 +1,273(10) 225r2 +1,146(19) 225r3 +526(22) = +2,920 | REBLD 224r3 -59(2) 225r1 +225(12) 225r2 +146(9) 225r3 +452(21) = +764 || both +3,684
+grid 0.5 s, latency 1.0 s: ARCH 224r3 +83(3) 225r1 +1,514(9) 225r2 +939(13) 225r3 +197(20) = +2,733 | REBLD 224r3 -51(2) 225r1 +325(12) 225r2 +331(7) 225r3 +146(18) = +751 || both +3,483
+grid 0.5 s, latency 2.0 s: ARCH 224r3 +93(2) 225r1 +1,433(7) 225r2 +668(9) 225r3 -417(16) = +1,777 | REBLD 224r3 -51(2) 225r1 +354(9) 225r2 +176(7) 225r3 +125(16) = +605 || both +2,382
+
+== H. in-storm drift 74 -> 538 s, book mid vs consensus, season 225 (224 r3 has no 74-s book) ==
+r1 book/cons drift %: PORT +9.2/+3.8  ISLE +5.3/+0.5  AQUA +3.2/-1.9  GRID +11.8/+2.9  FERRY +12.9/-1.0  RECON -3.2/-1.4  MAT -3.0/-0.9  GEN -3.8/-1.2  HAVEN +26.3/+7.1  ARCH +14.2/+4.3  REBLD -5.1/-2.1
+r2 book/cons drift %: PORT +8.7/+10.4  ISLE +3.0/+2.0  AQUA +6.1/+3.0  GRID +8.3/+6.5  FERRY +8.3/+5.5  RECON -6.0/-6.0  MAT -5.4/-4.2  GEN -4.3/-4.1  HAVEN +30.1/+22.1  ARCH +12.0/+9.9  REBLD -6.2/-5.3
+r3 book/cons drift %: PORT -8.0/-7.4  ISLE +6.1/+5.6  AQUA +10.5/+10.6  GRID +0.5/-0.3  FERRY -1.2/-1.9  RECON +5.0/+5.6  MAT +0.8/+2.2  GEN -4.3/-3.5  HAVEN +7.7/+6.2  ARCH +0.3/+0.3  REBLD +2.6/+3.8
+sign agreement 30/33
+drift trade (fallback 4.7, full L, worked L/4 clips 74-86 s in, 532-538 s out): r1 books -13,633 cons RT -4,370  r2 books -18,275 cons RT -14,986  r3 books -7,568 cons RT -3,351  | total books -39,476, consensus RT -22,707; at mid with no costs: books -32,644, consensus -17,208
+
+== I. report windows: stale size on the book vs the book mid 20 s later, single frame, net of a 25-bp exit charge, capped at one limit per symbol (stocks / ETFs, $) ==
+224r3 preliminary te=570.12: +1s 8/0  +2s 7/0  +4s 0/0  +6s 0/0  +8s 0/0
+224r3 final       te=740.26: +1s 516/104  +2s 438/104  +4s 450/103  +6s 196/103  +8s 0/103
+225r1 preliminary te=570.06: +1s 11/0  +2s 11/0  +4s 0/0  +6s 0/0  +8s 0/0
+225r1 final       te=740.20: +1s 2/6  +2s 2/1  +4s 0/0  +6s 1/0  +8s 1/0
+225r2 preliminary te=570.12: +1s 0/0  +2s 0/0  +4s 0/0  +6s 0/0  +8s 0/0
+225r2 final       te=740.31: +1s 8/53  +2s 10/21  +4s 8/0  +6s 12/0  +8s 12/0
+225r3 preliminary te=570.05: +1s 263/106  +2s 352/68  +4s 145/20  +6s 184/93  +8s 51/8
+225r3 final       te=740.23: +1s 281/76  +2s 281/0  +4s 156/0  +6s 72/16  +8s 0/0

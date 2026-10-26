@@ -1,0 +1,267 @@
+{
+ "_about": "Backtest of the Hurricane Season strategies (work/se/backtest/backtest.py). Strategy parameters chosen on research seasons 1-400 (engine cache with a leave-one-season-out analog library); metrics on holdout seasons 401-600 (library 1-400). PnL in $ per season at full position limits, against the house consensus (market.csv) +/- half-spread h, fill at the NEXT 2-s row after the information. Gross of competition from other teams and of house quote skew.",
+ "fill_model": {
+  "fill_row": "floor(t_info/2)+1",
+  "price": "house*(1+h) buy, house*(1-h) sell",
+  "rate_limit_per_60s": 180,
+  "limits": {
+   "PORT": 200,
+   "ISLE": 300,
+   "AQUA": 500,
+   "GRID": 400,
+   "FERRY": 800,
+   "RECON": 500,
+   "MAT": 700,
+   "GEN": 600,
+   "HAVEN": 250,
+   "REIN": 200,
+   "ARCH": 50,
+   "REBLD": 100
+  }
+ },
+ "taker_rule": "e = fair_mean - house_last; th = k*fair_sd + h*house_last; e > th -> target +limit; e < -th -> target -limit; else if long and e < -h*house -> flat; if short and e > h*house -> flat; else hold",
+ "recommended_S6R": {
+  "0.001": {
+   "params": {
+    "k1": 0.0,
+    "s1exit12": "hold",
+    "k2": 0.0,
+    "s2exit": "hold",
+    "s2exit_rounds": [
+     1,
+     2
+    ],
+    "k3_12": 0.0,
+    "k3_3": 0.1,
+    "s3exit12": "hold",
+    "s3exit3": "hold",
+    "k4": null,
+    "h1": true,
+    "h1_t": 56
+   },
+   "windows_real_s": {
+    "H1_formation": "enter at 56 (fill row 29) full limits long PORT ISLE AQUA GRID FERRY HAVEN REIN ARCH, short RECON MAT GEN REBLD; flatten at 72",
+    "S4_open": null,
+    "S3_storm": "74-540, k=k3_12 (rounds 1-2) / k3_3 (round 3), held",
+    "S2_prelim": "570-598, k=k2, held",
+    "S1_final": "740-768 (rounds 1-2) / 740-778 (round 3), k=k1, held"
+   },
+   "holdout": {
+    "mean": 42527,
+    "sd": 16866,
+    "p5": 15381,
+    "hit": 0.995,
+    "by_round": [
+     14314,
+     14308,
+     13905
+    ],
+    "actions_per_season": 388,
+    "max_actions_60s": 94
+   },
+   "train_mean": 42958,
+   "holdout_latency_plus_1_row": 30748,
+   "holdout_cap_quarter_limit_per_row": 28816,
+   "risk": "drawdown stop 20000 $ per round (MTM at house) as circuit breaker; 6000 costs ~3k/season"
+  },
+  "0.0025": {
+   "params": {
+    "k1": 0.0,
+    "s1exit12": "hold",
+    "k2": 0.0,
+    "s2exit": "hold",
+    "s2exit_rounds": [
+     1,
+     2
+    ],
+    "k3_12": 0.1,
+    "k3_3": 0.2,
+    "s3exit12": "hold",
+    "s3exit3": "hold",
+    "k4": null,
+    "h1": true,
+    "h1_t": 56
+   },
+   "windows_real_s": {
+    "H1_formation": "enter at 56 (fill row 29) full limits long PORT ISLE AQUA GRID FERRY HAVEN REIN ARCH, short RECON MAT GEN REBLD; flatten at 72",
+    "S4_open": null,
+    "S3_storm": "74-540, k=k3_12 (rounds 1-2) / k3_3 (round 3), held",
+    "S2_prelim": "570-598, k=k2, held",
+    "S1_final": "740-768 (rounds 1-2) / 740-778 (round 3), k=k1, held"
+   },
+   "holdout": {
+    "mean": 35483,
+    "sd": 16029,
+    "p5": 9982,
+    "hit": 0.99,
+    "by_round": [
+     11922,
+     12137,
+     11424
+    ],
+    "actions_per_season": 245,
+    "max_actions_60s": 84
+   },
+   "train_mean": 35410,
+   "holdout_latency_plus_1_row": 25779,
+   "holdout_cap_quarter_limit_per_row": 24849,
+   "risk": "drawdown stop 20000 $ per round (MTM at house) as circuit breaker; 6000 costs ~3k/season"
+  },
+  "0.005": {
+   "params": {
+    "k1": 0.0,
+    "s1exit12": "hold",
+    "k2": 0.0,
+    "s2exit": "hold",
+    "s2exit_rounds": [
+     1,
+     2
+    ],
+    "k3_12": 0.1,
+    "k3_3": 0.5,
+    "s3exit12": "hold",
+    "s3exit3": "hold",
+    "k4": null,
+    "h1": true,
+    "h1_t": 56
+   },
+   "windows_real_s": {
+    "H1_formation": "enter at 56 (fill row 29) full limits long PORT ISLE AQUA GRID FERRY HAVEN REIN ARCH, short RECON MAT GEN REBLD; flatten at 72",
+    "S4_open": null,
+    "S3_storm": "74-540, k=k3_12 (rounds 1-2) / k3_3 (round 3), held",
+    "S2_prelim": "570-598, k=k2, held",
+    "S1_final": "740-768 (rounds 1-2) / 740-778 (round 3), k=k1, held"
+   },
+   "holdout": {
+    "mean": 27308,
+    "sd": 15075,
+    "p5": 3574,
+    "hit": 0.97,
+    "by_round": [
+     8785,
+     9317,
+     9205
+    ],
+    "actions_per_season": 175,
+    "max_actions_60s": 75
+   },
+   "train_mean": 27343,
+   "holdout_latency_plus_1_row": 18980,
+   "holdout_cap_quarter_limit_per_row": 19827,
+   "risk": "drawdown stop 20000 $ per round (MTM at house) as circuit breaker; 6000 costs ~3k/season"
+  },
+  "0.01": {
+   "params": {
+    "k1": 0.0,
+    "s1exit12": "hold",
+    "k2": 0.0,
+    "s2exit": "hold",
+    "s2exit_rounds": [
+     1,
+     2
+    ],
+    "k3_12": 0.2,
+    "k3_3": 0.5,
+    "s3exit12": "hold",
+    "s3exit3": "hold",
+    "k4": 0.05,
+    "s4syms": [
+     "PORT",
+     "ISLE",
+     "AQUA",
+     "GRID",
+     "FERRY",
+     "RECON",
+     "MAT",
+     "GEN",
+     "HAVEN",
+     "REIN",
+     "ARCH",
+     "REBLD"
+    ],
+    "s4exit": "hold"
+   },
+   "windows_real_s": {
+    "H1_formation": null,
+    "S4_open": "0-58, all symbols, k=k4, held",
+    "S3_storm": "60-540, k=k3_12 (rounds 1-2) / k3_3 (round 3), held",
+    "S2_prelim": "570-598, k=k2, held",
+    "S1_final": "740-768 (rounds 1-2) / 740-778 (round 3), k=k1, held"
+   },
+   "holdout": {
+    "mean": 18154,
+    "sd": 13456,
+    "p5": -3375,
+    "hit": 0.93,
+    "by_round": [
+     5325,
+     6368,
+     6461
+    ],
+    "actions_per_season": 76,
+    "max_actions_60s": 31
+   },
+   "train_mean": 17651,
+   "holdout_latency_plus_1_row": 10652,
+   "holdout_cap_quarter_limit_per_row": 14432,
+   "risk": "drawdown stop 20000 $ per round (MTM at house) as circuit breaker; 6000 costs ~3k/season"
+  }
+ },
+ "single_strategy_train_choice": {
+  "S1|0.001": "S1|h=0.001|cap=None|k=0.0|exit12=hold",
+  "S2|0.001": "S2|h=0.001|cap=None|k=0.0|exit=hold",
+  "S3|0.001": "S3|h=0.001|cap=None|k=0.1|exit12=hold|exit3=hold",
+  "S4|0.001": "S4|h=0.001|cap=None|k=0.0|exit=72|syms=all",
+  "H1|0.001": "H1|h=0.001|cap=None",
+  "H2|0.001": "H2|h=0.001|cap=None",
+  "S3v|0.001": "S3v|h=0.001|cap=None|k=0.1|t1=568",
+  "S3split|0.001": [
+   0.0,
+   0.1
+  ],
+  "S1|0.0025": "S1|h=0.0025|cap=None|k=0.0|exit12=hold",
+  "S2|0.0025": "S2|h=0.0025|cap=None|k=0.0|exit=hold",
+  "S3|0.0025": "S3|h=0.0025|cap=None|k=0.1|exit12=hold|exit3=hold",
+  "S4|0.0025": "S4|h=0.0025|cap=None|k=0.05|exit=72|syms=all",
+  "H1|0.0025": "H1|h=0.0025|cap=None",
+  "H2|0.0025": "H2|h=0.0025|cap=None",
+  "S3v|0.0025": "S3v|h=0.0025|cap=None|k=0.1|xk=0.25",
+  "S3split|0.0025": [
+   0.1,
+   0.2
+  ],
+  "S1|0.005": "S1|h=0.005|cap=None|k=0.0|exit12=hold",
+  "S2|0.005": "S2|h=0.005|cap=None|k=0.0|exit=hold",
+  "S3|0.005": "S3|h=0.005|cap=None|k=0.1|exit12=hold|exit3=hold",
+  "S4|0.005": "S4|h=0.005|cap=None|k=0.05|exit=72|syms=all",
+  "H1|0.005": "H1|h=0.005|cap=None",
+  "H2|0.005": "H2|h=0.005|cap=None",
+  "S3v|0.005": "S3v|h=0.005|cap=None|k=0.1|xk=0.25",
+  "S3split|0.005": [
+   0.1,
+   0.5
+  ],
+  "S1|0.01": "S1|h=0.01|cap=None|k=0.0|exit12=hold",
+  "S2|0.01": "S2|h=0.01|cap=None|k=0.0|exit=hold",
+  "S3|0.01": "S3|h=0.01|cap=None|k=0.2|exit12=hold|exit3=hold",
+  "S4|0.01": "S4|h=0.01|cap=None|k=0.05|exit=hold|syms=all",
+  "H1|0.01": "H1|h=0.01|cap=None",
+  "H2|0.01": "H2|h=0.01|cap=None",
+  "S3v|0.01": "S3v|h=0.01|cap=None|k=0.2|xk=0.25",
+  "S3split|0.01": [
+   0.2,
+   0.5
+  ],
+  "S1flat|0.001": "S1|h=0.001|cap=None|k=0.1|exit12=flat",
+  "S2_600|0.001": "S2|h=0.001|cap=None|k=0.1|exit=600",
+  "S1flat|0.0025": "S1|h=0.0025|cap=None|k=0.25|exit12=flat",
+  "S2_600|0.0025": "S2|h=0.0025|cap=None|k=0.25|exit=600",
+  "S1flat|0.005": "S1|h=0.005|cap=None|k=0.25|exit12=flat",
+  "S2_600|0.005": "S2|h=0.005|cap=None|k=0.25|exit=600",
+  "S1flat|0.01": "S1|h=0.01|cap=None|k=0.25|exit12=flat",
+  "S2_600|0.01": "S2|h=0.01|cap=None|k=0.25|exit=600"
+ },
+ "do_not_use": {
+  "S5_wire_fade": "negative at every threshold and spread (holdout -777 to -27758 $/season); house research agrees"
+ }
+}

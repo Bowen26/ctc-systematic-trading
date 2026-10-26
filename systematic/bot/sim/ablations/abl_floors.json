@@ -1,0 +1,4 @@
+{
+  "live_allowed": false,
+  "rate": {"window_s": 60.0, "floors": {"KILL": 0, "SNIPE": 0, "HEDGE": 0, "TAKE": 0}}
+}

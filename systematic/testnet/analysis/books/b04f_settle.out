@@ -1,0 +1,26 @@
+season 224 round 3 (1803-05-11): book level 765-779 s vs settlement and consensus row 389
+  PORT   book    40.73 (touch 40.68/40.78)  settle    40.78 (  -12 bp)  cons389    40.78 (   +0 bp)  settle inside touch: True
+  ISLE   book    59.96 (touch 59.89/60.03)  settle    59.94 (   +3 bp)  cons389    60.05 (  +18 bp)  settle inside touch: True
+  AQUA   book    33.30 (touch 33.26/33.35)  settle    33.30 (   +2 bp)  cons389    33.34 (  +12 bp)  settle inside touch: True
+  GRID   book    35.41 (touch 35.37/35.45)  settle    35.32 (  +25 bp)  cons389    35.30 (   -6 bp)  settle inside touch: False
+  FERRY  book    23.23 (touch 23.18/23.28)  settle    23.22 (   +4 bp)  cons389    23.20 (   -9 bp)  settle inside touch: True
+  RECON  book    56.83 (touch 56.76/56.90)  settle    56.78 (   +9 bp)  cons389    56.81 (   +5 bp)  settle inside touch: True
+  MAT    book    37.01 (touch 36.95/37.07)  settle    36.95 (  +16 bp)  cons389    36.90 (  -14 bp)  settle inside touch: True
+  GEN    book    40.84 (touch 40.79/40.90)  settle    40.80 (  +11 bp)  cons389    40.69 (  -27 bp)  settle inside touch: True
+  HAVEN  book    25.55 (touch 25.52/25.58)  settle    25.58 (  -12 bp)  cons389    25.58 (   +0 bp)  settle inside touch: True
+  REIN   book    90.11 (touch 89.97/90.25)  settle    90.00 (  +12 bp)  cons389    89.99 (   -1 bp)  settle inside touch: True
+  ARCH   book   274.80 (touch 274.50/275.10)  settle   274.66 (   +5 bp)  cons389   274.31 (  -13 bp)  settle inside touch: True
+  REBLD  book   227.97 (touch 227.63/228.30)  settle   228.26 (  -13 bp)  cons389   228.15 (   -5 bp)  settle inside touch: True
+season 225 round 3 (1802-05-12): book level 765-779 s vs settlement and consensus row 389
+  PORT   book    79.90 (touch 79.86/79.94)  settle    79.76 (  +18 bp)  cons389    79.67 (  -11 bp)  settle inside touch: False
+  ISLE   book    59.25 (touch 59.15/59.34)  settle    59.25 (   -1 bp)  cons389    59.32 (  +12 bp)  settle inside touch: True
+  AQUA   book    33.17 (touch 33.13/33.22)  settle    33.12 (  +17 bp)  cons389    33.16 (  +12 bp)  settle inside touch: False
+  GRID   book    45.19 (touch 45.10/45.27)  settle    45.10 (  +19 bp)  cons389    45.09 (   -2 bp)  settle inside touch: True
+  FERRY  book    22.26 (touch 22.22/22.30)  settle    22.22 (  +18 bp)  cons389    22.22 (   +0 bp)  settle inside touch: True
+  RECON  book    48.85 (touch 48.74/48.96)  settle    48.85 (   +0 bp)  cons389    48.97 (  +25 bp)  settle inside touch: True
+  MAT    book    32.72 (touch 32.69/32.74)  settle    32.73 (   -3 bp)  cons389    32.79 (  +18 bp)  settle inside touch: True
+  GEN    book    34.14 (touch 34.10/34.18)  settle    34.19 (  -15 bp)  cons389    34.18 (   -3 bp)  settle inside touch: False
+  HAVEN  book    69.37 (touch 69.29/69.42)  settle    69.28 (  +13 bp)  cons389    69.33 (   +7 bp)  settle inside touch: False
+  REIN   book    89.97 (touch 89.87/90.06)  settle    90.00 (   -3 bp)  cons389    89.88 (  -13 bp)  settle inside touch: True
+  ARCH   book   364.14 (touch 363.99/364.30)  settle   364.07 (   +2 bp)  cons389   363.24 (  -23 bp)  settle inside touch: True
+  REBLD  book   197.24 (touch 196.87/197.60)  settle   197.35 (   -6 bp)  cons389   197.52 (   +9 bp)  settle inside touch: True

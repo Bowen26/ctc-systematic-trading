@@ -1,0 +1,418 @@
+{
+ "area": "island-business valuation (verified)",
+ "verified_by": "independent re-implementation in work/se/verify-island (vx_*.py, island_value_v2.py)",
+ "verdict": "confirmed_with_corrections",
+ "model": "value = V0 - a*D_total - K*sum_s(w_s*T_s); D_total = sum of final damage_pct over the season's storms (pp); T_s = real seconds (1 s simulator ticks) site s is closed; closed while I*exp(-(d/r)^2) > 0.35",
+ "wind": {
+  "form": "I*exp(-(d/(scale*r))^2)",
+  "scale": 1.0,
+  "close_threshold": 0.35,
+  "intensity_random_walk_sd_per_2s": 0.0294,
+  "shape_scan_train_objective(sum MSE PORT+GRID+FERRY)": {
+   "gauss": 0.000713,
+   "exp": 0.003803,
+   "parabolic": 0.007143,
+   "power c*I^p": 0.011029,
+   "lorentzian": 0.020428
+  }
+ },
+ "companies": {
+  "PORT": {
+   "V0": 100.0,
+   "a": 0.55,
+   "K": 0.02,
+   "sites": [
+    {
+     "name": "Deepwater Port",
+     "x": 470,
+     "y": 80,
+     "w": 1.0
+    }
+   ],
+   "value_per_pp_damage": 0.55,
+   "closure_cost_per_site_second": {
+    "Deepwater Port": 0.02
+   },
+   "closure_cost_per_market_hour_all_sites": 2.4
+  },
+  "ISLE": {
+   "V0": 60.0,
+   "a": 0.38,
+   "K": 0.0,
+   "sites": [
+    {
+     "name": "Coral Key Resort",
+     "x": 780,
+     "y": 285,
+     "w": 0.34
+    },
+    {
+     "name": "Azure Isle Resort",
+     "x": 830,
+     "y": 480,
+     "w": 0.34
+    },
+    {
+     "name": "Palm Atoll Resort",
+     "x": 230,
+     "y": 525,
+     "w": 0.32
+    }
+   ],
+   "value_per_pp_damage": 0.38,
+   "closure_cost_per_site_second": {
+    "Coral Key Resort": 0.0,
+    "Azure Isle Resort": 0.0,
+    "Palm Atoll Resort": 0.0
+   },
+   "closure_cost_per_market_hour_all_sites": 0.0
+  },
+  "AQUA": {
+   "V0": 35.0,
+   "a": 0.2,
+   "K": 0.0,
+   "sites": [
+    {
+     "name": "Palm South Dock",
+     "x": 240,
+     "y": 605,
+     "w": 0.3
+    },
+    {
+     "name": "Palm West Farm",
+     "x": 130,
+     "y": 540,
+     "w": 0.25
+    },
+    {
+     "name": "Coral South Fleet",
+     "x": 760,
+     "y": 335,
+     "w": 0.25
+    },
+    {
+     "name": "Coral West Farm",
+     "x": 705,
+     "y": 290,
+     "w": 0.2
+    }
+   ],
+   "value_per_pp_damage": 0.2,
+   "closure_cost_per_site_second": {
+    "Palm South Dock": 0.0,
+    "Palm West Farm": 0.0,
+    "Coral South Fleet": 0.0,
+    "Coral West Farm": 0.0
+   },
+   "closure_cost_per_market_hour_all_sites": 0.0
+  },
+  "GRID": {
+   "V0": 50.0,
+   "a": 0.24,
+   "K": 0.05,
+   "sites": [
+    {
+     "name": "Cascadia Substation A",
+     "x": 420,
+     "y": 110,
+     "w": 0.3
+    },
+    {
+     "name": "Cascadia Substation B",
+     "x": 560,
+     "y": 140,
+     "w": 0.2
+    },
+    {
+     "name": "Coral Substation",
+     "x": 770,
+     "y": 285,
+     "w": 0.18
+    },
+    {
+     "name": "Azure Substation",
+     "x": 825,
+     "y": 475,
+     "w": 0.17
+    },
+    {
+     "name": "Palm Substation",
+     "x": 245,
+     "y": 510,
+     "w": 0.15
+    }
+   ],
+   "value_per_pp_damage": 0.24,
+   "closure_cost_per_site_second": {
+    "Cascadia Substation A": 0.015,
+    "Cascadia Substation B": 0.010000000000000002,
+    "Coral Substation": 0.009,
+    "Azure Substation": 0.0085,
+    "Palm Substation": 0.0075
+   },
+   "closure_cost_per_market_hour_all_sites": 6.0
+  },
+  "FERRY": {
+   "V0": 25.0,
+   "a": 0.05,
+   "K": 0.06,
+   "sites": [
+    {
+     "name": "Cascadia Ferry Terminal",
+     "x": 380,
+     "y": 185,
+     "w": 0.3
+    },
+    {
+     "name": "Coral Ferry Terminal",
+     "x": 720,
+     "y": 300,
+     "w": 0.25
+    },
+    {
+     "name": "Azure Ferry Terminal",
+     "x": 760,
+     "y": 470,
+     "w": 0.2
+    },
+    {
+     "name": "Palm Ferry Terminal",
+     "x": 330,
+     "y": 480,
+     "w": 0.25
+    }
+   ],
+   "value_per_pp_damage": 0.05,
+   "closure_cost_per_site_second": {
+    "Cascadia Ferry Terminal": 0.018,
+    "Coral Ferry Terminal": 0.015,
+    "Azure Ferry Terminal": 0.012,
+    "Palm Ferry Terminal": 0.015
+   },
+   "closure_cost_per_market_hour_all_sites": 7.199999999999999
+  }
+ },
+ "closure_estimator": {
+  "recommended": "tickprob_impact",
+  "tickprob_impact": "Integer ticks t = a0..a1-1 between consecutive storm obs at ages a0<a1. Tick a0 is observed: indicator(wind>0.35). Every other tick: P = Phi((m*g - 0.35)/(sd*g)), g = exp(-(d/r)^2) at the interpolated position (track points if inside a gap, else linear), m = linear intensity, sd = sqrt(var1*(t-a0)*(a1-t)/(a1-a0)), var1 = 0.0294^2/2 per s (odd tick between 2 s obs: sd = 0.0147). Impact conditioning per island (causal): ticks before that island's impact age (or all ticks so far if no impact yet) are 0 for every company site on the island; at the impact tick the most exposed site is set to 1. T_s = sum of tick values.",
+  "baseline_lin": "original: linear interpolation of (wind - 0.35) between 2 s obs",
+  "reference_impl": "/private/tmp/claude-501/-Users-bowentian--claude-spares-spare-iBWS3H/5e6e71d5-291b-48c1-afaa-35b357d20e7e/scratchpad/work/se/verify-island/island_value_v2.py"
+ },
+ "holdout_401_600_fixed_coefs": {
+  "baseline_lin": {
+   "PORT": {
+    "rmse": 0.0139,
+    "max": 0.069
+   },
+   "ISLE": {
+    "rmse": 0.0034,
+    "max": 0.008
+   },
+   "AQUA": {
+    "rmse": 0.0031,
+    "max": 0.006
+   },
+   "GRID": {
+    "rmse": 0.0138,
+    "max": 0.046
+   },
+   "FERRY": {
+    "rmse": 0.0187,
+    "max": 0.094
+   }
+  },
+  "tickprob_impact": {
+   "PORT": {
+    "rmse": 0.0118,
+    "max": 0.059,
+    "p95": 0.029
+   },
+   "ISLE": {
+    "rmse": 0.0034,
+    "max": 0.008
+   },
+   "AQUA": {
+    "rmse": 0.0031,
+    "max": 0.006
+   },
+   "GRID": {
+    "rmse": 0.0122,
+    "max": 0.052,
+    "p95": 0.026
+   },
+   "FERRY": {
+    "rmse": 0.0149,
+    "max": 0.077,
+    "p95": 0.031
+   }
+  },
+  "paired_t_improvement_in_squared_error": {
+   "PORT": 2.59,
+   "GRID": 3.05,
+   "FERRY": 3.76
+  },
+  "train_1_400_tickprob_impact": {
+   "PORT": 0.0101,
+   "GRID": 0.0115,
+   "FERRY": 0.0135
+  },
+  "free_fit_train_tickprob_impact": {
+   "PORT": [
+    99.9993,
+    0.54998,
+    0.02001
+   ],
+   "GRID": [
+    50.0008,
+    0.23997,
+    0.05002
+   ],
+   "FERRY": [
+    25.0007,
+    0.04997,
+    0.06001
+   ]
+  }
+ },
+ "rounding_floor": "settlement rounded to 0.01 (sd 0.0029) plus final damage_pct rounded to 0.01 pp (sd a*0.0029*sqrt(3)); ISLE 0.0034, AQUA 0.0031 are at this floor",
+ "prelim_shrink": {
+  "note": "E[final | preliminary] ~= shrink * preliminary (OLS through origin, storms of seasons 1-400); preliminary==0 implies final==0 for PORT; multiplicative noise sd ~0.33",
+  "PORT": 0.8684,
+  "ISLE": 0.845,
+  "AQUA": 0.8907,
+  "GRID": 0.875,
+  "FERRY": 0.8533,
+  "holdout_rmse_pp_raw_vs_shrunk": {
+   "PORT": [
+    9.844,
+    8.793
+   ],
+   "ISLE": [
+    4.556,
+    4.273
+   ],
+   "AQUA": [
+    6.628,
+    5.932
+   ],
+   "GRID": [
+    6.075,
+    5.444
+   ],
+   "FERRY": [
+    5.814,
+    5.161
+   ]
+  }
+ },
+ "live_engine_stress_holdout_rmse_max": {
+  "original_island_value.py": {
+   "outages_6x(5-40obs)": {
+    "PORT": [
+     0.1217,
+     1.073
+    ],
+    "GRID": [
+     0.1669,
+     1.099
+    ],
+    "FERRY": [
+     0.2579,
+     1.09
+    ]
+   },
+   "outages_3x(30-90obs)": {
+    "PORT": [
+     0.6326,
+     2.843
+    ],
+    "GRID": [
+     0.6985,
+     2.374
+    ],
+    "FERRY": [
+     0.8122,
+     3.139
+    ]
+   },
+   "restart_at_round2_without_state": {
+    "PORT": [
+     19.09,
+     51.91
+    ],
+    "GRID": [
+     6.14,
+     14.94
+    ],
+    "FERRY": [
+     3.27,
+     7.0
+    ]
+   }
+  },
+  "island_value_v2.py": {
+   "clean": {
+    "PORT": [
+     0.0118,
+     0.059
+    ],
+    "GRID": [
+     0.0122,
+     0.052
+    ],
+    "FERRY": [
+     0.0149,
+     0.077
+    ]
+   },
+   "outages_6x(5-40obs)": {
+    "PORT": [
+     0.0339,
+     0.196
+    ],
+    "GRID": [
+     0.0836,
+     0.519
+    ],
+    "FERRY": [
+     0.1176,
+     0.716
+    ]
+   },
+   "outages_3x(30-90obs)": {
+    "PORT": [
+     0.2735,
+     1.654
+    ],
+    "GRID": [
+     0.3359,
+     1.652
+    ],
+    "FERRY": [
+     0.3226,
+     1.526
+    ]
+   },
+   "restart_with_saved_state": {
+    "PORT": [
+     0.0118,
+     0.059
+    ],
+    "GRID": [
+     0.0122,
+     0.052
+    ],
+    "FERRY": [
+     0.0149,
+     0.077
+    ]
+   }
+  }
+ },
+ "units": {
+  "a": "$ per share per percentage point of company damage_pct",
+  "K": "$ per share per (site weight x real second closed); 1 real s = 30 market s, 1 market hour = 120 real s"
+ },
+ "fit_seasons": "1-400",
+ "holdout_seasons": "401-600"
+}

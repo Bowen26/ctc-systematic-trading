@@ -1,0 +1,102 @@
+## A. depth-replenishment cap: shares per symbol per 2-s row = L*max(0, D - (1-rho)*x_prev)
+| sym | L | rho (2 s) | storm fresh | storm after L/4 | s3_start fresh | s3_start after L/4 | h1_exit fresh | L/12 clip | L/4 clip |
+|---|---|---|---|---|---|---|---|---|---|
+| PORT | 200 | 0.59 | 131 | 110 | 68 | 47 | 99 | 16 | 50 |
+| ISLE | 300 | 0.67 | 201 | 176 | 177 | 152 | 193 | 25 | 75 |
+| AQUA | 500 | 0.65 | 340 | 297 | 287 | 244 | 308 | 41 | 125 |
+| GRID | 400 | 0.61 | 276 | 236 | 182 | 142 | 229 | 33 | 100 |
+| FERRY | 800 | 0.63 | 556 | 482 | 472 | 398 | 553 | 66 | 200 |
+| RECON | 500 | 0.66 | 347 | 305 | 270 | 228 | 330 | 41 | 125 |
+| MAT | 700 | 0.65 | 480 | 417 | 356 | 293 | 459 | 58 | 175 |
+| GEN | 600 | 0.64 | 406 | 352 | 346 | 292 | 386 | 50 | 150 |
+| HAVEN | 250 | 0.48 | 172 | 139 | 45 | 12 | 89 | 20 | 62 |
+| REIN | 200 | 0.75 | 130 | 117 | 137 | 125 | 135 | 16 | 50 |
+| ARCH | 50 | 0.31 | 140 | 131 | 94 | 85 | 125 | 4 | 12 |
+| REBLD | 100 | 0.33 | 281 | 264 | 231 | 214 | 283 | 8 | 25 |
+
+## B. walk cost per share (bp of mid, side-average) at L/12, L/8, L/4 by phase; RT model = 25 + 50x
+| sym | storm L/12 | storm L/8 | storm L/4 | s3_start L/12 | s3_start L/4 | h1_entry L/8 buy/sell | h1_exit L/8 buy/sell | after L/12 |
+|---|---|---|---|---|---|---|---|---|
+| PORT | 26 | 30 | 54 | 122 | 217 | 12/14 | 76/115 | 15 |
+| ISLE | 17 | 21 | 36 | 47 | 89 | 12/15 | 55/64 | 14 |
+| AQUA | 20 | 23 | 41 | 49 | 99 | 13/16 | 72/73 | 13 |
+| GRID | 18 | 21 | 38 | 66 | 121 | 13/13 | 60/107 | 14 |
+| FERRY | 23 | 26 | 45 | 33 | 75 | 12/14 | 55/61 | 15 |
+| RECON | 19 | 23 | 41 | 62 | 132 | 13/12 | 39/32 | 14 |
+| MAT | 19 | 22 | 39 | 46 | 98 | 15/15 | 44/50 | 14 |
+| GEN | 19 | 22 | 37 | 44 | 97 | 14/17 | 93/65 | 14 |
+| HAVEN | 33 | 39 | 64 | 135 | 257 | 12/12 | 103/121 | 16 |
+| REIN | 14 | 17 | 29 | 14 | 27 | 13/15 | 19/18 | 13 |
+| ARCH | 19 | 19 | 19 | 47 | 49 | 10/10 | 13/13 | 11 |
+| REBLD | 17 | 17 | 18 | 33 | 35 | 10/10 | 26/24 | 10 |
+RT model at L/12 / L/8 / L/4: 29.2 / 31.2 / 37.5 bp
+
+## C. per-symbol PnL and cost share of gross edge (holdout); gross = PnL + cost paid
+| sym | Plan PnL | Plan cost/gross | REOPT PnL | REOPT cost/gross | REOPT x1.5 PnL | REOPT x2 PnL | REOPT +2 s PnL | flag |
+|---|---|---|---|---|---|---|---|---|
+| PORT | 1,558 | 57% | 2,398 | 30% | 1,889 | 1,465 | 2,280 |  |
+| ISLE | 420 | 73% | 911 | 45% | 569 | 266 | 868 |  |
+| AQUA | 540 | 71% | 1,297 | 36% | 963 | 656 | 1,260 |  |
+| GRID | 664 | 70% | 1,630 | 37% | 1,220 | 841 | 1,590 |  |
+| FERRY | 1,460 | 48% | 2,274 | 27% | 1,889 | 1,539 | 2,193 |  |
+| RECON | 324 | 85% | 1,063 | 54% | 521 | 15 | 998 | costs > 1/2 edge |
+| MAT | 39 | 98% | 576 | 66% | 62 | -387 | 538 | loses at x2, costs > 1/2 edge |
+| GEN | -264 | 115% | 839 | 59% | 329 | -144 | 795 | drop in Plan, loses at x2, costs > 1/2 edge |
+| HAVEN | 3,680 | 30% | 5,107 | 17% | 4,661 | 4,239 | 4,994 |  |
+| ARCH | 2,487 | 23% | 2,519 | 22% | 2,208 | 1,940 | 2,467 |  |
+| REBLD | 1,201 | 43% | 1,164 | 39% | 867 | 587 | 1,112 |  |
+
+## D. marginal values (holdout, $/season): value = config with - config without
+| Plan: H1 (1/2 size, exit 72-78) | 2,332 |
+| Plan: H1 full instead of 1/2 | 679 |
+| Plan: S1-r3 taker | -99 |
+| Plan: ETFs (ARCH, REBLD) | 3,687 |
+| REOPT: H1 (full, hand-off) | 7,325 |
+| REOPT: H1 full instead of 1/2 | 3,110 |
+| REOPT: hand-off instead of forced exit 72-86 | 1,382 |
+| REOPT: S3 (vs H1 alone with exit 80-94) | 16,440 |
+| REOPT: S1-r3 taker | -15 |
+| REOPT: ETFs | 3,666 |
+| REOPT: rebuilders RECON/MAT/GEN/REBLD | 3,573 |
+| REOPT: MAT | 480 |
+| REOPT x2: H1 | 2,401 |
+
+## C. per-symbol PnL and cost share of gross edge (train); gross = PnL + cost paid
+| sym | Plan PnL | Plan cost/gross | REOPT PnL | REOPT cost/gross | REOPT x1.5 PnL | REOPT x2 PnL | REOPT +2 s PnL | flag |
+|---|---|---|---|---|---|---|---|---|
+| PORT | 1,376 | 61% | 2,430 | 30% | 1,968 | 1,551 | 2,304 |  |
+| ISLE | 518 | 69% | 1,065 | 41% | 698 | 391 | 1,020 |  |
+| AQUA | 634 | 68% | 1,391 | 35% | 1,037 | 717 | 1,335 |  |
+| GRID | 549 | 75% | 1,653 | 36% | 1,245 | 883 | 1,611 |  |
+| FERRY | 1,337 | 51% | 2,235 | 27% | 1,861 | 1,518 | 2,155 |  |
+| RECON | 238 | 89% | 1,091 | 53% | 573 | 94 | 1,028 | costs > 1/2 edge |
+| MAT | -32 | 102% | 570 | 66% | 93 | -325 | 537 | drop in Plan, loses at x2, costs > 1/2 edge |
+| GEN | -272 | 115% | 917 | 57% | 407 | -69 | 875 | drop in Plan, loses at x2, costs > 1/2 edge |
+| HAVEN | 3,499 | 32% | 5,071 | 17% | 4,605 | 4,178 | 4,950 |  |
+| ARCH | 2,391 | 24% | 2,551 | 22% | 2,249 | 1,977 | 2,487 |  |
+| REBLD | 1,156 | 44% | 1,171 | 38% | 862 | 592 | 1,120 |  |
+
+## D. marginal values (train, $/season): value = config with - config without
+| Plan: H1 (1/2 size, exit 72-78) | 2,500 |
+| Plan: H1 full instead of 1/2 | 750 |
+| Plan: S1-r3 taker | -79 |
+| Plan: ETFs (ARCH, REBLD) | 3,547 |
+| REOPT: H1 (full, hand-off) | 8,121 |
+| REOPT: H1 full instead of 1/2 | 3,555 |
+| REOPT: hand-off instead of forced exit 72-86 | 1,533 |
+| REOPT: S3 (vs H1 alone with exit 80-94) | 16,139 |
+| REOPT: S1-r3 taker | -10 |
+| REOPT: ETFs | 3,659 |
+| REOPT: rebuilders RECON/MAT/GEN/REBLD | 3,669 |
+| REOPT: MAT | 472 |
+| REOPT x2: H1 | 3,312 |
+
+## E. testnet seasons on the consensus (both in train): REOPT and Plan, $ by round
+season 224 Plan (measured)   : total    6,608  r1   -1,468  r2    4,521  r3    3,555
+season 224 REOPT             : total   15,220  r1      349  r2    7,947  r3    6,924
+season 224 REOPT without H1  : total   11,696  r1    1,987  r2    4,275  r3    5,434
+season 224 Plan (RT model)   : total   16,343  r1    1,638  r2    7,965  r3    6,740
+season 225 Plan (measured)   : total   -4,991  r1    5,535  r2  -10,247  r3     -279
+season 225 REOPT             : total   34,872  r1   13,141  r2   12,155  r3    9,576
+season 225 REOPT without H1  : total    3,569  r1    2,182  r2   -4,680  r3    6,068
+season 225 Plan (RT model)   : total    1,881  r1    7,429  r2   -7,399  r3    1,851

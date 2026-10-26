@@ -1,0 +1,136 @@
+season 224 round 3 (1803-05-11): n=193 t0=10:43:48.457 real-s span 220-740; residual ms p1 -130 p5 -112 p50 0 p95 143 p99 256 min -167 max 258 sd 76; drift 0.442 ms per real s
+    by type: {'storm': (160, -2), 'track': (17, 21), 'advisory': (12, 53), 'impact': (1, -103), 'storm_dissipated': (1, 162), 'damage_report': (2, 189)}
+season 225 round 1 (1802-05-10): n=286 t0=11:00:50.037 real-s span 60-740; residual ms p1 -191 p5 -143 p50 1 p95 183 p99 235 min -198 max 241 sd 97; drift 0.539 ms per real s
+    by type: {'storm_formed': (1, -113), 'storm': (240, 0), 'track': (24, -1), 'advisory': (18, -4), 'storm_dissipated': (1, 241), 'damage_report': (2, 134)}
+season 225 round 2 (1802-05-11): n=273 t0=11:16:50.541 real-s span 60-740; residual ms p1 -191 p5 -140 p50 0 p95 158 p99 197 min -195 max 303 sd 92; drift 0.481 ms per real s
+    by type: {'storm_formed': (1, -70), 'storm': (225, -5), 'advisory': (21, 7), 'track': (23, 7), 'storm_dissipated': (1, 42), 'damage_report': (2, 207)}
+    >300 ms late: [(740.0, 303, 'damage_report')] 
+season 225 round 3 (1802-05-12): n=285 t0=11:32:51.125 real-s span 60-740; residual ms p1 -191 p5 -153 p50 0 p95 159 p99 301 min -215 max 399 sd 105; drift 0.559 ms per real s
+    by type: {'storm_formed': (1, -215), 'storm': (240, 1), 'track': (24, -5), 'advisory': (15, 0), 'impact': (2, -44), 'storm_dissipated': (1, 152), 'damage_report': (2, 144)}
+    >300 ms late: [(456.0, 301, 'storm'), (458.0, 393, 'storm'), (516.0, 399, 'storm')] 
+snapshot time minus fitted clock (real s):
+  (224, 3) phase storm     snap real  240.0  fitted  240.43  diff +0.43
+  (224, 3) phase storm     snap real  270.0  fitted  270.61  diff +0.61
+  (224, 3) phase storm     snap real  300.0  fitted  300.75  diff +0.75
+  (224, 3) phase storm     snap real  361.0  fitted  361.07  diff +0.07
+  (224, 3) phase storm     snap real  391.0  fitted  391.11  diff +0.11
+  (224, 3) phase storm     snap real  421.0  fitted  421.14  diff +0.14
+  (224, 3) phase storm     snap real  451.0  fitted  451.18  diff +0.18
+  (224, 3) phase storm     snap real  481.0  fitted  481.20  diff +0.20
+  (224, 3) phase storm     snap real  511.0  fitted  511.35  diff +0.35
+  (224, 3) phase aftermath snap real  541.0  fitted  541.42  diff +0.42
+  (224, 3) phase aftermath snap real  571.0  fitted  571.59  diff +0.59
+  (224, 3) phase aftermath snap real  601.0  fitted  601.67  diff +0.67
+  (224, 3) phase aftermath snap real  631.0  fitted  631.75  diff +0.75
+  (224, 3) phase aftermath snap real  661.0  fitted  661.76  diff +0.76
+  (224, 3) phase aftermath snap real  691.0  fitted  691.85  diff +0.85
+  (224, 3) phase aftermath snap real  721.0  fitted  721.97  diff +0.97
+  (224, 3) phase aftermath snap real  752.0  fitted  752.06  diff +0.06
+  (224, 3) phase closed    snap real  780.0  fitted  782.11  diff +2.11
+  (224, 3) phase closed    snap real  780.0  fitted  812.43  diff +32.43
+  (224, 3) phase closed    snap real  780.0  fitted  842.52  diff +62.52
+  (224, 3) phase closed    snap real  780.0  fitted  872.73  diff +92.73
+  (225, 1) phase pre_storm snap real    0.0  fitted -120.09  diff -120.09
+  (225, 1) phase pre_storm snap real    0.0  fitted  -89.94  diff -89.94
+  (225, 1) phase pre_storm snap real    0.0  fitted  -59.88  diff -59.88
+  (225, 1) phase pre_storm snap real    0.0  fitted  -29.75  diff -29.75
+  (225, 1) phase pre_storm snap real    0.0  fitted    0.36  diff +0.36
+  (225, 1) phase pre_storm snap real   30.0  fitted   30.48  diff +0.48
+  (225, 1) phase storm     snap real   60.0  fitted   60.54  diff +0.54
+  (225, 1) phase storm     snap real   90.0  fitted   90.72  diff +0.72
+  (225, 1) phase storm     snap real  120.0  fitted  120.80  diff +0.80
+  (225, 1) phase storm     snap real  151.0  fitted  150.95  diff -0.05
+  (225, 1) phase storm     snap real  181.0  fitted  181.01  diff +0.01
+  (225, 1) phase storm     snap real  211.0  fitted  211.10  diff +0.10
+  (225, 1) phase storm     snap real  241.0  fitted  241.14  diff +0.14
+  (225, 1) phase storm     snap real  271.0  fitted  271.20  diff +0.20
+  (225, 1) phase storm     snap real  301.0  fitted  301.40  diff +0.40
+  (225, 1) phase storm     snap real  331.0  fitted  331.49  diff +0.49
+  (225, 1) phase storm     snap real  361.0  fitted  361.60  diff +0.60
+  (225, 1) phase storm     snap real  391.0  fitted  391.76  diff +0.76
+  (225, 1) phase storm     snap real  421.0  fitted  421.93  diff +0.93
+  (225, 1) phase storm     snap real  452.0  fitted  452.10  diff +0.10
+  (225, 1) phase storm     snap real  482.0  fitted  482.28  diff +0.28
+  (225, 1) phase storm     snap real  512.0  fitted  512.33  diff +0.33
+  (225, 1) phase aftermath snap real  542.0  fitted  542.55  diff +0.55
+  (225, 1) phase aftermath snap real  572.0  fitted  572.61  diff +0.61
+  (225, 1) phase aftermath snap real  602.0  fitted  602.85  diff +0.85
+  (225, 1) phase aftermath snap real  632.0  fitted  633.02  diff +1.02
+  (225, 1) phase aftermath snap real  663.0  fitted  663.09  diff +0.09
+  (225, 1) phase aftermath snap real  693.0  fitted  693.28  diff +0.28
+  (225, 1) phase aftermath snap real  723.0  fitted  723.44  diff +0.44
+  (225, 1) phase aftermath snap real  753.0  fitted  753.49  diff +0.49
+  (225, 1) phase closed    snap real  780.0  fitted  783.63  diff +3.63
+  (225, 1) phase closed    snap real  780.0  fitted  813.83  diff +33.83
+  (225, 1) phase closed    snap real  780.0  fitted  843.90  diff +63.90
+  (225, 1) phase closed    snap real  780.0  fitted  874.02  diff +94.02
+  (225, 2) phase closed    snap real -910.0  fitted  -26.18  diff +883.82
+  (225, 2) phase pre_storm snap real    0.0  fitted   -0.06  diff -0.06
+  (225, 2) phase pre_storm snap real   30.0  fitted   30.05  diff +0.05
+  (225, 2) phase storm     snap real   60.0  fitted   60.17  diff +0.17
+  (225, 2) phase storm     snap real   90.0  fitted   90.31  diff +0.31
+  (225, 2) phase storm     snap real  120.0  fitted  120.30  diff +0.30
+  (225, 2) phase storm     snap real  150.0  fitted  150.31  diff +0.31
+  (225, 2) phase storm     snap real  180.0  fitted  180.45  diff +0.45
+  (225, 2) phase storm     snap real  210.0  fitted  210.67  diff +0.67
+  (225, 2) phase storm     snap real  271.0  fitted  270.89  diff -0.11
+  (225, 2) phase storm     snap real  301.0  fitted  300.91  diff -0.09
+  (225, 2) phase storm     snap real  331.0  fitted  331.07  diff +0.07
+  (225, 2) phase storm     snap real  361.0  fitted  361.08  diff +0.08
+  (225, 2) phase storm     snap real  391.0  fitted  391.15  diff +0.15
+  (225, 2) phase storm     snap real  421.0  fitted  421.22  diff +0.22
+  (225, 2) phase storm     snap real  451.0  fitted  451.30  diff +0.30
+  (225, 2) phase storm     snap real  481.0  fitted  481.40  diff +0.40
+  (225, 2) phase storm     snap real  511.0  fitted  511.45  diff +0.45
+  (225, 2) phase aftermath snap real  541.0  fitted  541.52  diff +0.52
+  (225, 2) phase aftermath snap real  571.0  fitted  571.60  diff +0.60
+  (225, 2) phase aftermath snap real  601.0  fitted  601.69  diff +0.69
+  (225, 2) phase aftermath snap real  631.0  fitted  631.77  diff +0.77
+  (225, 2) phase aftermath snap real  661.0  fitted  661.88  diff +0.88
+  (225, 2) phase aftermath snap real  691.0  fitted  691.98  diff +0.98
+  (225, 2) phase aftermath snap real  721.0  fitted  722.10  diff +1.10
+  (225, 2) phase aftermath snap real  752.0  fitted  752.24  diff +0.24
+  (225, 2) phase closed    snap real  780.0  fitted  782.36  diff +2.36
+  (225, 2) phase closed    snap real  780.0  fitted  812.51  diff +32.51
+  (225, 2) phase closed    snap real  780.0  fitted  842.68  diff +62.68
+  (225, 2) phase closed    snap real  780.0  fitted  872.74  diff +92.74
+  (225, 3) phase closed    snap real -980.0  fitted  -27.77  diff +952.23
+  (225, 3) phase pre_storm snap real    0.0  fitted   -0.23  diff -0.23
+  (225, 3) phase pre_storm snap real   30.0  fitted   29.79  diff -0.21
+  (225, 3) phase storm     snap real   60.0  fitted   59.80  diff -0.20
+  (225, 3) phase storm     snap real   90.0  fitted   89.97  diff -0.03
+  (225, 3) phase storm     snap real  120.0  fitted  120.15  diff +0.15
+  (225, 3) phase storm     snap real  150.0  fitted  150.33  diff +0.33
+  (225, 3) phase storm     snap real  180.0  fitted  180.39  diff +0.39
+  (225, 3) phase storm     snap real  210.0  fitted  210.48  diff +0.48
+  (225, 3) phase storm     snap real  240.0  fitted  240.54  diff +0.54
+  (225, 3) phase storm     snap real  270.0  fitted  270.63  diff +0.63
+  (225, 3) phase storm     snap real  300.0  fitted  300.76  diff +0.76
+  (225, 3) phase storm     snap real  331.0  fitted  330.91  diff -0.09
+  (225, 3) phase storm     snap real  361.0  fitted  361.06  diff +0.06
+  (225, 3) phase storm     snap real  391.0  fitted  391.17  diff +0.17
+  (225, 3) phase storm     snap real  421.0  fitted  421.29  diff +0.29
+  (225, 3) phase storm     snap real  481.0  fitted  481.51  diff +0.51
+  (225, 3) phase storm     snap real  511.0  fitted  511.55  diff +0.55
+  (225, 3) phase aftermath snap real  541.0  fitted  541.63  diff +0.63
+  (225, 3) phase aftermath snap real  571.0  fitted  571.74  diff +0.74
+  (225, 3) phase aftermath snap real  601.0  fitted  601.86  diff +0.86
+  (225, 3) phase aftermath snap real  631.0  fitted  632.01  diff +1.01
+  (225, 3) phase aftermath snap real  661.0  fitted  662.08  diff +1.08
+  (225, 3) phase aftermath snap real  692.0  fitted  692.18  diff +0.18
+  (225, 3) phase aftermath snap real  722.0  fitted  722.20  diff +0.20
+  (225, 3) phase aftermath snap real  752.0  fitted  752.40  diff +0.40
+  (225, 3) phase closed    snap real  780.0  fitted  782.59  diff +2.59
+  (225, 3) phase closed    snap real  780.0  fitted  812.77  diff +32.77
+  (225, 3) phase closed    snap real  780.0  fitted  842.80  diff +62.80
+  (225, 3) phase closed    snap real  780.0  fitted  872.98  diff +92.98
+gaps (disconnects): [('10:49:17.890', 1.62), ('11:01:42.756', 1.19), ('11:08:50.231', 1.89), ('11:20:31.609', 31.72), ('11:40:21.875', 1.32)]
+(224, 3) gaps in round real s: [(329.4, 331.1)]
+(225, 1) gaps in round real s: [(52.7, 53.9), (480.2, 482.1)]
+(225, 2) gaps in round real s: [(221.1, 252.8)]
+(225, 3) gaps in round real s: [(450.7, 452.1)]
+linear fit offset = a + b*real_s (storm obs):
+  (224, 3): a=10:43:48.310 b=0.395 ms/s; residual sd 63 ms, p5 -93 p95 95, max |res| 248 ms
+  (225, 1): a=11:00:49.881 b=0.546 ms/s; residual sd 60 ms, p5 -91 p95 94, max |res| 114 ms
+  (225, 2): a=11:16:50.398 b=0.474 ms/s; residual sd 60 ms, p5 -97 p95 87, max |res| 119 ms
+  (225, 3): a=11:32:50.959 b=0.576 ms/s; residual sd 69 ms, p5 -107 p95 94, max |res| 296 ms

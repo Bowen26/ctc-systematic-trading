@@ -1,0 +1,141 @@
+{
+ "_about": "Fair-value engine parameters (CTC 2026 Systematic Equities / Hurricane Season). Every model constant is copied from the verified fits in work/se/fits/*.verified.json (fit on research seasons 1-400); analog/mc settings tuned on seasons 1-400 only (engine/tune_at.py).",
+ "paths": {
+  "case": "../data/case.json",
+  "library": "library_all.json",
+  "sources": "../fits/sources.verified.json"
+ },
+ "library_seasons": [
+  1,
+  600
+ ],
+ "settle": {
+  "_src": "fits/island.verified.json, rebuild.verified.json, insurance.verified.json",
+  "island": {
+   "PORT": {
+    "V0": 100.0,
+    "a": 0.55,
+    "K": 0.02
+   },
+   "ISLE": {
+    "V0": 60.0,
+    "a": 0.38,
+    "K": 0.0
+   },
+   "AQUA": {
+    "V0": 35.0,
+    "a": 0.2,
+    "K": 0.0
+   },
+   "GRID": {
+    "V0": 50.0,
+    "a": 0.24,
+    "K": 0.05
+   },
+   "FERRY": {
+    "V0": 25.0,
+    "a": 0.05,
+    "K": 0.06
+   }
+  },
+  "rebuild": {
+   "RECON": {
+    "a": 40.0,
+    "b": 24.0,
+    "c": 1000.0,
+    "w": {
+     "PORT": 9.0,
+     "ISLE": 0.0,
+     "AQUA": 0.0,
+     "GRID": 7.0,
+     "FERRY": 1.2
+    }
+   },
+   "MAT": {
+    "a": 28.0,
+    "b": 14.0,
+    "c": 1200.0
+   },
+   "GEN": {
+    "a": 32.0,
+    "b": 18.0,
+    "c": 120.0
+   }
+  },
+  "insurance": {
+   "HAVEN": {
+    "v0": 75.0,
+    "slope": 0.06,
+    "attach": 400.0,
+    "top": 1300.0
+   },
+   "REIN": {
+    "v0": 90.0,
+    "slope": 0.035,
+    "attach": 1300.0,
+    "top": null
+   }
+  },
+  "loss_per_pt": {
+   "PORT": 9.0,
+   "ISLE": 6.0,
+   "AQUA": 2.5,
+   "GRID": 7.0,
+   "FERRY": 1.2
+  }
+ },
+ "physics": {
+  "_src": "fits/physics.verified.json (train fit); prelim_log_sd train-only",
+  "k": {
+   "PORT": 0.010997,
+   "ISLE": 0.008684,
+   "AQUA": 0.015515,
+   "GRID": 0.011654,
+   "FERRY": 0.008476
+  },
+  "sigma": {
+   "PORT": 0.3417,
+   "ISLE": 0.3507,
+   "AQUA": 0.3568,
+   "GRID": 0.3674,
+   "FERRY": 0.3554
+  },
+  "prelim_log_sd": 0.3003,
+  "cutoff_q": 2.0
+ },
+ "closure": {
+  "_src": "fits/island.verified.json tickprob_impact",
+  "close_threshold": 0.35,
+  "intensity_sd_per_2s": 0.0294
+ },
+ "analog": {
+  "_src": "engine/tune_at.py on seasons 1-400",
+  "K": 30,
+  "w_radius": 0.5,
+  "tau": 0.0,
+  "cone_beta": 0.0,
+  "p_min": 0.002,
+  "vel_lag_s": 30,
+  "w_intensity": 0.0
+ },
+ "mc": {
+  "n_scen": 2000,
+  "n_scen_quiet": 12000,
+  "seed": 20260
+ },
+ "sd_floor": {
+  "_src": "holdout RMSE of the settlement map with exact inputs (engine/chk_settle.py)",
+  "PORT": 0.012,
+  "ISLE": 0.0034,
+  "AQUA": 0.0031,
+  "GRID": 0.012,
+  "FERRY": 0.015,
+  "RECON": 0.003,
+  "MAT": 0.003,
+  "GEN": 0.02,
+  "HAVEN": 0.0036,
+  "REIN": 0.0016,
+  "ARCH": 0.033,
+  "REBLD": 0.021
+ }
+}

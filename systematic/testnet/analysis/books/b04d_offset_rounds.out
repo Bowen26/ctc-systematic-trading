@@ -1,0 +1,63 @@
+offset = book - consensus (bps): mean / sd [p5, p95] by round and phase
+PORT   1803-05-11: pre   n/a    early   n/a    storm   -50/ 31 after    +1/ 41
+       1802-05-10: pre  -253/ 13 early  -141/161 storm  +138/104 after  -154/ 43
+       1802-05-11: pre  -152/ 26 early  -127/168 storm  -204/ 33 after    -5/ 45
+       1802-05-12: pre   -24/ 16 early   -58/135 storm   -50/158 after   +24/ 30
+ISLE   1803-05-11: pre   n/a    early   n/a    storm   -13/ 18 after   -18/ 14
+       1802-05-10: pre  +195/ 11 early  +159/ 26 storm  +509/151 after  +262/ 45
+       1802-05-11: pre  +284/ 10 early   +77/155 storm  +274/ 32 after  +144/ 29
+       1802-05-12: pre  +130/ 15 early   -48/ 86 storm   -19/ 14 after    -5/ 18
+AQUA   1803-05-11: pre   n/a    early   n/a    storm    +3/ 21 after    -3/ 17
+       1802-05-10: pre  +209/ 14 early  +200/ 54 storm  +469/104 after  +355/ 34
+       1802-05-11: pre  +327/ 17 early   +51/195 storm  +353/ 41 after  +161/ 32
+       1802-05-12: pre  +111/ 11 early   -68/125 storm   -13/ 23 after   -11/ 18
+GRID   1803-05-11: pre   n/a    early   n/a    storm   -21/ 39 after   +19/ 25
+       1802-05-10: pre   +12/ 10 early   -36/184 storm  +314/121 after   +86/ 41
+       1802-05-11: pre   +61/  9 early   -99/ 93 storm   +83/ 37 after   +64/ 18
+       1802-05-12: pre   +43/ 10 early  -102/ 89 storm   -44/ 56 after   +39/ 16
+FERRY  1803-05-11: pre   n/a    early   n/a    storm   -26/ 42 after    -6/ 18
+       1802-05-10: pre  +529/ 10 early  +248/190 storm  +800/242 after  +438/ 70
+       1802-05-11: pre  +474/ 20 early   -21/289 storm  +368/ 45 after  +255/ 25
+       1802-05-12: pre  +262/ 15 early   -88/109 storm    +7/ 63 after   +21/ 20
+RECON  1803-05-11: pre   n/a    early   n/a    storm    -2/ 31 after    -6/ 21
+       1802-05-10: pre   +44/ 23 early   +17/ 41 storm  -148/ 77 after    +8/ 33
+       1802-05-11: pre   +31/ 18 early   +96/ 83 storm   +12/ 27 after   -10/ 21
+       1802-05-12: pre   -23/ 12 early   +54/ 95 storm   +41/ 59 after   -29/ 19
+MAT    1803-05-11: pre   n/a    early   n/a    storm   +22/ 15 after    +9/ 17
+       1802-05-10: pre    -4/ 10 early   -28/ 31 storm  -204/ 81 after   -59/ 26
+       1802-05-11: pre   -23/ 10 early   +66/ 68 storm   -84/ 30 after   -87/ 19
+       1802-05-12: pre   -64/  9 early   +84/ 77 storm   +25/ 40 after   -27/ 20
+GEN    1803-05-11: pre   n/a    early   n/a    storm   +21/ 22 after    +7/ 22
+       1802-05-10: pre   -19/ 14 early    -1/ 53 storm  -206/ 78 after   -86/ 27
+       1802-05-11: pre   -65/  9 early  +119/ 98 storm   -50/ 36 after   -65/ 14
+       1802-05-12: pre   -27/ 14 early   +94/ 80 storm   +52/ 35 after   -18/ 15
+HAVEN  1803-05-11: pre   n/a    early   n/a    storm   -77/ 75 after   +11/ 96
+       1802-05-10: pre  -113/ 15 early   +82/481 storm +1213/392 after  +207/182
+       1802-05-11: pre  +200/ 17 early  -226/313 storm   +74/ 61 after   +84/ 30
+       1802-05-12: pre  +138/  9 early   -36/148 storm   -37/138 after   +51/ 44
+REIN   1803-05-11: pre   n/a    early   n/a    storm    -4/ 15 after    +4/ 19
+       1802-05-10: pre    -1/  6 early   -34/ 21 storm    +1/ 21 after   +19/ 13
+       1802-05-11: pre    +3/  9 early    +9/ 16 storm    +5/ 19 after    -6/ 21
+       1802-05-12: pre    +2/ 12 early    +0/  9 storm    -1/ 18 after    -5/ 14
+ARCH   1803-05-11: pre   n/a    early   n/a    storm   -50/ 31 after   +15/ 27
+       1802-05-10: pre   +48/  9 early   +26/155 storm  +531/183 after  +174/ 98
+       1802-05-11: pre  +137/ 10 early   -76/148 storm  +105/ 37 after   +92/ 16
+       1802-05-12: pre  +144/ 13 early   -14/135 storm   -15/ 63 after   +27/ 25
+REBLD  1803-05-11: pre   n/a    early   n/a    storm   +10/ 30 after    -2/ 18
+       1802-05-10: pre   +21/ 10 early   +17/ 58 storm  -148/ 74 after   -29/ 34
+       1802-05-11: pre    -6/ 20 early   +42/ 76 storm   -27/ 36 after   -27/ 24
+       1802-05-12: pre   -42/ 16 early   +33/107 storm   +22/ 57 after   -27/ 23
+
+quiet-phase change RMS (bps) over h seconds: book level vs consensus (4-58 s and 600-738 s, 4 rounds pooled)
+  PORT   h= 2s book   3.0 (med|.|  0.0) cons   8.7 (med|.|  6.2)  h=10s book   6.6 (med|.|  0.0) cons  16.1 (med|.| 11.2)  h=20s book   8.8 (med|.|  3.8) cons  19.2 (med|.| 13.7)  h=40s book  12.2 (med|.|  6.2) cons  21.8 (med|.| 13.7)
+  ISLE   h= 2s book   3.3 (med|.|  0.0) cons   8.1 (med|.|  5.4)  h=10s book   5.6 (med|.|  0.0) cons  15.1 (med|.| 10.0)  h=20s book   6.0 (med|.|  0.9) cons  18.1 (med|.| 11.8)  h=40s book   7.3 (med|.|  4.4) cons  18.6 (med|.| 13.3)
+  AQUA   h= 2s book   3.9 (med|.|  0.0) cons   8.3 (med|.|  6.7)  h=10s book   8.0 (med|.|  3.0) cons  14.3 (med|.|  9.1)  h=20s book  11.5 (med|.|  6.6) cons  16.9 (med|.| 12.1)  h=40s book  13.9 (med|.|  9.0) cons  18.0 (med|.| 14.9)
+  GRID   h= 2s book   2.9 (med|.|  0.0) cons   7.9 (med|.|  5.0)  h=10s book   6.3 (med|.|  0.0) cons  14.8 (med|.| 10.0)  h=20s book   8.9 (med|.|  5.5) cons  17.2 (med|.| 13.4)  h=40s book  12.4 (med|.| 11.1) cons  19.5 (med|.| 13.5)
+  FERRY  h= 2s book   3.2 (med|.|  0.0) cons   8.9 (med|.|  5.1)  h=10s book   6.7 (med|.|  0.0) cons  17.7 (med|.| 11.4)  h=20s book   9.6 (med|.|  6.4) cons  22.8 (med|.| 16.2)  h=40s book  12.9 (med|.|  7.3) cons  26.5 (med|.| 17.9)
+  RECON  h= 2s book   3.2 (med|.|  0.0) cons   8.2 (med|.|  6.0)  h=10s book   7.0 (med|.|  0.0) cons  14.8 (med|.| 10.6)  h=20s book   9.1 (med|.|  6.0) cons  18.3 (med|.| 14.1)  h=40s book  11.2 (med|.|  8.1) cons  21.0 (med|.| 14.2)
+  MAT    h= 2s book   2.4 (med|.|  0.0) cons   8.7 (med|.|  5.8)  h=10s book   5.8 (med|.|  0.0) cons  15.0 (med|.| 10.9)  h=20s book   8.5 (med|.|  2.9) cons  17.7 (med|.| 11.6)  h=40s book  10.9 (med|.|  6.8) cons  22.4 (med|.| 18.5)
+  GEN    h= 2s book   2.7 (med|.|  0.0) cons   8.0 (med|.|  5.2)  h=10s book   5.7 (med|.|  0.0) cons  15.4 (med|.|  9.8)  h=20s book   7.4 (med|.|  5.7) cons  19.0 (med|.| 14.1)  h=40s book   9.6 (med|.|  5.9) cons  21.1 (med|.| 14.6)
+  HAVEN  h= 2s book   3.4 (med|.|  0.0) cons   8.2 (med|.|  5.1)  h=10s book   7.3 (med|.|  0.9) cons  13.7 (med|.|  9.6)  h=20s book   9.6 (med|.|  5.4) cons  16.2 (med|.| 11.6)  h=40s book  10.7 (med|.|  6.5) cons  16.6 (med|.| 10.0)
+  REIN   h= 2s book   2.1 (med|.|  0.0) cons   7.8 (med|.|  5.6)  h=10s book   4.2 (med|.|  0.0) cons  13.2 (med|.|  7.8)  h=20s book   5.9 (med|.|  0.0) cons  14.8 (med|.| 10.0)  h=40s book   7.6 (med|.|  1.7) cons  18.6 (med|.| 13.3)
+  ARCH   h= 2s book   6.8 (med|.|  0.0) cons   7.9 (med|.|  5.0)  h=10s book   8.8 (med|.|  0.0) cons  15.1 (med|.| 11.4)  h=20s book  11.5 (med|.|  6.1) cons  19.3 (med|.| 12.5)  h=40s book  13.9 (med|.|  7.0) cons  20.4 (med|.| 12.5)
+  REBLD  h= 2s book   3.3 (med|.|  0.0) cons   7.9 (med|.|  5.7)  h=10s book   6.9 (med|.|  0.0) cons  15.5 (med|.|  9.7)  h=20s book   9.3 (med|.|  3.6) cons  19.3 (med|.| 15.5)  h=40s book  12.1 (med|.|  7.3) cons  22.9 (med|.| 16.6)

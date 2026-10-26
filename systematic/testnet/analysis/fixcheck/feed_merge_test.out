@@ -1,0 +1,57 @@
+recording: 44290 server frames, 1037 seq'd news (224: 193, 225: 844), 123 snapshots; lost on 23 Oct (both copies lack them): 24
+
+Part 1: merge of two simulated connections (lost = seq'd news the stream never forwarded)
+run                    drops A/B lost A lost B merged = rec +joint snap in/fwd/red dup news dup trd stale md  outages (s)   result
+independent seed 0       10/9        60     28     24    24      0   242/  5/237        997    9769    31723  31.7          PASS
+independent seed 1       12/5        24     29     24    24      0   244/  5/239       1032   10113    33048  31.7          PASS
+independent seed 2        5/8        28     27     24    24      0   245/  5/240       1030   10036    32985  31.7          PASS
+independent seed 3       13/6        29     61     24    24      0   243/  5/238        995    9874    32017  31.7          PASS
+independent seed 4        8/13       29     46     24    24      0   244/  5/239       1010    9890    32252  31.7          PASS
+independent seed 5       10/7        25     27     24    24      0   245/  5/240       1033   10057    32920  19.1,12.5     PASS
+independent seed 6       10/12       25     47     24    24      0   243/  5/238       1013   10013    32574  31.7          PASS
+independent seed 7       16/8        32     27     24    24      0   246/  5/241       1026   10136    32880  31.7          PASS
+independent seed 8        9/14       28     26     24    24      0   244/  5/239       1031    9997    32513  31.7          PASS
+independent seed 9        9/14       37     25     24    24      0   244/  5/239       1023   10061    32665  31.7          PASS
+independent seed 10       7/16       25     29     24    24      0   245/  5/240       1031   10186    33094  31.7          PASS
+independent seed 11      12/5        45     25     24    24      0   243/  5/238       1015    9992    32743  31.7          PASS
+independent seed 12      16/12       58     28     24    24      0   243/  5/238        999    9966    32071  28.2          PASS
+independent seed 13      10/15       27     57     24    24      0   244/  5/239       1001    9914    32057  23.1          PASS
+independent seed 14      10/12       38     26     24    24      0   243/  5/238       1021   10063    32758  11.1,20.6     PASS
+independent seed 15       3/15       27     57     24    24      0   241/  5/236       1001    9846    32172  31.7          PASS
+independent seed 16      10/5        26     25     24    24      0   246/  5/241       1034   10111    33133  31.7          PASS
+independent seed 17       9/6        25     24     24    24      0   246/  5/241       1036   10106    33141  31.7          PASS
+independent seed 18       9/15       42     32     24    24      0   244/  5/239       1011    9923    32163  31.7          PASS
+independent seed 19      11/17       25     48     24    24      0   244/  5/239       1012   10118    32771  31.7          PASS
+half shared seed 0        8/12       26     28     25    24      1   242/  6/236       1032   10101    33058  31.7          PASS
+half shared seed 1        9/11       40     36     24    24      0   240/  5/235       1009   10014    32617  31.7          PASS
+half shared seed 2       11/10       34     30     25    24      1   245/  6/239       1022   10097    32888  31.7          PASS
+half shared seed 3       14/16       25     35     25    24      1   241/  6/235       1026   10155    32843  31.7          PASS
+half shared seed 4        9/12       39     38     26    24      2   243/  5/238       1010   10002    32669  31.7          PASS
+half shared seed 5       11/11       39     38     37    24     13   243/  7/236       1021   10022    32705  20.4,31.7     PASS
+half shared seed 6        6/6        25     25     24    24      0   246/  5/241       1035   10071    33184  31.7          PASS
+half shared seed 7        8/16       57     53     42    24     18   240/  6/234        993    9789    31634  31.7,31.9     PASS
+half shared seed 8       15/13       38     38     38    24     14   242/  7/235       1023   10136    33069  13.9,31.7,21.7  PASS
+half shared seed 9        9/10       26     27     26    24      2   244/  7/237       1034   10055    33093  31.7          PASS
+half shared seed 10       8/10       24     44     24    24      0   242/  5/237       1017    9929    32466  31.7          PASS
+half shared seed 11      10/15       26     28     24    24      0   246/  5/241       1031   10224    33288  31.7          PASS
+half shared seed 12      12/6        46     26     24    24      0   242/  5/237       1013    9769    31860  31.7          PASS
+half shared seed 13      11/11       54     52     52    24     28   244/  7/237       1007    9848    32203  20.5,11.2,26.6,18.4  PASS
+half shared seed 14      10/12       37     26     26    24      2   242/  7/235       1024   10026    32745  31.2          PASS
+half shared seed 15      12/15       26     25     24    24      0   246/  5/241       1034   10245    33341  20.1,11.6     PASS
+half shared seed 16       9/11       25     26     25    24      1   246/  6/240       1035   10147    33208  31.7          PASS
+half shared seed 17      17/9        26     25     24    24      0   244/  5/239       1034   10172    33118  31.7          PASS
+half shared seed 18       8/10       24     24     24    24      0   245/  5/240       1037   10065    33082  31.7          PASS
+half shared seed 19      18/12       47     35     25    24      1   243/  5/238       1004   10140    32736  31.7          PASS
+  independent: 20 of 20 runs pass; news lost per run: one connection 33.7 (mean of A and B), merged 24.0, of which 24 were lost on 23 Oct before the split and 0.0 were dropped by both copies
+  half shared: 20 of 20 runs pass; news lost per run: one connection 33.6 (mean of A and B), merged 28.2, of which 24 were lost on 23 Oct before the split and 4.2 were dropped by both copies
+
+race (225 r3 advisory #1, seq 597; its snapshot, last_seq 598, came 19 ms later): the live copy 19 ms behind the snapshot wins inside the 1-s hold, the snapshot is dropped; with one connection the snapshot is forwarded -> PASS
+
+Part 2: RobustFeed with fake sockets: {'sessions': {0: 2, 1: 2}, 'delays': [[0.25], [0.25]], 'watchdog_trips': [0, 1], 'news_fwd': 35, 'news_delivered': 35, 'subscriptions_per_session': [1], 'connected': 4, 'disconnected': 4, 'categories': {'status': 8, 'trade': 351, 'orderbook': 746, 'quote': 661, 'news': 35, 'snapshot': 1}, 'iterator_ended_after_stop': True, 'callback_events_match': True, 'news_streamed': 35} -> PASS
+
+Part 3: reconnect ladder: first retry 0.25 s; second 0.375-0.625 s; all later 0.375-2.000 s; mean by attempt [0.25, 0.5, 0.998, 1.872, 1.876, 1.874, 1.877, 1.87]; watchdogs {'storm': 3.0, 'pre_storm': 8.0, 'aftermath': 8.0, 'closed': 35.0} -> PASS
+
+Part 4: mutations -> checks that fail: no seen-set reset: N1, N2, S2; literal last_seq rule: S2; no snapshot hold: race -> PASS
+
+20.1 s
+ALL CHECKS PASSED

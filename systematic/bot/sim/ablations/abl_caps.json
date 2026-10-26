@@ -1,0 +1,9 @@
+{
+  "live_allowed": false,
+  "strategies": {
+    "h1": {"cap_bp": null, "max_from_mid_bp": 800.0},
+    "s3": {"max_from_mid_bp": 800.0, "through_touch_bp": null, "require_marketable": false},
+    "flatten": {"max_from_mid_bp": 800.0, "through_touch_bp": null}
+  },
+  "risk": {"max_marketable_from_mid": 0.08}
+}

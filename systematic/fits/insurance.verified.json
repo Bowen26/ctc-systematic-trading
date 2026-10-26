@@ -1,0 +1,913 @@
+{
+ "area": "insurers (HAVEN, REIN) - adversarial verification of fits/insurance.json",
+ "verdict": "confirmed_with_corrections",
+ "fit_seasons": "1-400",
+ "holdout_seasons": "401-600",
+ "verifier_scripts": "/private/tmp/claude-501/-Users-bowentian--claude-spares-spare-iBWS3H/5e6e71d5-291b-48c1-afaa-35b357d20e7e/scratchpad/work/se/verify-insurance/",
+ "settlement": {
+  "status": "CONFIRMED (independent interior-OLS + bracketing method)",
+  "HAVEN": {
+   "formula": "HAVEN = 75 - 0.06 * clip(L - 400, 0, 900)",
+   "value_no_loss": 75.0,
+   "retention_musd": 400.0,
+   "layer_top_musd": 1300.0,
+   "slope_per_musd": -0.06,
+   "floor": 21.0,
+   "independent_fit_train": {
+    "intercept": 99.00107,
+    "slope": -0.0600011,
+    "slope_se": 8.4e-07,
+    "R": 400.01,
+    "T": 1299.99,
+    "n_interior": 303,
+    "direct_bracket_retention": [
+     391.8,
+     433.5
+    ],
+    "direct_bracket_top": [
+     1296.2,
+     1302.9
+    ]
+   },
+   "holdout_residuals_manifest_L": {
+    "n": 200,
+    "mae": 0.0021,
+    "rmse": 0.00288,
+    "max_abs": 0.006
+   },
+   "holdout_residuals_feed_final_sum_L": {
+    "n": 200,
+    "mae": 0.00254,
+    "rmse": 0.0036,
+    "max_abs": 0.012
+   }
+  },
+  "REIN": {
+   "formula": "REIN = 90 - 0.035 * max(L - 1300, 0)",
+   "value_no_loss": 90.0,
+   "attachment_musd": 1300.0,
+   "slope_per_musd": -0.035,
+   "layer_top_musd": null,
+   "layer_top_lower_bound_musd": 1760,
+   "layer_top_note": "a top at 1750 gives max error 0.57 (rejected); top >= ~1760; only 2 seasons have L > 1700",
+   "independent_fit_train": {
+    "intercept": 135.51062,
+    "slope": -0.0350073,
+    "slope_se": 3e-06,
+    "attach": 1300.03,
+    "n_interior": 74
+   },
+   "holdout_residuals_manifest_L": {
+    "n": 200,
+    "mae": 0.00066,
+    "rmse": 0.00159,
+    "max_abs": 0.0065
+   },
+   "holdout_residuals_feed_final_sum_L": {
+    "n": 200,
+    "mae": 0.00068,
+    "rmse": 0.00162,
+    "max_abs": 0.0065
+   },
+   "value_at_L_2570_if_no_top": 45.55,
+   "correction": "the fitter's report says 61.85 at L=2570; correct arithmetic is 90 - 0.035*1270 = 45.55"
+  },
+  "alternative_forms_rejected": "quadratic (t=-0.43 HAVEN, 0.81 REIN), cubic and mid-layer kink (t=-0.48, 0.69) do not improve holdout RMSE (HAVEN 0.00338 linear vs 0.00336-0.0034; REIN 0.00346 vs 0.00344-0.00349)",
+  "edge_cases": {
+   "L_below_400_seasons": 29,
+   "all_HAVEN_75_REIN_90": true,
+   "L_above_1300_seasons": 118,
+   "all_HAVEN_21": true,
+   "min_L": 128.7,
+   "zero_loss_storms": 9,
+   "max_L": 1766.2
+  },
+  "live_L_source": "use the sum of the three FINAL feed industry_loss_musd (max HAVEN error 0.012); manifest season_loss is not available live"
+ },
+ "insured_loss_identity": {
+  "status": "CONFIRMED",
+  "formula": "L_storm = 9.0*PORT + 6.0*ISLE + 2.5*AQUA + 7.0*GRID + 1.2*FERRY (damage % points)",
+  "K_fit_train": [
+   9.0001,
+   6.00035,
+   2.49992,
+   7.00008,
+   1.1997
+  ],
+  "K_se": [
+   0.00011,
+   0.00024,
+   0.00016,
+   0.00025,
+   0.00018
+  ],
+  "intercept_if_free": -0.0023,
+  "holdout_rmse": 0.0436,
+  "total_exposure_musd": 2570.0
+ },
+ "prelim_noise": {
+  "status": "CONFIRMED",
+  "model": "prelim_c = final_c * exp(0.30 z), z iid N(0,1) per company, rounded to 0.1; final 0 -> prelim 0",
+  "log_sd_by_company_train": {
+   "PORT": 0.303,
+   "ISLE": 0.303,
+   "AQUA": 0.294,
+   "GRID": 0.297,
+   "FERRY": 0.305
+  },
+  "log_sd_by_company_holdout": {
+   "PORT": 0.308,
+   "ISLE": 0.307,
+   "AQUA": 0.324,
+   "GRID": 0.307,
+   "FERRY": 0.307
+  },
+  "direction_test": "corr(log(p/f), log f) = -0.09..+0.07 (none) while corr(log(p/f), log p) = +0.25..+0.40, so noise is applied to the final (prelim is the noisy one)",
+  "E1_posterior_holdout": {
+   "bias": -1.54,
+   "rmse": 68.97
+  },
+  "raw_prelim_holdout": {
+   "bias": 16.01,
+   "rmse": 104.97
+  },
+  "round3_settle_after_prelim_holdout_rmse": {
+   "E1": {
+    "HAVEN": 3.15,
+    "REIN": 0.91
+   },
+   "house_row290": {
+    "HAVEN": 1.97,
+    "REIN": 0.79
+   },
+   "house_rows270_284_before_report": {
+    "HAVEN": 2.22,
+    "REIN": 0.88
+   }
+  },
+  "conclusion": "house beats the report-only posterior even before the report; do not trade the round-3 prelim window on the report alone"
+ },
+ "depletion": {
+  "status": "CORRECTED (structural bias in the pooled company-level model B)",
+  "fitter_model_B": "d_c = (100 - D_c) * raw_c, raw drawn from all 1200 train storms",
+  "evidence_against_B": {
+   "raw_vs_prior_damage_corr_pattern_demeaned": {
+    "PORT": 0.009,
+    "ISLE": -0.196,
+    "AQUA": -0.224,
+    "GRID": -0.134,
+    "FERRY": -0.09
+   },
+   "interpretation": "single-site PORT is exactly multiplicative; multi-site companies lose less of their REMAINING value once damaged (site-level depletion)",
+   "B_per_round_E_L_at_r1_open": [
+    393.6,
+    330.4,
+    276.9
+   ],
+   "actual_train_per_round": [
+    407.6,
+    330.7,
+    257.9
+   ],
+   "oos_round3_open_settle_minus_B_by_C2": {
+    "1100-1300": {
+     "REIN": "+0.97 +- 0.42",
+     "n": 73
+    },
+    ">1300": {
+     "REIN": "+2.09 +- 0.62",
+     "n": 19
+    },
+    "600-900": {
+     "HAVEN": "+2.36 +- 0.88",
+     "n": 175
+    }
+   }
+  },
+  "model_G": {
+   "formula": "d_c = (100 - D_c) * min(1, rawF_c * (1 - D_c/100)^g_c); library rawF_c = raw_c / (1 - Dprev_c/100)^g_c",
+   "g": {
+    "PORT": 0.0,
+    "ISLE": 1.45,
+    "AQUA": 0.85,
+    "GRID": 0.5,
+    "FERRY": 0.55
+   },
+   "g_bootstrap_sd_train": {
+    "PORT": 0.04,
+    "ISLE": 0.14,
+    "AQUA": 0.13,
+    "GRID": 0.08,
+    "FERRY": 0.12
+   },
+   "g_fit_method": "per company, grid search g in [-1, 3] step 0.05, raw = a_pattern*(1-D/100)^g, least squares, seasons 1-400 only",
+   "module": "/private/tmp/claude-501/-Users-bowentian--claude-spares-spare-iBWS3H/5e6e71d5-291b-48c1-afaa-35b357d20e7e/scratchpad/work/se/verify-insurance/insmodel_g.py (build_lib(library.json), ev_one, ev_two, ev_three)",
+   "holdout_401_600": {
+    "round3_open": {
+     "HAVEN_rmse": {
+      "B": 11.04,
+      "G": 10.971
+     },
+     "REIN_rmse": {
+      "B": 2.0161,
+      "G": 1.9948
+     },
+     "REIN_bias": {
+      "B": 0.191,
+      "G": 0.014
+     }
+    },
+    "round2_open": {
+     "HAVEN_rmse": {
+      "B": 14.457,
+      "G": 14.399
+     },
+     "REIN_rmse": {
+      "B": 2.6544,
+      "G": 2.6943
+     }
+    }
+   },
+   "pooled_two_fold_oos_600": {
+    "round3_open_dMSE_G_minus_B": {
+     "HAVEN": "-2.71 +- 0.84",
+     "REIN": "-0.210 +- 0.102"
+    },
+    "round2_open_dMSE_G_minus_B": {
+     "HAVEN": "-2.72 +- 1.40",
+     "REIN": "-0.015 +- 0.097"
+    }
+   },
+   "caveat": "on the primary holdout alone the improvement is not significant; G over-predicts recurve storms (holdout 143.7 vs actual 127.1 +- 7.4, B 129.9); treat B vs G difference as model uncertainty"
+  },
+  "recommendation": "use G for state-conditional values (rounds 2-3, especially REIN when C2 > 1100); quote |G - B| as structural uncertainty in addition to the bootstrap sd"
+ },
+ "fair_value_tables_train_library": {
+  "round1_open": {
+   "B": {
+    "E_HAVEN": 40.492,
+    "E_REIN": 88.937,
+    "E_L": 1000.0,
+    "P_L_below_400": 0.0547,
+    "P_L_above_1300": 0.2019,
+    "by_storm1_pattern": {
+     "direct": [
+      33.16,
+      88.51
+     ],
+     "chain": [
+      44.27,
+      89.43
+     ],
+     "recurve": [
+      48.68,
+      89.67
+     ],
+     "stall": [
+      38.98,
+      88.39
+     ],
+     "eyewall": [
+      34.52,
+      88.21
+     ],
+     "erratic": [
+      47.45,
+      89.48
+     ]
+    }
+   },
+   "G": {
+    "E_HAVEN": 39.877,
+    "E_REIN": 88.9,
+    "E_L": 1012.6,
+    "P_L_below_400": 0.044,
+    "P_L_above_1300": 0.2103,
+    "by_storm1_pattern": {
+     "direct": [
+      32.36,
+      88.37
+     ],
+     "chain": [
+      43.33,
+      89.39
+     ],
+     "recurve": [
+      47.73,
+      89.58
+     ],
+     "stall": [
+      38.92,
+      88.45
+     ],
+     "eyewall": [
+      34.5,
+      88.35
+     ],
+     "erratic": [
+      45.97,
+      89.26
+     ]
+    }
+   }
+  },
+  "round3_open_vs_C2": [
+   {
+    "C2": 0,
+    "B": {
+     "E_HAVEN": 67.979,
+     "E_REIN": 90.0,
+     "E_L3": 393.2,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 0.0
+    },
+    "G": {
+     "E_HAVEN": 67.036,
+     "E_REIN": 89.998,
+     "E_L3": 421.8,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 0.0
+    }
+   },
+   {
+    "C2": 100,
+    "B": {
+     "E_HAVEN": 65.543,
+     "E_REIN": 89.998,
+     "E_L3": 379.2,
+     "state_sd_HAVEN": 0.097,
+     "state_sd_REIN": 0.0
+    },
+    "G": {
+     "E_HAVEN": 64.956,
+     "E_REIN": 89.997,
+     "E_L3": 395.2,
+     "state_sd_HAVEN": 0.024,
+     "state_sd_REIN": 0.001
+    }
+   },
+   {
+    "C2": 200,
+    "B": {
+     "E_HAVEN": 62.763,
+     "E_REIN": 89.995,
+     "E_L3": 365.4,
+     "state_sd_HAVEN": 0.185,
+     "state_sd_REIN": 0.002
+    },
+    "G": {
+     "E_HAVEN": 62.54,
+     "E_REIN": 89.991,
+     "E_L3": 370.6,
+     "state_sd_HAVEN": 0.04,
+     "state_sd_REIN": 0.003
+    }
+   },
+   {
+    "C2": 300,
+    "B": {
+     "E_HAVEN": 59.403,
+     "E_REIN": 89.983,
+     "E_L3": 351.0,
+     "state_sd_HAVEN": 0.279,
+     "state_sd_REIN": 0.009
+    },
+    "G": {
+     "E_HAVEN": 59.541,
+     "E_REIN": 89.978,
+     "E_L3": 348.5,
+     "state_sd_HAVEN": 0.147,
+     "state_sd_REIN": 0.012
+    }
+   },
+   {
+    "C2": 400,
+    "B": {
+     "E_HAVEN": 55.111,
+     "E_REIN": 89.965,
+     "E_L3": 332.5,
+     "state_sd_HAVEN": 0.367,
+     "state_sd_REIN": 0.035
+    },
+    "G": {
+     "E_HAVEN": 55.312,
+     "E_REIN": 89.962,
+     "E_L3": 329.2,
+     "state_sd_HAVEN": 0.289,
+     "state_sd_REIN": 0.037
+    }
+   },
+   {
+    "C2": 500,
+    "B": {
+     "E_HAVEN": 50.034,
+     "E_REIN": 89.888,
+     "E_L3": 319.3,
+     "state_sd_HAVEN": 0.389,
+     "state_sd_REIN": 0.09
+    },
+    "G": {
+     "E_HAVEN": 50.716,
+     "E_REIN": 89.895,
+     "E_L3": 307.7,
+     "state_sd_HAVEN": 0.313,
+     "state_sd_REIN": 0.083
+    }
+   },
+   {
+    "C2": 600,
+    "B": {
+     "E_HAVEN": 45.044,
+     "E_REIN": 89.661,
+     "E_L3": 309.0,
+     "state_sd_HAVEN": 0.311,
+     "state_sd_REIN": 0.192
+    },
+    "G": {
+     "E_HAVEN": 46.214,
+     "E_REIN": 89.697,
+     "E_L3": 288.4,
+     "state_sd_HAVEN": 0.362,
+     "state_sd_REIN": 0.172
+    }
+   },
+   {
+    "C2": 700,
+    "B": {
+     "E_HAVEN": 40.463,
+     "E_REIN": 89.54,
+     "E_L3": 288.8,
+     "state_sd_HAVEN": 0.191,
+     "state_sd_REIN": 0.374
+    },
+    "G": {
+     "E_HAVEN": 41.51,
+     "E_REIN": 89.595,
+     "E_L3": 269.7,
+     "state_sd_HAVEN": 0.52,
+     "state_sd_REIN": 0.33
+    }
+   },
+   {
+    "C2": 800,
+    "B": {
+     "E_HAVEN": 35.962,
+     "E_REIN": 89.584,
+     "E_L3": 262.5,
+     "state_sd_HAVEN": 0.201,
+     "state_sd_REIN": 0.443
+    },
+    "G": {
+     "E_HAVEN": 36.568,
+     "E_REIN": 89.621,
+     "E_L3": 251.4,
+     "state_sd_HAVEN": 0.705,
+     "state_sd_REIN": 0.365
+    }
+   },
+   {
+    "C2": 900,
+    "B": {
+     "E_HAVEN": 31.513,
+     "E_REIN": 89.468,
+     "E_L3": 240.0,
+     "state_sd_HAVEN": 0.261,
+     "state_sd_REIN": 0.262
+    },
+    "G": {
+     "E_HAVEN": 31.885,
+     "E_REIN": 89.53,
+     "E_L3": 232.0,
+     "state_sd_HAVEN": 0.482,
+     "state_sd_REIN": 0.211
+    }
+   },
+   {
+    "C2": 1000,
+    "B": {
+     "E_HAVEN": 27.599,
+     "E_REIN": 88.771,
+     "E_L3": 225.1,
+     "state_sd_HAVEN": 0.21,
+     "state_sd_REIN": 0.351
+    },
+    "G": {
+     "E_HAVEN": 28.043,
+     "E_REIN": 88.972,
+     "E_L3": 212.0,
+     "state_sd_HAVEN": 0.522,
+     "state_sd_REIN": 0.266
+    }
+   },
+   {
+    "C2": 1100,
+    "B": {
+     "E_HAVEN": 24.263,
+     "E_REIN": 87.854,
+     "E_L3": 206.9,
+     "state_sd_HAVEN": 0.132,
+     "state_sd_REIN": 0.455
+    },
+    "G": {
+     "E_HAVEN": 24.538,
+     "E_REIN": 88.19,
+     "E_L3": 192.8,
+     "state_sd_HAVEN": 0.395,
+     "state_sd_REIN": 0.265
+    }
+   },
+   {
+    "C2": 1200,
+    "B": {
+     "E_HAVEN": 21.807,
+     "E_REIN": 86.391,
+     "E_L3": 189.7,
+     "state_sd_HAVEN": 0.078,
+     "state_sd_REIN": 0.415
+    },
+    "G": {
+     "E_HAVEN": 21.965,
+     "E_REIN": 86.89,
+     "E_L3": 172.8,
+     "state_sd_HAVEN": 0.198,
+     "state_sd_REIN": 0.145
+    }
+   },
+   {
+    "C2": 1300,
+    "B": {
+     "E_HAVEN": 21.005,
+     "E_REIN": 83.946,
+     "E_L3": 174.8,
+     "state_sd_HAVEN": 0.023,
+     "state_sd_REIN": 0.496
+    },
+    "G": {
+     "E_HAVEN": 21.005,
+     "E_REIN": 84.699,
+     "E_L3": 153.3,
+     "state_sd_HAVEN": 0.025,
+     "state_sd_REIN": 0.183
+    }
+   },
+   {
+    "C2": 1400,
+    "B": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 81.223,
+     "E_L3": 160.3,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 0.964
+    },
+    "G": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 82.074,
+     "E_L3": 136.0,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 0.628
+    }
+   },
+   {
+    "C2": 1500,
+    "B": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 78.771,
+     "E_L3": 146.6,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 1.691
+    },
+    "G": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 79.666,
+     "E_L3": 121.1,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 1.324
+    }
+   },
+   {
+    "C2": 1600,
+    "B": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 76.473,
+     "E_L3": 134.0,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 2.486
+    },
+    "G": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 77.397,
+     "E_L3": 107.6,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 2.106
+    }
+   },
+   {
+    "C2": 1700,
+    "B": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 74.383,
+     "E_L3": 122.8,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 3.258
+    },
+    "G": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 75.325,
+     "E_L3": 95.9,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 2.88
+    }
+   },
+   {
+    "C2": 1800,
+    "B": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 72.397,
+     "E_L3": 112.3,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 4.034
+    },
+    "G": {
+     "E_HAVEN": 21.0,
+     "E_REIN": 73.342,
+     "E_L3": 85.3,
+     "state_sd_HAVEN": 0.0,
+     "state_sd_REIN": 3.675
+    }
+   }
+  ],
+  "round2_open_vs_C1": [
+   {
+    "C1": 0,
+    "B": {
+     "E_HAVEN": 54.217,
+     "E_REIN": 89.883
+    },
+    "G": {
+     "E_HAVEN": 52.984,
+     "E_REIN": 89.87
+    }
+   },
+   {
+    "C1": 100,
+    "B": {
+     "E_HAVEN": 50.898,
+     "E_REIN": 89.792
+    },
+    "G": {
+     "E_HAVEN": 50.448,
+     "E_REIN": 89.813
+    }
+   },
+   {
+    "C1": 200,
+    "B": {
+     "E_HAVEN": 47.317,
+     "E_REIN": 89.624
+    },
+    "G": {
+     "E_HAVEN": 47.669,
+     "E_REIN": 89.704
+    }
+   },
+   {
+    "C1": 300,
+    "B": {
+     "E_HAVEN": 43.783,
+     "E_REIN": 89.49
+    },
+    "G": {
+     "E_HAVEN": 44.103,
+     "E_REIN": 89.593
+    }
+   },
+   {
+    "C1": 400,
+    "B": {
+     "E_HAVEN": 39.924,
+     "E_REIN": 89.085
+    },
+    "G": {
+     "E_HAVEN": 41.008,
+     "E_REIN": 89.335
+    }
+   },
+   {
+    "C1": 500,
+    "B": {
+     "E_HAVEN": 36.39,
+     "E_REIN": 88.555
+    },
+    "G": {
+     "E_HAVEN": 37.693,
+     "E_REIN": 88.938
+    }
+   },
+   {
+    "C1": 600,
+    "B": {
+     "E_HAVEN": 33.069,
+     "E_REIN": 88.464
+    },
+    "G": {
+     "E_HAVEN": 33.701,
+     "E_REIN": 88.793
+    }
+   },
+   {
+    "C1": 700,
+    "B": {
+     "E_HAVEN": 29.808,
+     "E_REIN": 88.491
+    },
+    "G": {
+     "E_HAVEN": 29.724,
+     "E_REIN": 88.689
+    }
+   },
+   {
+    "C1": 800,
+    "B": {
+     "E_HAVEN": 26.999,
+     "E_REIN": 87.84
+    },
+    "G": {
+     "E_HAVEN": 26.852,
+     "E_REIN": 88.07
+    }
+   },
+   {
+    "C1": 900,
+    "B": {
+     "E_HAVEN": 24.652,
+     "E_REIN": 86.856
+    },
+    "G": {
+     "E_HAVEN": 24.532,
+     "E_REIN": 87.13
+    }
+   },
+   {
+    "C1": 1000,
+    "B": {
+     "E_HAVEN": 22.786,
+     "E_REIN": 85.531
+    },
+    "G": {
+     "E_HAVEN": 22.795,
+     "E_REIN": 85.879
+    }
+   },
+   {
+    "C1": 1100,
+    "B": {
+     "E_HAVEN": 21.564,
+     "E_REIN": 83.893
+    },
+    "G": {
+     "E_HAVEN": 21.63,
+     "E_REIN": 84.284
+    }
+   },
+   {
+    "C1": 1200,
+    "B": {
+     "E_HAVEN": 21.124,
+     "E_REIN": 82.097
+    },
+    "G": {
+     "E_HAVEN": 21.15,
+     "E_REIN": 82.579
+    }
+   }
+  ]
+ },
+ "fair_value_round1_open_summary": {
+  "B": {
+   "HAVEN": 40.49,
+   "REIN": 88.94
+  },
+  "G": {
+   "HAVEN": 39.88,
+   "REIN": 88.9
+  },
+  "empirical_mean_settle": {
+   "train": {
+    "HAVEN": "40.56 +- 0.84",
+    "REIN": "89.06 +- 0.13"
+   },
+   "holdout": {
+    "HAVEN": "38.71 +- 1.17",
+    "REIN": "88.83 +- 0.21"
+   },
+   "all600": {
+    "HAVEN": "39.95 +- 0.68",
+    "REIN": "88.99 +- 0.11"
+   }
+  }
+ },
+ "pattern_columns_warning": {
+  "erratic_at_formation": {
+   "n_train": 20,
+   "n_holdout": 15,
+   "holdout_actual_mean_loss": 35.1,
+   "holdout_se": 9.0,
+   "predicted_B": 158.8,
+   "predicted_G": 174.8,
+   "pooled_35_storm_mean": 103.8,
+   "advice": "the 'erratic' column (e.g. storm-1 erratic E[HAVEN] 47.46) is not reliable; at least use the pooled 600-season erratic library"
+  },
+  "turned_erratic_later_loss_by_turn_age": {
+   "0-120": 71.2,
+   "120-240": 154.2,
+   "240-360": 287.5,
+   "360-480": 311.6
+  },
+  "look_ahead": "pattern columns and the E1p estimator condition on the manifest's TRUE formation pattern, which a live bot does not have"
+ },
+ "house": {
+  "status": "timing CONFIRMED; REIN r1/r2 edges CONFIRMED; HAVEN edges NOT confirmed on holdout; REIN r3 model-based edge is a model-B artifact",
+  "timing": "market row i = real 2i s (all 1800 rounds); prelim report real 570 s, final real 740 s; house jumps at rows 287 and 372 (+4 s); round open = previous close (HAVEN sd 0.033, REIN 0.074)",
+  "settle_minus_house_model_free": {
+   "HAVEN_r1_open": {
+    "all": "+1.81 +- 0.69",
+    "train": "+2.44 +- 0.84",
+    "holdout": "+0.54 +- 1.18"
+   },
+   "HAVEN_r2_open": {
+    "all": "+1.57 +- 0.60",
+    "train": "+2.07 +- 0.74",
+    "holdout": "+0.58 +- 1.02"
+   },
+   "HAVEN_r3_open": {
+    "all": "+1.05 +- 0.45",
+    "train": "+1.24 +- 0.56",
+    "holdout": "+0.65 +- 0.78"
+   },
+   "REIN_r1_open": {
+    "all": "-0.38 +- 0.11",
+    "train": "-0.30 +- 0.13",
+    "holdout": "-0.54 +- 0.21"
+   },
+   "REIN_r2_open": {
+    "all": "-0.33 +- 0.11",
+    "train": "-0.26 +- 0.13",
+    "holdout": "-0.47 +- 0.19"
+   },
+   "REIN_r3_open": {
+    "all": "-0.09 +- 0.09",
+    "train": "-0.09 +- 0.11",
+    "holdout": "-0.10 +- 0.15"
+   },
+   "HAVEN_r3_row290": {
+    "all": "+0.004 +- 0.083"
+   },
+   "HAVEN_r3_row375": {
+    "all": "-0.002 +- 0.003"
+   }
+  },
+  "sign_rule_holdout_only_library_1_400": {
+   "REIN_r2_open": {
+    "B": "+0.61 +- 0.19 (t 3.3)",
+    "G": "+0.53 +- 0.19 (t 2.8)"
+   },
+   "HAVEN_r2_open": {
+    "B": "+0.31 +- 1.02 (t 0.3)",
+    "G": "+2.05 +- 1.01 (t 2.0)"
+   },
+   "REIN_r3_open": {
+    "B": "+0.25 +- 0.14 (t 1.7)",
+    "G": "+0.21 +- 0.14 (t 1.4)"
+   },
+   "HAVEN_r3_open": {
+    "B": "+0.68 +- 0.78",
+    "G": "+1.10 +- 0.78"
+   }
+  },
+  "REIN_r3_model_minus_house_holdout": {
+   "B": -0.286,
+   "G": -0.109,
+   "model_free_settle_minus_house": -0.094
+  }
+ },
+ "live": {
+  "starting_prices": {
+   "HAVEN": 39.55,
+   "REIN": 89.36
+  },
+  "REIN_short_edge_per_share": {
+   "B": 0.42,
+   "G": 0.46,
+   "empirical_600": 0.37,
+   "empirical_se": 0.11,
+   "note": "robust: same sign train and holdout, model-free t 3.4; but 80% of seasons settle at 90 (loss 0.64/share), payoff is skewed"
+  },
+  "HAVEN_long_edge_per_share": {
+   "B": 0.94,
+   "G": 0.33,
+   "empirical_600": 0.4,
+   "empirical_se": 0.68,
+   "note": "not significant; model choice alone moves it by 0.6"
+  }
+ }
+}

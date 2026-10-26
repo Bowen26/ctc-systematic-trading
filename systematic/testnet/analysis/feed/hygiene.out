@@ -1,0 +1,90 @@
+round opens used: {'1803-05-11': '10:43:48.455', '1802-05-10': '11:00:50.037', '1802-05-11': '11:16:50.536', '1802-05-12': '11:32:51.126', '1801-05-11': '11:49:54.941'}
+== 1. news duplicates and seq order
+  news with seq: 1037 frames, 1037 distinct (season, seq); duplicates 0; non-increasing seq within a connection: 0
+  seq 0 frames (season restarts): [(225, 0, '11:01:49.924')]
+  same-market-time groups (seq order): {'storm < track': 82, 'storm < advisory/wire': 19, 'advisory/official < storm': 28, 'storm < impact': 2, 'storm < track < advisory/wire': 2, 'storm < track < storm_dissipated': 4, 'storm_formed < storm': 3}
+  groups arriving within 2 ms of each other (one read): 129 of 140
+
+== 2. snapshots
+  last_seq vs news already received on the same connection: {'last_seq == max seq received before it': 110, 'no prior news on this connection': 13}
+  snapshot has no 'seq'; keys: ['advisory', 'damage', 'headlines', 'impacts', 'last_seq', 'obs', 'phase', 'round', 'storm', 'time', 'track', 'type']
+  snapshot 'time' during the between-round pause runs ahead (clock not usable): ['1802-05-10T16:52:30', '1802-05-11T01:55:00', '1802-05-11T16:35:00', '1802-05-12T01:20:00']
+  snapshots with last_seq = -1 (new season, nothing published yet): 12
+  snapshot frame size: median 3607 B, max 4314 B
+  snapshot.obs equals the live storm message of the same age: 106, differs: 0
+
+== 3. timestamp formats
+  heartbeat              timestamp 9999-99-99T99:99:99.999999  x122
+  news:advisory          time      9999-99-99T99:99:99  x66
+  news:damage_report     time      9999-99-99T99:99:99  x8
+  news:impact            time      9999-99-99T99:99:99  x3
+  news:snapshot          time      9999-99-99T99:99:99  x123
+  news:storm             time      9999-99-99T99:99:99  x865
+  news:storm_dissipated  time      9999-99-99T99:99:99  x4
+  news:storm_formed      time      9999-99-99T99:99:99  x3
+  news:track             time      9999-99-99T99:99:99  x88
+  orderbook              timestamp 9999-99-99T99:99:99.999999  x16991
+  quote                  timestamp 9999-99-99T99:99:99.999999  x16107
+  subscription_ack       timestamp 9999-99-99T99:99:99.999999  x6
+  trade                  timestamp 9999-99-99T99:99:99.999999  x9910
+  market-time seconds field values in news: {'00': 1087, '30': 73}
+  trade frames: received_at - trade timestamp: median 19 ms, max 35.3 s; > 1 s: 59
+  trade_id duplicates: 37 (of 9873 distinct)
+  duplicate trade_ids among the first 40 frames after each ack: {2: 9, 3: 12, 4: 9, 6: 7}
+
+== 4. frame rates by phase (frames per connected second)
+  pre-storm  connected   228.7 s: total   9.36 frames/s,    2.7 kB/s; orderbook 3.699, quote 3.393, trade 2.177, news:snapshot 0.031, heartbeat 0.026, news:storm 0.013, news:storm_formed 0.013, subscription_ack 0.004
+  storm      connected  1725.2 s: total  18.03 frames/s,    5.5 kB/s; orderbook 6.949, quote 6.548, trade 3.884, news:storm 0.497, news:track 0.049, news:advisory 0.038, heartbeat 0.031, news:snapshot 0.031, subscription_ack 0.003, news:impact 0.002
+  aftermath  connected   960.0 s: total  11.23 frames/s,    3.4 kB/s; orderbook 4.218, quote 4.097, trade 2.825, heartbeat 0.033, news:snapshot 0.033, news:damage_report 0.008, news:storm 0.004, news:storm_dissipated 0.004, news:track 0.004
+  pause      connected   846.5 s: total   0.32 frames/s,    0.1 kB/s; orderbook 0.126, quote 0.120, heartbeat 0.035, news:snapshot 0.035
+  orderbook frames per second by symbol (storm): {'HAVEN': 0.92, 'PORT': 0.77, 'ARCH': 0.77, 'FERRY': 0.61, 'RECON': 0.56, 'GRID': 0.55, 'REBLD': 0.53, 'AQUA': 0.52, 'GEN': 0.51, 'MAT': 0.48, 'ISLE': 0.47, 'REIN': 0.27}
+
+== 5. bursts
+  max frames in 0.1 s: 48 at 11:13:50.474 (1802-05-10 s=780.4 pause)
+  max frames in 1.0 s: 116 at 11:45:12.304 (1802-05-12 s=741.2 aftermath)
+  max frames in 2.0 s: 188 at 11:45:13.388 (1802-05-12 s=742.3 aftermath)
+  frames per read batch (consecutive frames < 2 ms apart): median 3, p99 13, max 39
+  largest batch at 11:21:03.340: 39 frames -> {'orderbook': 13, 'quote': 13, 'trade': 13}
+  max frames in any 1 s, quiet pre-storm 20-50 s: 23
+  max frames in any 1 s, formation 60-80 s: 84
+  max frames in any 1 s, mid-storm 200-400 s: 83
+  max frames in any 1 s, prelim 570-590 s: 60
+  max frames in any 1 s, final 740-760 s: 116
+  max news frames within 1 s: 4
+  inter-frame gap in storm: p99 0.64 s, max 2.12 s
+  inter-frame gap in aftermath: p99 1.20 s, max 5.21 s
+  inter-frame gap in pause: p99 29.42 s, max 29.57 s
+  inter-frame gap in pre-storm: p99 1.54 s, max 4.02 s
+  inter-frame gap while connected and the market open: p99 0.82 s, p99.9 1.96 s, max 5.21 s at 11:27:57.638
+  storm-obs inter-arrival (consecutive ages): median 1.943 s, min 1.646, max 2.323
+  max gap between book updates per symbol while open (s): {'AQUA': 35.4, 'ARCH': 39.0, 'FERRY': 53.3, 'GEN': 40.4, 'GRID': 32.2, 'HAVEN': 34.3, 'ISLE': 40.9, 'MAT': 33.7, 'PORT': 36.4, 'REBLD': 36.7, 'RECON': 37.2, 'REIN': 55.9}
+
+== 6. order book and quote consistency
+  book levels (bids, asks): {(5, 5): 11917, (3, 3): 205, (5, 4): 1556, (4, 5): 1589, (3, 5): 312, (4, 4): 152, (3, 4): 47, (5, 3): 264, (6, 4): 68, (4, 3): 34, (5, 6): 186, (6, 5): 200, (0, 0): 72, (1, 1): 57, (0, 1): 1, (1, 0): 1, (3, 2): 25, (1, 3): 16, (2, 3): 12, (4, 1): 2, (5, 2): 33, (4, 6): 53, (3, 6): 24, (2, 2): 22, (2, 6): 6, (2, 5): 58, (6, 3): 23, (1, 5): 15, (3, 1): 14, (2, 4): 6, (5, 1): 6, (1, 4): 1, (6, 2): 3, (7, 5): 3, (6, 1): 2, (4, 7): 2, (7, 1): 2, (3, 7): 1, (2, 1): 1}; crossed 0, locked 0, mis-sorted 0
+  price decimals: {1: 15571, 2: 146900}
+  quote == top of the latest book of that symbol: 14208, differs 1818; quotes after an empty book: {(None, None): 72, (36.44, 36.52): 1, (18.41, 18.46): 1, (52.4, 52.52): 1, (None, 312.2): 1, (199.5, None): 1, (52.55, 52.66): 1, (37.9, 37.98): 1, (17.95, 18.0): 1, (49.58, 49.68): 1}
+  empty/one-sided books (bids, asks, phase, s): {(0, 0, 'aftermath', 779): 12, (0, 0, 'pause', 898): 12, (0, 1, 'pre-storm', 0): 1, (1, 0, 'pre-storm', 0): 1, (0, 0, 'pause', 781): 12, (0, 0, 'pause', 780): 24, (0, 0, 'pause', 900): 12}
+    mismatch example: quote {'symbol': 'AQUA', 'bid': 33.12, 'ask': 33.18, 'bid_size': 150, 'ask_size': 24, 'timestamp': '2026-10-23T10:47:27.442228'} book top [{'price': 33.06, 'quantity': 50}, {'price': 33.0, 'quantity': 35}] [{'price': 33.18, 'quantity': 24}, {'price': 33.23, 'quantity': 35}] 2026-10-23T10:47:27.172438
+    mismatch example: quote {'symbol': 'ISLE', 'bid': 59.91, 'ask': 60.09, 'bid_size': 30, 'ask_size': 30, 'timestamp': '2026-10-23T10:47:27.666195'} book top [{'price': 59.84, 'quantity': 30}, {'price': 59.74, 'quantity': 30}] [{'price': 60.04, 'quantity': 7}, {'price': 60.14, 'quantity': 21}] 2026-10-23T10:47:27.613174
+    mismatch example: quote {'symbol': 'ARCH', 'bid': 285.91, 'ask': 286.53, 'bid_size': 53, 'ask_size': 20, 'timestamp': '2026-10-23T10:47:30.543849'} book top [{'price': 286.1, 'quantity': 20}, {'price': 285.91, 'quantity': 53}] [{'price': 287.19, 'quantity': 20}, {'price': 287.72, 'quantity': 14}] 2026-10-23T10:47:28.731441
+  quote vs the book with the same server timestamp: {'prices equal, sizes equal': 14183, 'no book with the same timestamp': 1874, 'empty book': 50}
+  quote-only updates (no book frame with that timestamp): next book of the symbol has the same top 1850, a different top 0; next book arrives after median 0.00 s, p90 0.01 s
+  frames following a trade: {('orderbook', 'quote'): 7815, ('trade', 'orderbook'): 1636, ('trade', 'trade'): 412, ('quote', 'orderbook'): 25}
+  news field types: {'advisory.age': {'int': 66}, 'advisory.number': {'int': 28}, 'advisory.round': {'int': 66}, 'advisory.seq': {'int': 66}, 'damage_report.round': {'int': 8}, 'damage_report.seq': {'int': 8}, 'impact.age': {'int': 3}, 'impact.round': {'int': 3}, 'impact.seq': {'int': 3}, 'snapshot.last_seq': {'int': 123}, 'snapshot.round': {'int': 123}, 'storm.age': {'int': 865}, 'storm.round': {'int': 865}, 'storm.seq': {'int': 865}, 'storm_dissipated.round': {'int': 4}, 'storm_dissipated.seq': {'int': 4}, 'storm_formed.round': {'int': 3}, 'storm_formed.seq': {'int': 3}, 'track.age': {'int': 88}, 'track.round': {'int': 88}, 'track.seq': {'int': 88}}
+
+== 7. frame sizes (bytes of the recorded JSON line, incl. received_at)
+  heartbeat              n=   122 median     98 max     99
+  news:advisory          n=    66 median    298 max    752
+  news:damage_report     n=     8 median    366 max    378
+  news:impact            n=     3 median    255 max    257
+  news:snapshot          n=   123 median   3607 max   4314
+  news:storm             n=   865 median    248 max    251
+  news:storm_dissipated  n=     4 median    198 max    198
+  news:storm_formed      n=     3 median    214 max    215
+  news:track             n=    88 median   1997 max   3448
+  orderbook              n= 16991 median    479 max    559
+  quote                  n= 16107 median    173 max    178
+  subscription_ack       n=     6 median    271 max    272
+  trade                  n=  9910 median    196 max    200
+
+wrote hygiene.json

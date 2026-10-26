@@ -1,0 +1,100 @@
+== 0. market clock: round opens fitted from storm frames (open = received_at - real s since 09:30)
+  1802-05-10: residual after a linear (rate-free) fit: sd 0.060 s, min -0.107, max +0.114
+  1802-05-10 (225, 1): open 11:00:50.037 (n=240), residual sd 0.097 s, min -0.197, p95 +0.172, max +0.235; slope 1.000546 over 480 s
+  1802-05-11: residual after a linear (rate-free) fit: sd 0.059 s, min -0.119, max +0.102
+  1802-05-11 (225, 2): open 11:16:50.536 (n=225), residual sd 0.090 s, min -0.190, p95 +0.157, max +0.207; slope 1.000474 over 480 s
+  1802-05-12: residual after a linear (rate-free) fit: sd 0.070 s, min -0.128, max +0.296
+  1802-05-12 (225, 3): open 11:32:51.126 (n=240), residual sd 0.106 s, min -0.216, p95 +0.161, max +0.398; slope 1.000576 over 480 s
+  1803-05-11: residual after a linear (rate-free) fit: sd 0.062 s, min -0.108, max +0.248
+  1803-05-11 (224, 3): open 10:43:48.455 (n=160), residual sd 0.072 s, min -0.128, p95 +0.129, max +0.258; slope 1.000395 over 320 s
+  residual by message type (s, relative to the storm-frame fit): 
+    advisory         n=  66 median +0.019 min -0.190 max +0.200
+    damage_report    n=   8 median +0.162 min +0.052 max +0.308
+    impact           n=   3 median -0.101 min -0.146 max +0.057
+    storm            n= 865 median +0.000 min -0.216 max +0.398
+    storm_dissipated n=   4 median +0.157 min +0.047 max +0.241
+    storm_formed     n=   3 median -0.113 min -0.216 max -0.066
+    track            n=  88 median +0.005 min -0.177 max +0.236
+  gaps between round opens (s): [1021.58, 960.5, 960.59] -> pause after close = [241.58, 180.5, 180.59]
+  season 226 snapshots: [('11:47:54.570', '09:30:00'), ('11:48:24.721', '09:30:00'), ('11:48:54.823', '09:30:00'), ('11:49:25.019', '09:30:00'), ('11:49:55.167', '09:30:00'), ('11:50:25.358', '09:45:00')]
+
+== 1. connections and drops
+  {"conn": 1, "ack": "10:47:26.800", "last_frame": "10:49:17.890", "lifetime_s": 111.09, "frames": 1491, "bytes": 459222, "gap_to_next_ack_s": 1.621, "inferred_failed_attempts": 0, "sum_backoff_s": 1, "drop_window": ["10:49:17.890", "10:49:18.511"], "drop_window_len_s": 0.621, "date": "1803-05-11", "season_round": [224, 3], "s_at_drop": 329.435, "mkt_at_drop": "12:14:43", "phase": "storm", "s_at_reconnect": 331.056}
+  {"conn": 2, "ack": "10:49:19.511", "last_frame": "11:01:42.756", "lifetime_s": 743.245, "frames": 5180, "bytes": 1603090, "gap_to_next_ack_s": 1.191, "inferred_failed_attempts": 0, "sum_backoff_s": 1, "drop_window": ["11:01:42.756", "11:01:42.947"], "drop_window_len_s": 0.191, "date": "1802-05-10", "season_round": [225, 1], "s_at_drop": 52.719, "mkt_at_drop": "09:56:22", "phase": "pre-storm", "s_at_reconnect": 53.91}
+  {"conn": 3, "ack": "11:01:43.947", "last_frame": "11:08:50.231", "lifetime_s": 426.283, "frames": 8377, "bytes": 2517882, "gap_to_next_ack_s": 1.885, "inferred_failed_attempts": 0, "sum_backoff_s": 1, "drop_window": ["11:08:50.231", "11:08:51.116"], "drop_window_len_s": 0.885, "date": "1802-05-10", "season_round": [225, 1], "s_at_drop": 480.194, "mkt_at_drop": "13:30:06", "phase": "storm", "s_at_reconnect": 482.079}
+  {"conn": 4, "ack": "11:08:52.116", "last_frame": "11:20:31.609", "lifetime_s": 699.494, "frames": 8927, "bytes": 2695661, "gap_to_next_ack_s": 31.716, "inferred_failed_attempts": 4, "sum_backoff_s": 31, "drop_window": ["11:20:31.609", "11:20:32.325"], "drop_window_len_s": 0.716, "date": "1802-05-11", "season_round": [225, 2], "s_at_drop": 221.073, "mkt_at_drop": "11:20:32", "phase": "storm", "s_at_reconnect": 252.789}
+  {"conn": 5, "ack": "11:21:03.325", "last_frame": "11:40:21.875", "lifetime_s": 1158.549, "frames": 15251, "bytes": 4689386, "gap_to_next_ack_s": 1.316, "inferred_failed_attempts": 0, "sum_backoff_s": 1, "drop_window": ["11:40:21.875", "11:40:22.190"], "drop_window_len_s": 0.316, "date": "1802-05-12", "season_round": [225, 3], "s_at_drop": 450.749, "mkt_at_drop": "13:15:22", "phase": "storm", "s_at_reconnect": 452.064}
+  {"conn": 6, "ack": "11:40:23.190", "last_frame": "11:50:44.983", "lifetime_s": 621.793, "frames": 5070, "bytes": 1527174}
+
+== 2. lost news per disconnect (research seq between the last seq before and the first seq after)
+  drop 1: season 224, last seq 745 -> first seq 748; lost 2: {'advisory/official': 1, 'storm': 1}
+       (746, 'advisory', 'official', '12:15:00', 270, 5)
+  drop 2: season 224, last seq 876 -> first seq 0; lost 0: {}
+  drop 3: season 225, last seq 249 -> first seq 251; lost 1: {'storm': 1}
+  drop 4: season 225, last seq 385 -> first seq 406; lost 20: {'storm': 16, 'advisory/wire': 3, 'track': 1}
+       (391, 'advisory', 'wire', '11:25:30', 171, None)
+       (397, 'track', None, '11:30:00', 180, None)
+       (398, 'advisory', 'wire', '11:30:00', 180, None)
+       (400, 'advisory', 'wire', '11:31:30', 183, None)
+  drop 5: season 225, last seq 811 -> first seq 813; lost 1: {'storm': 1}
+  total lost season 225: 22; season 224: 2
+
+== 3. snapshots: cadence, fields, and recovery of the lost messages
+  123 snapshots; interval median 30.108 s, mean 30.048, min 26.13, max (excluding drops) 30.47; intervals > 45 s: [60.3, 60.2, 60.2]
+  snapshot fields: ['advisory', 'damage', 'headlines', 'impacts', 'last_seq', 'obs', 'phase', 'round', 'storm', 'time', 'track', 'type']
+  phase values: ['aftermath', 'closed', 'pre_storm', 'storm']
+  headlines per snapshot: [0, 1, 2, 5, 6, 8]
+  snapshot track spacing (s of storm age) -> latest ages seen: {'(8,)': (180, 300), '(12,)': (330, 452), '(16,)': (480, 480), '(4,)': (30, 150)}
+  snapshot phase within 30 s of round clock: first 0.43 last 4.23 (drifts; snapshots are on a server timer, not per connection)
+  drop 1: first snapshot 30.0 s after reconnect (31.6 s after the drop), last_seq 764 (gap visible: True), advisory #5, 39 track pts, 8 headlines [636, 641, 653, 676, 684, 711, 712, 746]
+       1 x full (snapshot.advisory, testnet version)
+       1 x interpolated only (between snapshot.track points)
+  drop 2: nothing lost
+  drop 3: first snapshot 0.2 s after reconnect (2.1 s after the drop), last_seq 250 (gap visible: True), advisory #7, 37 track pts, 8 headlines [122, 126, 139, 159, 162, 196, 230, 236]
+       1 x full (snapshot.obs)
+  drop 4: first snapshot 18.1 s after reconnect (49.8 s after the drop), last_seq 416 (gap visible: True), advisory #4, 27 track pts, 8 headlines [345, 353, 374, 378, 391, 398, 400, 415]
+      12 x interpolated only (between snapshot.track points)
+       4 x position+radius only (snapshot.track; no intensity/velocity)
+       1 x headline text only; outlook parsable from text -> erratic (true erratic)
+       1 x superseded (snapshot.track, thinned)
+       1 x headline text only; outlook parsable from text -> stall (true stall)
+       1 x headline text only; outlook parsable from text -> recurve (true recurve)
+  drop 5: first snapshot 29.4 s after reconnect (30.8 s after the drop), last_seq 828 (gap visible: True), advisory #7, 36 track pts, 8 headlines [737, 739, 757, 759, 767, 772, 776, 810]
+       1 x interpolated only (between snapshot.track points)
+  snapshot.advisory vs live testnet advisory of the same number: identical 102, different 0
+
+== 4. drop pattern
+  lifetimes (s) of dropped connections: [111.1, 743.2, 426.3, 699.5, 1158.5]; censored last: 621.8
+  connected time 3760.5 s, 5 drops -> MTBF 752 s; CV of lifetimes 0.56 (exponential = 1, fixed lifetime = 0)
+    P(>=1 drop in 480 s) = 0.47; expected drops 0.64
+    P(>=1 drop in 780 s) = 0.65; expected drops 1.04
+    P(>=1 drop in 2340 s) = 0.96; expected drops 3.11
+  drop 1: last-10-s frames 106 (percentile 0.50 of 10 windows, median 108.0); latency p50 last 10 s 7 ms vs conn 7 ms, max last 10 s 52 ms; last news storm/ 1.56 s before; s mod 2 at last frame 1.44; age of conn mod 20 (client ping) 11.1, mod 30 (heartbeat) 21.1
+  drop 2: last-10-s frames 70 (percentile 0.53 of 73 windows, median 60); latency p50 last 10 s 17 ms vs conn 3 ms, max last 10 s 29 ms; last news snapshot/ 22.24 s before; s mod 2 at last frame 0.72; age of conn mod 20 (client ping) 3.2, mod 30 (heartbeat) 23.2
+  drop 3: last-10-s frames 78 (percentile 0.12 of 42 windows, median 195.5); latency p50 last 10 s 16 ms vs conn 16 ms, max last 10 s 19 ms; last news track/ 0.05 s before; s mod 2 at last frame 0.19; age of conn mod 20 (client ping) 6.3, mod 30 (heartbeat) 6.3
+  drop 4: last-10-s frames 185 (percentile 0.68 of 69 windows, median 78); latency p50 last 10 s 18 ms vs conn 25 ms, max last 10 s 38 ms; last news track/ 1.11 s before; s mod 2 at last frame 1.07; age of conn mod 20 (client ping) 19.5, mod 30 (heartbeat) 9.5
+  drop 5: last-10-s frames 149 (percentile 0.61 of 115 windows, median 121); latency p50 last 10 s 18 ms vs conn 14 ms, max last 10 s 29 ms; last news storm/ 0.62 s before; s mod 2 at last frame 0.75; age of conn mod 20 (client ping) 18.5, mod 30 (heartbeat) 18.5
+  drops by phase (observed / expected under a constant hazard, connected s): {'storm': (4, 2.29, 1725), 'aftermath': (0, 1.28, 960), 'pause': (0, 1.13, 847), 'pre-storm': (1, 0.3, 229)}
+  P(0 drops in aftermath + pause | constant hazard) = exp(-2.40) = 0.091
+  drop window relative to the nearest track/official-advisory tick (s):
+    conn 1: [329.44, 330.06] -> advisory tick at s=330: [-0.56, +0.06]
+    conn 3: [480.19, 481.08] -> track tick at s=480: [+0.19, +1.08]
+    conn 4: [221.07, 221.79] -> track tick at s=220: [+1.07, +1.79]
+    conn 5: [450.75, 451.06] -> advisory tick at s=450: [+0.75, +1.06]
+    all 4 storm drops fall in [-0.56, +1.79] s around such a tick; that band covers 0.153 of storm time, so P(all 4 by chance) = 5.5e-04 (post hoc; suggestive only)
+
+== 5. robust feed simulation: a second connection B with independent drops
+  observed outages (last frame -> next ack, s): [1.62, 1.19, 1.89, 31.72, 1.32]
+  B with recorded reconnect: of the 22 season-225 losses, still lost (both down) mean 0.234, P(none lost) 0.9374, p99 9, max 21
+  B with fast-retry reconnect: of the 22 season-225 losses, still lost (both down) mean 0.155, P(none lost) 0.9589, p99 5, max 20
+  per season, recorded: P(lose >= 1 official advisory or damage report) 1 conn 0.250, 2 conns 0.0020; 1 conn mean lost official advisories 0.235, damage reports 0.0553
+  per season (866 msgs), recorded: 1 conn loses mean 8.4 (P>0 0.79); 2 conns mean 0.088 (P>0 0.028)
+  per season, fast-retry: P(lose >= 1 official advisory or damage report) 1 conn 0.190, 2 conns 0.0008; 1 conn mean lost official advisories 0.168, damage reports 0.0450
+  per season (866 msgs), fast-retry: 1 conn loses mean 6.0 (P>0 0.64); 2 conns mean 0.052 (P>0 0.014)
+  fast retry alone, conn 3: reconnect by s=481.33; saves 1 of 1
+  fast retry alone, conn 4: reconnect between s=236.32 and 252.79; saves 0-11 of 20
+  fast retry alone, conn 5: reconnect by s=451.31; saves 1 of 1
+  => fast retry on one connection saves 2-13 of the 22 season-225 losses
+  if the long outage was server-side (common to both connections), B saves only the 2 short-drop losses; a fast-retry policy would then still lose the messages published while the endpoint was unreachable (>= 15 s)
+
+wrote disconnects.json

@@ -1,0 +1,93 @@
+season 225: research 866 msgs, recorded 844 seq'd + 96 snapshots; lost 22; testnet official advisories 24
+  stream R: 866 msgs fed, 147 evaluations, 2.3 s (call median 7 ms, p95 46 ms)
+  stream T: 936 msgs fed, 147 evaluations, 2.5 s (call median 7 ms, p95 46 ms)
+  stream C: 866 msgs fed, 147 evaluations, 2.4 s (call median 7 ms, p95 47 ms)
+  stream D: 936 msgs fed, 147 evaluations, 2.5 s (call median 7 ms, p95 47 ms)
+evaluation points inside or just after a disconnect (excluded in the 'fresh' rows): [(1, 60), (1, 480), (1, 490), (2, 220), (2, 230), (2, 240), (2, 250), (2, 260), (3, 450), (3, 460)]
+
+== testnet feed (T) vs research feed (R): |mu_T - mu_R| over 147 storm evaluations (every 10 s, s = 60..540, 3 rounds)
+  sym        max    mean  max/sd mean/sd max/thr mean/thr max/entry  worst at
+  PORT     0.558   0.016   0.036   0.001   0.314    0.008     0.252  r2 s=250
+  ISLE     0.655   0.011   0.136   0.002   1.055    0.018     0.731  r2 s=250
+  AQUA     0.454   0.008   0.139   0.003   1.138    0.021     0.834  r2 s=250
+  GRID     0.213   0.006   0.064   0.002   0.481    0.013     0.321  r2 s=250
+  FERRY    0.144   0.004   0.069   0.002   0.547    0.014     0.387  r2 s=250
+  RECON    0.140   0.004   0.028   0.001   0.226    0.006     0.164  r2 s=90
+  MAT      0.104   0.003   0.047   0.001   0.345    0.010     0.223  r2 s=250
+  GEN      0.108   0.003   0.053   0.002   0.368    0.010     0.229  r2 s=250
+  HAVEN    0.556   0.019   0.041   0.001   0.362    0.012     0.292  r2 s=90
+  REIN     0.026   0.001   0.080   0.002   0.085    0.002     0.035  r2 s=90
+  ARCH     2.011   0.055   0.066   0.002   0.511    0.013     0.353  r2 s=250
+  REBLD    0.444   0.015   0.027   0.001   0.206    0.007     0.140  r2 s=90
+  pattern posterior max |dp| over classes: max 0.027 at r2 s=90, mean 0.0007, share of evaluations > 0.05: 0.000
+
+== advisory noise only (C) vs research (R): |mu_C - mu_R| over 147 storm evaluations (every 10 s, s = 60..540, 3 rounds)
+  sym        max    mean  max/sd mean/sd max/thr mean/thr max/entry  worst at
+  PORT     0.494   0.009   0.027   0.001   0.244    0.004     0.202  r2 s=90
+  ISLE     0.045   0.001   0.017   0.001   0.071    0.002     0.049  r2 s=90
+  AQUA     0.079   0.002   0.021   0.001   0.177    0.004     0.135  r1 s=90
+  GRID     0.110   0.002   0.027   0.001   0.213    0.004     0.150  r2 s=90
+  FERRY    0.065   0.001   0.026   0.001   0.209    0.004     0.153  r2 s=90
+  RECON    0.140   0.003   0.028   0.001   0.226    0.004     0.164  r2 s=90
+  MAT      0.050   0.001   0.022   0.001   0.161    0.003     0.105  r2 s=90
+  GEN      0.064   0.001   0.027   0.001   0.196    0.004     0.127  r2 s=90
+  HAVEN    0.556   0.009   0.033   0.001   0.299    0.005     0.254  r2 s=90
+  REIN     0.026   0.000   0.030   0.000   0.085    0.001     0.035  r2 s=90
+  ARCH     1.187   0.020   0.030   0.001   0.247    0.004     0.183  r2 s=90
+  REBLD    0.444   0.009   0.027   0.001   0.206    0.004     0.140  r2 s=90
+  pattern posterior max |dp| over classes: max 0.027 at r2 s=90, mean 0.0007, share of evaluations > 0.05: 0.000
+
+== disconnect gaps + snapshots only (D) vs research (R): |mu_D - mu_R| over 147 storm evaluations (every 10 s, s = 60..540, 3 rounds)
+  sym        max    mean  max/sd mean/sd max/thr mean/thr max/entry  worst at
+  PORT     0.558   0.010   0.036   0.001   0.314    0.005     0.252  r2 s=250
+  ISLE     0.655   0.011   0.150   0.003   1.055    0.018     0.731  r2 s=250
+  AQUA     0.454   0.007   0.139   0.003   1.138    0.020     0.834  r2 s=250
+  GRID     0.213   0.004   0.064   0.001   0.481    0.009     0.321  r2 s=250
+  FERRY    0.144   0.003   0.069   0.001   0.547    0.011     0.387  r2 s=250
+  RECON    0.135   0.002   0.032   0.001   0.140    0.003     0.112  r3 s=90
+  MAT      0.104   0.002   0.047   0.001   0.345    0.007     0.223  r2 s=250
+  GEN      0.108   0.002   0.053   0.001   0.368    0.007     0.229  r2 s=250
+  HAVEN    0.504   0.011   0.041   0.001   0.362    0.007     0.292  r2 s=250
+  REIN     0.004   0.000   0.080   0.002   0.019    0.000     0.006  r2 s=240
+  ARCH     2.011   0.038   0.066   0.001   0.511    0.009     0.353  r2 s=250
+  REBLD    0.357   0.008   0.026   0.001   0.176    0.004     0.118  r3 s=90
+  pattern posterior max |dp| over classes: max 0.014 at r3 s=90, mean 0.0001, share of evaluations > 0.05: 0.000
+
+== testnet feed (T) vs research (R), excluding stale points: |mu_T - mu_R| over 137 storm evaluations (every 10 s, s = 60..540, 3 rounds)
+  sym        max    mean  max/sd mean/sd max/thr mean/thr max/entry  worst at
+  PORT     0.494   0.010   0.027   0.001   0.244    0.005     0.202  r2 s=90
+  ISLE     0.045   0.001   0.017   0.001   0.071    0.003     0.049  r2 s=90
+  AQUA     0.079   0.002   0.021   0.001   0.177    0.005     0.135  r1 s=90
+  GRID     0.110   0.002   0.027   0.001   0.213    0.005     0.150  r2 s=90
+  FERRY    0.065   0.001   0.026   0.001   0.209    0.004     0.153  r2 s=90
+  RECON    0.140   0.003   0.028   0.001   0.226    0.005     0.164  r2 s=90
+  MAT      0.050   0.001   0.022   0.001   0.161    0.004     0.105  r2 s=90
+  GEN      0.064   0.001   0.027   0.001   0.196    0.004     0.127  r2 s=90
+  HAVEN    0.556   0.011   0.033   0.001   0.299    0.006     0.254  r2 s=90
+  REIN     0.026   0.001   0.030   0.000   0.085    0.001     0.035  r2 s=90
+  ARCH     1.187   0.023   0.030   0.001   0.247    0.005     0.183  r2 s=90
+  REBLD    0.444   0.010   0.027   0.001   0.206    0.005     0.140  r2 s=90
+  pattern posterior max |dp| over classes: max 0.027 at r2 s=90, mean 0.0008, share of evaluations > 0.05: 0.000
+
+== S3 decisions (simplified, 10-s steps, h = 0.25%, gamma = 0.5%, k = 0.1/0.1/0.2, full-limit targets, no REIN)
+  R: P&L $11,122, 130 target changes
+  T: P&L $11,065, 131 target changes
+  C: P&L $11,164, 131 target changes
+  D: P&L $11,200, 130 target changes
+  target position differs from R in 13 of 1551 (round, s, symbol) cells; e.g. [((1, 90, 'GEN'), 0, -600), ((1, 100, 'GEN'), 0, -600), ((1, 110, 'GEN'), 0, -600), ((1, 120, 'GEN'), 0, -600), ((2, 100, 'RECON'), 0, 500), ((2, 240, 'ISLE'), 0, 300)]
+  target position differs from R in 11 of 1551 (round, s, symbol) cells; e.g. [((1, 90, 'GEN'), 0, -600), ((1, 100, 'GEN'), 0, -600), ((1, 110, 'GEN'), 0, -600), ((1, 120, 'GEN'), 0, -600), ((2, 100, 'RECON'), 0, 500), ((3, 90, 'FERRY'), 0, -800)]
+  target position differs from R in 9 of 1551 (round, s, symbol) cells; e.g. [((2, 240, 'ISLE'), 0, 300), ((2, 250, 'ISLE'), 0, 300), ((3, 90, 'AQUA'), 0, 500), ((3, 90, 'FERRY'), 0, -800), ((3, 100, 'GEN'), 600, 0), ((3, 110, 'GEN'), 600, 0)]
+
+== after the storm (s = 560 storm over, 600 after the preliminary report, 760 after the final report)
+  T vs R: max |dmu| (symbol) by (round, s): {'r1s560': (0.0, 'REIN'), 'r1s600': (0.0, 'REIN'), 'r1s760': (0.0, 'REIN'), 'r2s560': (0.0, 'REIN'), 'r2s600': (0.0, 'REIN'), 'r2s760': (0.0, 'REIN'), 'r3s560': (0.0178, 'ARCH'), 'r3s600': (0.0111, 'ARCH'), 'r3s760': (0.0, 'PORT')}
+  C vs R: max |dmu| (symbol) by (round, s): {'r1s560': (0.0, 'REIN'), 'r1s600': (0.0, 'REIN'), 'r1s760': (0.0, 'REIN'), 'r2s560': (0.0, 'REIN'), 'r2s600': (0.0, 'REIN'), 'r2s760': (0.0, 'REIN'), 'r3s560': (0.0, 'REIN'), 'r3s600': (0.0, 'REIN'), 'r3s760': (0.0, 'REIN')}
+  D vs R: max |dmu| (symbol) by (round, s): {'r1s560': (0.0, 'REIN'), 'r1s600': (0.0, 'REIN'), 'r1s760': (0.0, 'REIN'), 'r2s560': (0.0, 'REIN'), 'r2s600': (0.0, 'REIN'), 'r2s760': (0.0, 'REIN'), 'r3s560': (0.0178, 'ARCH'), 'r3s600': (0.0111, 'ARCH'), 'r3s760': (0.0, 'PORT')}
+  round 3 after the final report: engine mean - settlement.json, per stream (PORT, GRID, FERRY, GEN, ARCH, REBLD):
+    R: PORT +0.006, GRID +0.003, FERRY -0.001, GEN -0.006, ARCH +0.012, REBLD +0.000
+    T: PORT +0.006, GRID +0.003, FERRY -0.001, GEN -0.006, ARCH +0.012, REBLD +0.000
+    C: PORT +0.006, GRID +0.003, FERRY -0.001, GEN -0.006, ARCH +0.012, REBLD +0.000
+    D: PORT +0.006, GRID +0.003, FERRY -0.001, GEN -0.006, ARCH +0.012, REBLD +0.000
+  T vs R, round 2 after the resync snapshot (s >= 280): max |dmu| 0.000 (REIN s=540)
+  D vs R, round 2 after the resync snapshot (s >= 280): max |dmu| 0.000 (REIN s=540)
+
+wrote engine_sens_fast.json

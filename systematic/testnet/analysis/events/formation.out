@@ -1,0 +1,141 @@
+====================================================================================================
+A. Jump sizes: % change of book touch-mid and of consensus, 58 s -> 74 s (rows 29->37), and book 58 -> 80 / 90 s
+   timing: first real s (0.5-s grid) at which the book mid has covered 50% / 90% of its 58->90 s move; consensus: first 2-s row covering 90% of its 58->90 move
+-- season 225 round 1 (1802-05-10)
+   sym     cons58->74  book58->74  book58->80  book58->90 | book t50  t90 | cons t90 | book half-spread bp at 58 / 66 / 74
+   PORT       +3.92%     +3.48%     +4.08%     +4.48% |   67.5  75.5 |     64 |  11.1 /   0.7 /  58.2
+   ISLE       +3.27%     +2.67%     +2.74%     +3.00% |   71.0  71.5 |     72 |  11.0 /   1.0 /  39.8
+   AQUA       +2.24%     +1.33%     +1.33%     +2.12% |   69.5  81.0 |     70 |   9.1 /   1.8 /   3.6
+   GRID       +5.03%     +0.15%     +7.18%     +6.32% |   78.0  78.0 |     74 |  10.9 /   1.4 /   1.4
+   FERRY     +10.02%     +0.16%     +8.20%     +8.23% |   75.0  75.0 |     72 |  13.5 /   2.7 /   2.7
+   RECON      -2.15%     -2.43%     -2.39%     -2.40% |   69.0  73.5 |     74 |  10.5 /   1.0 /  22.5
+   MAT        -2.03%     -2.09%     -2.09%     -2.26% |   67.0  73.5 |     72 |  11.1 /   2.8 /  11.4
+   GEN        -3.40%     -3.01%     -3.74%     -3.48% |   72.5  76.0 |     72 |  11.2 /   1.2 /   1.3
+   HAVEN     +17.13%    +14.08%    +23.30%    +22.52% |   73.0  79.0 |     74 |  11.5 /   1.3 / 132.6
+   REIN       +0.20%     -0.20%     -0.21%     -0.21% |   68.5  74.0 |     84 |  10.6 /  16.2 /  16.8
+   ARCH       +3.98%     +0.26%     +4.04%     +7.50% |   80.0  82.5 |     80 |  10.2 /  10.2 /   0.2
+   REBLD      -1.38%     -0.37%     -2.40%     -2.71% |   77.0  80.5 |     80 |  10.1 /   4.1 /   0.2
+-- season 225 round 2 (1802-05-11)
+   sym     cons58->74  book58->74  book58->80  book58->90 | book t50  t90 | cons t90 | book half-spread bp at 58 / 66 / 74
+   PORT       -0.50%     -0.04%     -0.97%     +2.15% |   90.0  90.0 |     90 |  10.7 /  12.0 /  18.3
+   ISLE       +4.22%     +3.22%     +4.27%     +5.30% |   73.0  90.0 |     90 |   9.4 /   0.9 /  39.9
+   AQUA       +5.72%     +2.77%     +5.51%     +6.05% |   76.0  78.0 |     90 |  17.9 /   1.8 /   1.7
+   GRID       +3.29%     +2.45%     +1.51%     +3.94% |   72.0  88.5 |     90 |  11.1 /   1.2 /   1.2
+   FERRY      +5.84%     +2.25%     +2.42%     +3.68% |   72.0  89.5 |     90 |  12.1 /   2.4 /  56.8
+   RECON      -0.86%     -0.74%     +0.14%     -1.02% |   72.5  88.5 |     90 |  11.0 /   1.0 /  25.2
+   MAT        -1.74%     -1.28%     -0.83%     -2.01% |   69.5  86.0 |     90 |  11.6 /   1.5 /  29.4
+   GEN        -2.88%     -2.25%     -1.29%     -3.78% |   72.5  89.5 |     90 |  10.5 /   1.3 /  36.4
+   HAVEN      +7.93%     +0.08%     +2.08%     +4.63% |   74.5  74.5 |     90 |   8.5 /  41.7 /   0.9
+   REIN       +0.14%     +0.07%     +0.22%     +0.22% |   62.5  62.5 |     90 |  10.6 /  23.3 /  13.9
+   ARCH       +2.91%     +0.59%     +2.47%     +3.64% |   79.5  89.0 |     80 |  10.1 /  10.1 /   0.2
+   REBLD      -0.61%     -0.22%     -0.87%     -1.07% |   75.5  76.5 |     90 |  10.4 /  10.4 /   0.2
+-- season 225 round 3 (1802-05-12)
+   sym     cons58->74  book58->74  book58->80  book58->90 | book t50  t90 | cons t90 | book half-spread bp at 58 / 66 / 74
+   PORT       -0.96%     +0.29%     -6.48%     -8.59% |   77.0  80.5 |     86 |  10.8 /  58.6 /   0.6
+   ISLE       +1.12%     -0.67%     +1.57%     +2.52% |   67.5  82.0 |     90 |  10.7 /   0.9 /  54.6
+   AQUA       +1.08%     -0.62%     +1.80%     +3.76% |   79.0  84.0 |     90 |  11.6 /   1.7 /  83.7
+   GRID       -0.07%     -0.73%     -1.82%     -1.00% |   72.5  74.5 |     64 |  11.2 /   2.2 /  80.1
+   FERRY      +1.62%     -1.45%     -0.72%     +0.24% |   67.5  67.5 |     90 |  11.0 /  55.0 /  51.1
+   RECON      +0.11%     +0.01%     +1.94%     +3.94% |   80.5  83.5 |     84 |  10.8 /  70.2 /   1.1
+   MAT        -1.17%     +0.78%     +0.78%     +1.63% |   80.5  84.0 |     64 |  12.4 /   1.6 /  49.4
+   GEN        +0.20%     +0.98%     +1.34%     +0.72% |   71.0  71.0 |     64 |  11.3 /  50.9 /  49.0
+   HAVEN      -5.65%     -7.51%     -9.59%    -10.75% |   69.5  73.5 |     78 |  10.7 /  53.1 /  69.0
+   REIN       -0.27%     +0.00%     +0.00%     +0.00% |      -     - |     70 |  10.6 /  10.6 /  10.6
+   ARCH       +0.42%     -0.55%     -2.28%     -2.17% |   76.5  80.0 |     90 |  10.1 /   8.9 /  47.7
+   REBLD      -1.74%     -0.19%     +0.54%     +0.95% |   78.5  81.5 |     90 |  10.4 /  10.1 /  54.7
+====================================================================================================
+B. H1 on the recorded books vs the consensus RT estimate (full size = 4 clips of L/4; half = clips at 50, 52 s only)
+-- H1 full size
+   round   sym     entry fill qty  avg entry  48s mid  | avg exit   | book PnL  book+1s PnL | cons PnL | cons jump-only (no costs)
+   225r1  PORT     +200/ +200     72.35     72.25 |     73.91 |      +312      +268 |     +513 |     +626
+   225r1  ISLE     +300/ +300     50.36     50.23 |     51.23 |      +262      +260 |     +343 |     +455
+   225r1  AQUA     +339/ +500     27.37     27.32 |     27.46 |       +31       +28 |     +147 |     +249
+   225r1  GRID     +400/ +400     36.64     36.57 |     36.93 |      +114      +116 |     +660 |     +773
+   225r1  FERRY    +800/ +800     18.51     18.48 |     19.10 |      +467      +729 |    +1299 |    +1410
+   225r1  HAVEN    +250/ +248     39.09     39.02 |     43.23 |     +1035     +1427 |    +1695 |    +1774
+   225r1  ARCH      +50/  +48    289.76    289.35 |    290.08 |       +16       +19 |     +586 |     +690
+   225r1  RECON    -500/ -500     52.29     52.41 |     51.62 |      +334      +326 |     +380 |     +574
+   225r1  MAT      -651/ -700     35.76     35.88 |     35.44 |      +209      +209 |     +340 |     +527
+   225r1  GEN      -600/ -600     40.12     40.25 |     39.46 |      +397      +484 |     +689 |     +867
+   225r1  REBLD    -100/ -100    216.57    216.89 |    215.39 |      +118      +193 |     +240 |     +401
+   225r1  TOTAL  book    +3294   book+1s    +4060   consensus RT    +6893   (left unflat: {})
+   225r2  PORT     +200/ +200     79.48     79.34 |     78.86 |      -123      -191 |     -614 |     -495
+   225r2  ISLE     +213/ +300     53.49     53.37 |     54.76 |      +271      +374 |     +669 |     +788
+   225r2  AQUA     +173/ +500     27.99     27.95 |     28.76 |      +132      +131 |     +777 |     +881
+   225r2  GRID     +188/ +400     40.44     40.36 |     41.22 |      +147      +119 |     +265 |     +387
+   225r2  FERRY    +800/ +800     20.70     20.66 |     20.96 |      +206      +229 |     +751 |     +872
+   225r2  HAVEN    +250/ +248     52.97     52.92 |     53.85 |      +219      +358 |     +519 |     +618
+   225r2  ARCH      +50/  +48    322.41    322.22 |    323.92 |       +75       +75 |     +442 |     +557
+   225r2  RECON    -500/ -500     49.84     49.91 |     49.95 |       -57       -45 |     -178 |       +9
+   225r2  MAT      -639/ -700     34.38     34.48 |     34.29 |       +60       +55 |     +141 |     +322
+   225r2  GEN      -261/ -600     37.83     37.94 |     37.41 |      +109      +128 |     +331 |     +501
+   225r2  REBLD    -100/ -100    206.09    206.25 |    205.78 |       +31       +68 |      +88 |     +242
+   225r2  TOTAL  book    +1071   book+1s    +1303   consensus RT    +3191   (left unflat: {})
+   225r3  PORT      +86/ +200     88.42     88.17 |     84.80 |      -311      -772 |     -815 |     -685
+   225r3  ISLE     +141/ +300     56.39     56.24 |     55.49 |      -127       -59 |     +365 |     +492
+   225r3  AQUA     +235/ +500     30.10     30.00 |     29.06 |      -243      -388 |     +397 |     +510
+   225r3  GRID     +187/ +400     44.79     44.66 |     43.61 |      -221      -402 |     -161 |      -28
+   225r3  FERRY    +547/ +800     22.87     22.81 |     21.94 |      -512      -470 |     +311 |     +446
+   225r3  HAVEN    +228/ +248     69.96     69.81 |     63.87 |     -1389     -1840 |    -1349 |    -1226
+   225r3  ARCH      +50/  +48    366.12    365.56 |    361.95 |      -209      -259 |     -178 |      -50
+   225r3  RECON     -85/ -500     46.14     46.21 |     46.33 |       -16       -44 |     -507 |     -332
+   225r3  MAT      -604/ -700     32.06     32.17 |     32.53 |      -285      -270 |      +18 |     +187
+   225r3  GEN      -142/ -600     35.29     35.35 |     36.52 |      -175       -98 |     -150 |       +9
+   225r3  REBLD     -66/ -100    192.10    192.38 |    192.77 |       -44      -135 |      +67 |     +211
+   225r3  TOTAL  book    -3532   book+1s    -4736   consensus RT    -2003   (left unflat: {})
+   3-round total full: book +834, book +1 s latency +627, consensus RT model +8081
+-- H1 half size
+   round   sym     entry fill qty  avg entry  48s mid  | avg exit   | book PnL  book+1s PnL | cons PnL | cons jump-only (no costs)
+   225r1  TOTAL  book    +1913   book+1s    +2276   consensus RT    +3483   (left unflat: {})
+   225r2  TOTAL  book     +892   book+1s    +1022   consensus RT    +1666   (left unflat: {})
+   225r3  TOTAL  book    -2212   book+1s    -2268   consensus RT     -938   (left unflat: {})
+   3-round total half: book +593, book +1 s latency +1030, consensus RT model +4212
+====================================================================================================
+C. Pre-formation crowding signal (playbook rule: skip if HAVEN or ARCH moved > 1/3 of mean jump our way 30 -> 48 s)
+   (225, 1): HAVEN book -0.01% cons +0.23%; ARCH book +0.00% cons -0.18%; PORT book +0.03% cons -0.03%; FERRY book -0.05% cons -0.11%
+   (225, 2): HAVEN book -0.03% cons +0.12%; ARCH book -0.07% cons -0.02%; PORT book +0.21% cons -0.01%; FERRY book +0.00% cons +0.20%
+   (225, 3): HAVEN book +0.00% cons -0.04%; ARCH book +0.00% cons +0.05%; PORT book +0.00% cons -0.46%; FERRY book -0.07% cons -0.22%
+====================================================================================================
+D. H1 timing variants, full size, 3-round totals (book walk, lat 0 / +1 s) vs consensus RT
+   entry 50-56 exit 72-78: book    +834  book+1s    +627  cons   +8081   per round book/cons: +3294/+6893, +1071/+3191, -3532/-2003
+   entry 50-56 exit 80-86: book   +3159  book+1s    +655  cons   +8655   per round book/cons: +7031/+6670, +351/+5738, -4222/-3753
+   entry 50-56 exit 86-92: book   +5855  book+1s   +5426  cons  +18133   per round book/cons: +7237/+6694, +2499/+11821, -3881/-382
+   entry 50-56 exit 96-102: book  +15896  book+1s  +16541  cons  +33311   per round book/cons: +8096/+8437, +7553/+17351, +246/+7523
+   entry 40-46 exit 72-78: book    -108  book+1s    +905  cons   +8084   per round book/cons: +3018/+6859, +1225/+3163, -4351/-1938
+   entry 40-46 exit 80-86: book   +2850  book+1s   +2437  cons   +8658   per round book/cons: +6534/+6637, +782/+5710, -4466/-3688
+   entry 40-46 exit 86-92: book   +5844  book+1s   +6262  cons  +18137   per round book/cons: +6747/+6661, +2833/+11793, -3737/-317
+   entry 40-46 exit 96-102: book  +15394  book+1s  +15610  cons  +33314   per round book/cons: +7584/+8403, +7336/+17323, +475/+7589
+====================================================================================================
+E. Reactive formation sweep (new idea): after 60 s, once the house backstop (E layer, 3x limit) or the fast A/B
+   layers have moved > 1% in the H1 direction from the 58-s mid, take every opposite-side level priced better than
+   the new house level E_mid x (1 -/+ 0.3%), up to the limit, at trigger + latency; exit in 4 clips at 86-92 s.
+   latency 0.3 s: total +4840   ((225, 1): +4798; (225, 2): +1816; (225, 3): -1774)
+   latency 1.0 s: total +4365   ((225, 1): +4474; (225, 2): +1718; (225, 3): -1827)
+   latency 2.0 s: total +3871   ((225, 1): +4222; (225, 2): +1499; (225, 3): -1851)
+====================================================================================================
+F. Reactive sweep, direction taken from the house backstop's own move (any sign, > 1% vs 58-s mid), all 12 symbols,
+   take stale levels better than E_mid x (1 -/+ 0.3%) up to the limit at trigger + latency; exit 4 clips
+   exit 80-86 latency 0.3 s: total +3864   ((225, 1): +4732; (225, 2): +534; (225, 3): -1402)
+   exit 80-86 latency 1.0 s: total +3575   ((225, 1): +4414; (225, 2): +521; (225, 3): -1360)
+   exit 80-86 latency 2.0 s: total +3249   ((225, 1): +4178; (225, 2): +432; (225, 3): -1361)
+      by symbol (lat 2 s): PORT -229, ISLE +293, AQUA +408, GRID +55, FERRY +738, RECON -404, MAT -298, GEN +205, HAVEN +1115, ARCH +1304, REBLD +61
+   exit 86-92 latency 0.3 s: total +5628   ((225, 1): +4798; (225, 2): +1816; (225, 3): -986)
+   exit 86-92 latency 1.0 s: total +5150   ((225, 1): +4474; (225, 2): +1718; (225, 3): -1042)
+   exit 86-92 latency 2.0 s: total +4601   ((225, 1): +4222; (225, 2): +1499; (225, 3): -1121)
+      by symbol (lat 2 s): PORT +177, ISLE +434, AQUA +543, GRID +259, FERRY +848, RECON -496, MAT -326, GEN +359, HAVEN +1403, ARCH +1443, REBLD -42
+====================================================================================================
+G. Playbook round-1 check on the books (4.2): H1 round-trip cost per share vs the 48-s (entry) and 80-s (exit)
+   book mids, against half the realised book jump 58->74 s of HAVEN, PORT, ARCH; full size, playbook timing
+   (225, 1): avg one-way cost +152.2 bp -> round trip 304.5 bp; book jumps 58->74 HAVEN +1408 PORT +348 ARCH +26 bp; pass (RT <= half of mean jump 297 bp): False
+   (225, 2): avg one-way cost +34.1 bp -> round trip 68.2 bp; book jumps 58->74 HAVEN +8 PORT -4 ARCH +59 bp; pass (RT <= half of mean jump 10 bp): False
+   (225, 3): avg one-way cost +79.4 bp -> round trip 158.9 bp; book jumps 58->74 HAVEN -751 PORT +29 ARCH -55 bp; pass (RT <= half of mean jump -129 bp): False
+
+H. Others' net signed flow before formation (0-50 s), % of one team's limit, from trades vs the prevailing mid
+   (225, 1): PORT +152, ISLE +113, AQUA +96, GRID +108, FERRY +160, HAVEN +196, ARCH +106, RECON -98, MAT -39, GEN -86, REBLD -99
+   (225, 2): PORT +40, ISLE +89, AQUA +55, GRID +12, FERRY +52, HAVEN +88, ARCH +10, RECON -28, MAT +0, GEN -1, REBLD -32
+   (225, 3): PORT +8, ISLE +4, AQUA -1, GRID +15, FERRY +163, HAVEN +194, ARCH +206, RECON -15, MAT -14, GEN +4, REBLD +0
+====================================================================================================
+I. Sign agreement, book 58->90 s vs consensus 58->74 s, and size ratio (book / consensus), by round
+   (225, 1): same sign 11/12; median size ratio over |cons move| > 0.5%: 1.12 (n=11)
+   (225, 2): same sign 11/12; median size ratio over |cons move| > 0.5%: 1.19 (n=10)
+   (225, 3): same sign 8/12; median size ratio over |cons move| > 0.5%: 1.90 (n=7)

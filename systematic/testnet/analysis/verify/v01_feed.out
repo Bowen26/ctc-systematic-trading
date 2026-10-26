@@ -1,0 +1,94 @@
+frames 44296
+frame types {'subscription_ack': 6, 'orderbook': 16991, 'quote': 16107, 'trade': 9910, 'news': 1160, 'heartbeat': 122}
+
+== round opens from storm frames (median of received_at - real_s) ==
+(224, 3) open 10:43:48.455 n=160 sd=0.072 min=-0.128 max=+0.258 slope=1.000395 lin_sd=0.062
+(225, 1) open 11:00:50.037 n=240 sd=0.097 min=-0.197 max=+0.235 slope=1.000546 lin_sd=0.060
+(225, 2) open 11:16:50.536 n=225 sd=0.090 min=-0.190 max=+0.207 slope=1.000474 lin_sd=0.059
+(225, 3) open 11:32:51.126 n=240 sd=0.106 min=-0.216 max=+0.398 slope=1.000576 lin_sd=0.070
+
+-- median residual of other news types vs storm-median open (s) --
+advisory         n=  66 median +0.019  p5 -0.148 p95 +0.126
+damage_report    n=   8 median +0.162  p5 +0.056 p95 +0.291
+impact           n=   3 median -0.101  p5 -0.142 p95 +0.042
+storm            n= 865 median +0.000  p5 -0.141 p95 +0.158
+storm_dissipated n=   4 median +0.157  p5 +0.062 p95 +0.230
+storm_formed     n=   3 median -0.113  p5 -0.206 p95 -0.070
+track            n=  88 median +0.005  p5 -0.118 p95 +0.150
+open spacing (224, 3) -> (225, 1) : 1021.58 s
+open spacing (225, 1) -> (225, 2) : 960.50 s
+open spacing (225, 2) -> (225, 3) : 960.59 s
+
+== connections ==
+conn 1 start 10:47:26.800 end 10:49:17.890 life 111.1 s gap_to_next 1.62  last frame at (224, 3) real 329.4
+conn 2 start 10:49:19.511 end 11:01:42.756 life 743.2 s gap_to_next 1.19  last frame at (225, 1) real 52.7
+conn 3 start 11:01:43.947 end 11:08:50.231 life 426.3 s gap_to_next 1.89  last frame at (225, 1) real 480.2
+conn 4 start 11:08:52.116 end 11:20:31.609 life 699.5 s gap_to_next 31.72  last frame at (225, 2) real 221.1
+conn 5 start 11:21:03.325 end 11:40:21.875 life 1158.5 s gap_to_next 1.32  last frame at (225, 3) real 450.7
+conn 6 start 11:40:23.190 end 11:50:44.983 life 621.8 s gap_to_next -  last frame at 
+
+== lost / different messages vs research feed ==
+season 224: first recorded seq 682, missing 2 {'advisory/official': 1, 'storm': 1}, different 4 {'advisory/official': 4}
+  missing seqs: [746, 747]
+   lost seq 746 advisory official 5 age 270
+  fields that differ (count of messages): {'hurricane_conditions': 2, 'cone': 4, 'headline': 1}
+  advisories differing: 4; outlook+number+age+time equal in 4
+  hurricane_conditions diff: n=16 mean -0.0019 sd 0.0133 max|d| 0.050 nonzero 2; at research=0: 1 nonzero of 12; at research=1: 0 nonzero of 2
+    N=25: sd of z (diff of two independent N-member estimates) = 0.18, n=2
+    N=47: sd of z (diff of two independent N-member estimates) = 0.25, n=2
+    N=50: sd of z (diff of two independent N-member estimates) = 0.26, n=2
+    N=100: sd of z (diff of two independent N-member estimates) = 0.36, n=2
+    cone lead  30: n=4 mean pos diff 2.8 max 4.2 mean spread testnet 15.5 research 15.0
+    cone lead  60: n=3 mean pos diff 5.7 max 9.4 mean spread testnet 31.4 research 28.2
+    cone lead 120: n=2 mean pos diff 5.7 max 5.8 mean spread testnet 49.0 research 46.6
+    cone lead 240: n=1 mean pos diff 11.6 max 11.6 mean spread testnet 139.5 research 112.9
+  official advisories received 4, identical 0
+season 225: first recorded seq 0, missing 22 {'storm': 18, 'advisory/wire': 3, 'track': 1}, different 24 {'advisory/official': 24}
+  missing seqs: [250, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 812]
+   lost seq 391 advisory wire  age 171
+   lost seq 397 track   age 180
+   lost seq 398 advisory wire  age 180
+   lost seq 400 advisory wire  age 183
+  fields that differ (count of messages): {'headline': 13, 'hurricane_conditions': 13, 'cone': 24}
+  advisories differing: 24; outlook+number+age+time equal in 24
+  hurricane_conditions diff: n=96 mean +0.0010 sd 0.0395 max|d| 0.160 nonzero 32; at research=0: 4 nonzero of 58; at research=1: 0 nonzero of 4
+    N=25: sd of z (diff of two independent N-member estimates) = 0.76, n=34
+    N=47: sd of z (diff of two independent N-member estimates) = 1.04, n=34
+    N=50: sd of z (diff of two independent N-member estimates) = 1.08, n=34
+    N=100: sd of z (diff of two independent N-member estimates) = 1.52, n=34
+    cone lead  30: n=24 mean pos diff 3.8 max 11.1 mean spread testnet 22.0 research 21.7
+    cone lead  60: n=21 mean pos diff 7.5 max 20.8 mean spread testnet 50.5 research 49.8
+    cone lead 120: n=18 mean pos diff 17.8 max 60.1 mean spread testnet 116.7 research 114.6
+    cone lead 240: n=12 mean pos diff 40.4 max 131.5 mean spread testnet 269.6 research 272.7
+  official advisories received 24, identical 0
+
+== lost messages vs connection gaps (expected arrival = open + real_s) ==
+  s224 seq 746 advisory  r3 real 330.0 -> inside gap after conn 1
+  s224 seq 747 storm     r3 real 330.0 -> inside gap after conn 1
+  s225 seq 250 storm     r1 real 482.0 -> inside gap after conn 3
+  s225 seq 386 storm     r2 real 222.0 -> inside gap after conn 4
+  s225 seq 387 storm     r2 real 224.0 -> inside gap after conn 4
+  s225 seq 388 storm     r2 real 226.0 -> inside gap after conn 4
+  s225 seq 389 storm     r2 real 228.0 -> inside gap after conn 4
+  s225 seq 390 storm     r2 real 230.0 -> inside gap after conn 4
+  s225 seq 391 advisory  r2 real 231.0 -> inside gap after conn 4
+  s225 seq 392 storm     r2 real 232.0 -> inside gap after conn 4
+  s225 seq 393 storm     r2 real 234.0 -> inside gap after conn 4
+  s225 seq 394 storm     r2 real 236.0 -> inside gap after conn 4
+  s225 seq 395 storm     r2 real 238.0 -> inside gap after conn 4
+  s225 seq 396 storm     r2 real 240.0 -> inside gap after conn 4
+  s225 seq 397 track     r2 real 240.0 -> inside gap after conn 4
+  s225 seq 398 advisory  r2 real 240.0 -> inside gap after conn 4
+  s225 seq 399 storm     r2 real 242.0 -> inside gap after conn 4
+  s225 seq 400 advisory  r2 real 243.0 -> inside gap after conn 4
+  s225 seq 401 storm     r2 real 244.0 -> inside gap after conn 4
+  s225 seq 402 storm     r2 real 246.0 -> inside gap after conn 4
+  s225 seq 403 storm     r2 real 248.0 -> inside gap after conn 4
+  s225 seq 404 storm     r2 real 250.0 -> inside gap after conn 4
+  s225 seq 405 storm     r2 real 252.0 -> inside gap after conn 4
+  s225 seq 812 storm     r3 real 452.0 -> inside gap after conn 5
+
+== snapshots ==
+snapshots 123, median spacing 30.11 s
+snapshot.advisory keys: ['age', 'cone', 'headline', 'hurricane_conditions', 'number', 'outlook', 'outlook_name', 'source', 'time']
+snapshot top-level keys: ['advisory', 'damage', 'headlines', 'impacts', 'last_seq', 'obs', 'phase', 'round', 'storm', 'time', 'track', 'type']

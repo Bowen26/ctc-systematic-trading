@@ -1,0 +1,15 @@
+{
+  "live_allowed": false,
+  "rate": {"window_s": 60.0, "floors": {"KILL": 0, "SNIPE": 0, "HEDGE": 0, "TAKE": 0}},
+  "strategies": {
+    "h1": {"size_r1": 1.0, "auto_size_from_check": false, "size_on_fail": 1.0, "cap_bp": null,
+           "max_from_mid_bp": 800.0, "off_if_half_spread_bp": 100000.0, "drop_rebuilders_cost_ratio": null},
+    "s3": {"edge_ref": "mid", "limit_cost_frac": 0.0, "through_touch_bp": null, "max_from_mid_bp": 800.0,
+           "require_marketable": false},
+    "flatten": {"through_touch_bp": null, "max_from_mid_bp": 800.0},
+    "s1r3": {"symbols": ["PORT", "ISLE", "AQUA", "GRID", "FERRY", "RECON", "MAT", "GEN", "HAVEN", "ARCH", "REBLD"],
+             "require_law_check": false},
+    "rein_ask": {"enabled": false}
+  },
+  "risk": {"max_marketable_from_mid": 0.08, "fill_sanity_n": 1000000}
+}

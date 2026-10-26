@@ -1,0 +1,75 @@
+damage reports received (round, stage, real s): [((224, 3), 'preliminary', 570.121), ((224, 3), 'final', 740.26), ((225, 1), 'preliminary', 570.064), ((225, 1), 'final', 740.204), ((225, 2), 'preliminary', 570.116), ((225, 2), 'final', 740.308), ((225, 3), 'preliminary', 570.052), ((225, 3), 'final', 740.234)]
+
+== book reprice: share of the te-0.2 -> te+20 s book-mid move done at te+k (symbols with |move| >= 1%) ==
+event      sym      move%  cmove% |     0   0.5     1     2     3     4     6     8    10    12    16    20 | consensus share at rows +1..+5 (real +2..+10 from report row)
+224r3 final PORT     -4.61   -4.34 | -0.00 -0.00 -0.00  0.07  0.08  0.09  0.88  1.00  1.00  1.00  1.00  1.00 |  0.03  0.99  1.01  0.99  1.01
+224r3 final HAVEN    -7.54   -7.42 | -0.00 -0.00 -0.00  0.02  0.02  0.02  0.05  1.00  1.00  1.00  1.00  1.00 | -0.01  1.00  0.98  1.00  0.98
+224r3 final ARCH     -1.61   -1.77 | -0.00  0.30  0.30  0.30  0.30  0.30  0.30  0.30  0.38  0.38  1.00  1.00 |  0.00 -0.03  0.09  0.13  0.89
+225r3 preli PORT     -3.25   -3.34 | -0.00  0.25  0.10  0.07  0.29  0.47  0.36  1.20  1.09  1.09  1.00  1.00 | -0.01  0.99  1.00  1.02  1.00
+225r3 preli HAVEN    -1.98   -2.55 | -0.00  0.27  0.27  0.14  0.14  0.35  0.35  0.35  0.35  1.27  1.20  1.00 | -0.00  1.03  1.00  0.99  1.06
+225r3 final PORT     +2.24   +2.09 |  0.00  1.68  0.05  0.27  0.14  0.31  1.13  0.82  0.87  0.97  1.00  1.00 | -0.06  0.94  0.97  0.97  1.04
+225r3 final HAVEN    +2.57   +3.16 |  0.00  0.00  0.01  0.03  0.03  0.06  0.14  0.80  1.15  0.87  1.00  1.00 |  0.00  0.92  0.91  0.94  0.99
+stocks, median share done: +0s -0.00 +0.5s 0.12 +1s 0.03 +2s 0.07 +3s 0.11 +4s 0.20 +6s 0.36 +8s 0.91 +10s 1.00 +12s 1.00 +16s 1.00 +20s 1.00
+stocks consensus median share at rows +1..+5: -0.00 0.99 0.99 0.99 1.00
+
+== S1-r3: stale value vs settlement on the recorded books after the round-3 final report ==
+-- (224, 3) te=740.260 --
+  single frame te+0.1 : $   848  {'PORT': 214, 'GRID': 6, 'FERRY': 20, 'RECON': 22, 'MAT': 20, 'HAVEN': 342, 'REIN': 1, 'ARCH': 193, 'REBLD': 29}
+  single frame te+0.3 : $   710  {'PORT': 214, 'GRID': 6, 'FERRY': 8, 'RECON': 12, 'MAT': 5, 'HAVEN': 308, 'REIN': 1, 'ARCH': 146, 'REBLD': 9}
+  single frame te+0.5 : $   681  {'PORT': 194, 'GRID': 6, 'FERRY': 8, 'RECON': 12, 'MAT': 5, 'HAVEN': 308, 'REIN': 1, 'ARCH': 146}
+  single frame te+1   : $   681  {'PORT': 194, 'GRID': 6, 'FERRY': 8, 'RECON': 12, 'MAT': 5, 'HAVEN': 308, 'REIN': 1, 'ARCH': 146}
+  single frame te+2   : $   594  {'PORT': 149, 'GRID': 6, 'RECON': 7, 'HAVEN': 285, 'ARCH': 146}
+  single frame te+4   : $   596  {'PORT': 171, 'RECON': 3, 'HAVEN': 278, 'ARCH': 145}
+  single frame te+6   : $   343  {'RECON': 3, 'HAVEN': 196, 'ARCH': 145}
+  single frame te+8   : $   145  {'ARCH': 145}
+  single frame te+10  : $   134  {'ARCH': 134}
+  single frame te+15  : $   134  {'ARCH': 134}
+  sweeper from te+0.1  to 760 s: $  1148  {'PORT': 314, 'GRID': 6, 'FERRY': 28, 'RECON': 44, 'MAT': 40, 'HAVEN': 474, 'REIN': 2, 'ARCH': 193, 'REBLD': 46}
+  sweeper from te+0.3  to 760 s: $   937  {'PORT': 310, 'GRID': 6, 'FERRY': 8, 'RECON': 34, 'MAT': 12, 'HAVEN': 390, 'REIN': 1, 'ARCH': 146, 'REBLD': 28}
+  sweeper from te+1    to 760 s: $   924  {'PORT': 306, 'GRID': 6, 'FERRY': 8, 'RECON': 34, 'MAT': 12, 'HAVEN': 390, 'REIN': 1, 'ARCH': 146, 'REBLD': 19}
+  sweeper from te+2    to 760 s: $   679  {'PORT': 203, 'GRID': 6, 'RECON': 17, 'MAT': 2, 'HAVEN': 285, 'ARCH': 146, 'REBLD': 19}
+  sweeper from te+4    to 760 s: $   619  {'PORT': 171, 'RECON': 6, 'HAVEN': 278, 'ARCH': 145, 'REBLD': 19}
+  sweeper from te+6    to 760 s: $   362  {'RECON': 3, 'HAVEN': 196, 'ARCH': 145, 'REBLD': 19}
+  others' trades te..760 s priced beyond S+-eps: |S-p|*q summed $934 {'PORT': 299, 'ISLE': 1, 'AQUA': 1, 'GRID': 20, 'FERRY': 19, 'RECON': 44, 'MAT': 37, 'HAVEN': 261, 'REIN': 10, 'ARCH': 198, 'REBLD': 44}
+  sanity check at 742 s would cancel: ['PORT(4.18%)', 'HAVEN(7.68%)', 'ARCH(1.21%)']
+  sanity check at 744 s would cancel: ['PORT(4.10%)', 'HAVEN(7.68%)', 'ARCH(1.21%)']
+  sanity check at 746 s would cancel: ['PORT(3.46%)', 'HAVEN(7.49%)', 'ARCH(1.21%)']
+  sanity check at 748 s would cancel: ['ARCH(1.21%)']
+  sanity check at 750 s would cancel: ['ARCH(1.21%)']
+  sanity check at 752 s would cancel: ['ARCH(1.07%)']
+  sanity check at 756 s would cancel: []
+  sanity check at 760 s would cancel: []
+  consensus oracle filled at row 371 (742 s), 25 bp: $1335
+  consensus oracle filled at row 372 (744 s), 25 bp: $196
+  consensus oracle filled at row 373 (746 s), 25 bp: $165
+  consensus oracle filled at row 375 (750 s), 25 bp: $44
+-- (225, 3) te=740.234 --
+  single frame te+0.1 : $   418  {'FERRY': 27, 'RECON': 32, 'MAT': 21, 'HAVEN': 154, 'ARCH': 116, 'REBLD': 68}
+  single frame te+0.3 : $   351  {'FERRY': 27, 'RECON': 32, 'MAT': 21, 'HAVEN': 138, 'ARCH': 89, 'REBLD': 44}
+  single frame te+0.5 : $   158  {'FERRY': 13, 'HAVEN': 145}
+  single frame te+1   : $   464  {'PORT': 162, 'FERRY': 13, 'RECON': 30, 'MAT': 8, 'HAVEN': 107, 'ARCH': 106, 'REBLD': 38}
+  single frame te+2   : $   320  {'PORT': 34, 'RECON': 30, 'MAT': 13, 'HAVEN': 243}
+  single frame te+4   : $   161  {'PORT': 29, 'HAVEN': 132}
+  single frame te+6   : $   108  {'PORT': 4, 'HAVEN': 74, 'ARCH': 30}
+  single frame te+8   : $    12  {'ARCH': 12}
+  single frame te+10  : $     0  {}
+  single frame te+15  : $     0  {}
+  sweeper from te+0.1  to 760 s: $   977  {'PORT': 255, 'FERRY': 36, 'RECON': 104, 'MAT': 46, 'HAVEN': 352, 'ARCH': 116, 'REBLD': 68}
+  sweeper from te+0.3  to 760 s: $   966  {'PORT': 255, 'FERRY': 36, 'RECON': 104, 'MAT': 46, 'HAVEN': 351, 'ARCH': 106, 'REBLD': 68}
+  sweeper from te+1    to 760 s: $   927  {'PORT': 255, 'FERRY': 22, 'RECON': 100, 'MAT': 42, 'HAVEN': 350, 'ARCH': 106, 'REBLD': 53}
+  sweeper from te+2    to 760 s: $   834  {'PORT': 219, 'FERRY': 9, 'RECON': 100, 'MAT': 42, 'HAVEN': 350, 'ARCH': 92, 'REBLD': 22}
+  sweeper from te+4    to 760 s: $   545  {'PORT': 72, 'RECON': 75, 'MAT': 32, 'HAVEN': 252, 'ARCH': 92, 'REBLD': 22}
+  sweeper from te+6    to 760 s: $   229  {'PORT': 17, 'RECON': 15, 'MAT': 6, 'HAVEN': 83, 'ARCH': 85, 'REBLD': 22}
+  others' trades te..760 s priced beyond S+-eps: |S-p|*q summed $2307 {'PORT': 646, 'ISLE': 5, 'AQUA': 9, 'GRID': 3, 'FERRY': 42, 'RECON': 231, 'MAT': 111, 'HAVEN': 590, 'REIN': 14, 'ARCH': 518, 'REBLD': 137}
+  sanity check at 742 s would cancel: ['PORT(-1.38%)', 'HAVEN(-2.17%)']
+  sanity check at 744 s would cancel: ['PORT(-1.49%)', 'HAVEN(-2.17%)']
+  sanity check at 746 s would cancel: ['PORT(-0.77%)', 'HAVEN(-1.97%)', 'ARCH(-0.87%)']
+  sanity check at 748 s would cancel: ['PORT(-1.11%)']
+  sanity check at 750 s would cancel: ['HAVEN(0.56%)']
+  sanity check at 752 s would cancel: []
+  sanity check at 756 s would cancel: []
+  sanity check at 760 s would cancel: []
+  consensus oracle filled at row 371 (742 s), 25 bp: $1407
+  consensus oracle filled at row 372 (744 s), 25 bp: $225
+  consensus oracle filled at row 373 (746 s), 25 bp: $273
+  consensus oracle filled at row 375 (750 s), 25 bp: $0

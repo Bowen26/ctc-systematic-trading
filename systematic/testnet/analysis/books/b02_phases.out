@@ -1,0 +1,160 @@
+time-weighted on a 0.25-s grid; pooled over rounds ['1803-05-11', '1802-05-10', '1802-05-11', '1802-05-12']
+hs = half-spread bps of mid (median [p10,p90]); touch = median bid/ask touch qty; dep = median per-side depth within 0.25/0.5/1/2% of mid (shares, mean of the two sides); upd = book frames per covered second; 1s/0s = % of time one-sided / empty
+
+PORT (L=200)
+  pre        cov    178s upd 0.34/s  hs   10.7 [ 10.1,  10.8]  touch 19/20  dep 34/87/138/138  (L/4=50)  lev 4.67  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.67/s  hs   64.5 [  2.0, 203.2]  touch 20/20  dep 0/0/36/63  (L/4=50)  lev 4.63  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.66/s  hs   16.8 [ 10.4,  56.6]  touch 20/20  dep 20/47/79/128  (L/4=50)  lev 4.97  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.47/s  hs   10.8 [  5.8,  21.1]  touch 20/20  dep 44/64/106/138  (L/4=50)  lev 4.96  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.64/s  hs   13.0 [ 10.1,  36.3]  touch 20/20  dep 33/56/106/137  (L/4=50)  lev 4.97  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 1.12/s  hs   12.5 [ 10.7,  55.3]  touch 18/20  dep 32/52/98/132  (L/4=50)  lev 4.91  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 17bp x20 (100%)  L2: 37bp x14 (100%)  L3: 92bp x48 (100%)  L4: 160bp x48 (100%)  L5: 820bp x600 (97%)  L6: 854bp x600 (1%)
+  shape storm ask: L1: 17bp x20 (100%)  L2: 38bp x14 (100%)  L3: 72bp x60 (100%)  L4: 139bp x48 (100%)  L5: 775bp x600 (96%)  L6: 815bp x600 (2%)
+  shape pre   bid: L1: 11bp x19 (100%)  L2: 21bp x14 (98%)  L3: 46bp x60 (98%)  L4: 84bp x48 (90%)  L5: 810bp x600 (90%)
+  shape pre   ask: L1: 11bp x20 (100%)  L2: 20bp x14 (98%)  L3: 32bp x60 (98%)  L4: 72bp x48 (90%)  L5: 790bp x600 (73%)
+
+ISLE (L=300)
+  pre        cov    178s upd 0.31/s  hs   10.7 [  6.6,  11.0]  touch 30/30  dep 81/132/212/212  (L/4=75)  lev 4.85  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.21/s  hs   36.0 [  1.0,  88.2]  touch 30/30  dep 0/30/86/141  (L/4=75)  lev 4.87  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.38/s  hs   14.3 [ 11.1,  25.0]  touch 30/30  dep 30/81/141/199  (L/4=75)  lev 4.96  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.31/s  hs   11.5 [ 10.1,  16.0]  touch 30/30  dep 48/113/191/198  (L/4=75)  lev 4.92  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.33/s  hs   15.0 [ 12.4,  16.0]  touch 30/25  dep 30/86/166/196  (L/4=75)  lev 4.99  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.73/s  hs   13.1 [ 10.7,  16.0]  touch 30/30  dep 44/120/198/198  (L/4=75)  lev 4.95  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 14bp x30 (100%)  L2: 28bp x21 (100%)  L3: 51bp x63 (100%)  L4: 110bp x72 (100%)  L5: 859bp x900 (93%)  L6: 821bp x900 (0%)
+  shape storm ask: L1: 14bp x30 (100%)  L2: 29bp x21 (100%)  L3: 66bp x90 (100%)  L4: 126bp x72 (100%)  L5: 732bp x900 (98%)  L6: 813bp x900 (1%)
+  shape pre   bid: L1: 11bp x30 (100%)  L2: 21bp x21 (97%)  L3: 50bp x90 (97%)  L4: 83bp x72 (96%)  L5: 802bp x900 (96%)
+  shape pre   ask: L1: 11bp x30 (100%)  L2: 20bp x30 (97%)  L3: 25bp x90 (97%)  L4: 57bp x72 (96%)  L5: 800bp x900 (93%)
+
+AQUA (L=500)
+  pre        cov    178s upd 0.28/s  hs   12.5 [  7.3,  13.3]  touch 50/50  dep 107/184/318/346  (L/4=125)  lev 4.71  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.12/s  hs   27.6 [  1.8, 116.7]  touch 50/50  dep 0/64/142/252  (L/4=125)  lev 4.80  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.45/s  hs   15.0 [ 12.0,  32.4]  touch 50/50  dep 50/119/220/334  (L/4=125)  lev 4.96  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.34/s  hs   12.0 [ 10.0,  16.1]  touch 50/50  dep 85/148/232/326  (L/4=125)  lev 4.95  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.32/s  hs   13.5 [  1.7,  23.3]  touch 50/50  dep 85/140/232/330  (L/4=125)  lev 4.98  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.58/s  hs   13.6 [ 11.6,  17.9]  touch 45/50  dep 69/136/256/324  (L/4=125)  lev 4.92  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 15bp x50 (100%)  L2: 28bp x35 (100%)  L3: 67bp x137 (100%)  L4: 124bp x120 (100%)  L5: 849bp x1500 (95%)  L6: 747bp x1500 (0%)
+  shape storm ask: L1: 15bp x50 (100%)  L2: 30bp x35 (100%)  L3: 59bp x150 (100%)  L4: 116bp x120 (100%)  L5: 747bp x1500 (97%)  L6: 786bp x1500 (0%)
+  shape pre   bid: L1: 13bp x50 (100%)  L2: 22bp x35 (98%)  L3: 58bp x150 (98%)  L4: 92bp x120 (93%)  L5: 825bp x1500 (92%)
+  shape pre   ask: L1: 13bp x50 (100%)  L2: 22bp x35 (98%)  L3: 37bp x120 (98%)  L4: 73bp x120 (92%)  L5: 775bp x1500 (72%)
+
+GRID (L=400)
+  pre        cov    178s upd 0.25/s  hs   11.2 [  6.8,  11.2]  touch 40/40  dep 124/128/280/282  (L/4=100)  lev 4.85  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.29/s  hs   47.4 [  1.3,  95.4]  touch 40/40  dep 0/26/86/176  (L/4=100)  lev 4.70  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.47/s  hs   15.7 [  9.7,  27.8]  touch 40/40  dep 56/106/182/274  (L/4=100)  lev 4.96  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.36/s  hs   11.3 [ 11.1,  17.8]  touch 40/40  dep 68/120/210/274  (L/4=100)  lev 4.91  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.34/s  hs   14.9 [ 12.2,  20.0]  touch 37/40  dep 38/122/220/272  (L/4=100)  lev 4.98  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.85/s  hs   12.7 [  4.9,  18.8]  touch 40/40  dep 90/110/188/266  (L/4=100)  lev 4.81  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 16bp x40 (100%)  L2: 33bp x28 (100%)  L3: 65bp x120 (100%)  L4: 121bp x96 (100%)  L5: 793bp x1200 (97%)
+  shape storm ask: L1: 16bp x40 (100%)  L2: 32bp x28 (100%)  L3: 78bp x120 (100%)  L4: 142bp x96 (100%)  L5: 820bp x1200 (96%)  L6: 960bp x1200 (0%)
+  shape pre   bid: L1: 11bp x40 (100%)  L2: 21bp x28 (99%)  L3: 60bp x120 (99%)  L4: 96bp x96 (98%)  L5: 823bp x1200 (98%)
+  shape pre   ask: L1: 11bp x40 (100%)  L2: 20bp x40 (99%)  L3: 31bp x120 (99%)  L4: 76bp x96 (97%)  L5: 774bp x1200 (81%)
+
+FERRY (L=800)
+  pre        cov    178s upd 0.48/s  hs   11.0 [  4.4,  13.5]  touch 80/219  dep 220/338/472/560  (L/4=200)  lev 4.68  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.18/s  hs   19.7 [  2.4,  80.6]  touch 80/80  dep 98/160/228/407  (L/4=200)  lev 4.80  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.54/s  hs   16.8 [ 11.1,  38.0]  touch 80/80  dep 80/187/352/538  (L/4=200)  lev 4.90  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.36/s  hs   13.1 [ 10.7,  19.7]  touch 80/80  dep 136/237/446/552  (L/4=200)  lev 4.89  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.43/s  hs   14.6 [ 12.8,  20.1]  touch 80/80  dep 130/236/453/553  (L/4=200)  lev 4.90  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.82/s  hs   17.6 [  9.7,  22.5]  touch 80/80  dep 80/246/441/550  (L/4=200)  lev 4.84  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 17bp x80 (100%)  L2: 36bp x56 (100%)  L3: 73bp x240 (100%)  L4: 126bp x192 (100%)  L5: 800bp x2400 (93%)
+  shape storm ask: L1: 17bp x80 (100%)  L2: 33bp x56 (100%)  L3: 72bp x240 (100%)  L4: 165bp x192 (100%)  L5: 808bp x2400 (87%)
+  shape pre   bid: L1: 11bp x80 (100%)  L2: 20bp x56 (99%)  L3: 65bp x240 (99%)  L4: 99bp x192 (94%)  L5: 804bp x2400 (93%)
+  shape pre   ask: L1: 11bp x219 (100%)  L2: 22bp x56 (97%)  L3: 31bp x56 (97%)  L4: 46bp x192 (93%)  L5: 797bp x2400 (64%)
+
+RECON (L=500)
+  pre        cov    178s upd 0.24/s  hs   10.8 [  7.6,  11.0]  touch 50/50  dep 118/158/295/355  (L/4=125)  lev 4.84  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.23/s  hs   38.9 [  2.0,  84.4]  touch 50/50  dep 0/50/135/235  (L/4=125)  lev 4.73  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.48/s  hs   15.9 [ 11.8,  31.9]  touch 50/50  dep 50/125/220/339  (L/4=125)  lev 4.96  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.37/s  hs   11.2 [ 10.0,  19.5]  touch 50/50  dep 78/145/232/344  (L/4=125)  lev 4.97  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.33/s  hs   13.3 [ 12.1,  22.3]  touch 50/50  dep 50/152/220/344  (L/4=125)  lev 4.99  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 1.27/s  hs   15.0 [ 10.6,  22.5]  touch 50/50  dep 70/144/228/344  (L/4=125)  lev 4.87  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 16bp x50 (100%)  L2: 31bp x35 (100%)  L3: 55bp x150 (100%)  L4: 113bp x120 (100%)  L5: 773bp x1500 (96%)  L6: 944bp x1500 (1%)
+  shape storm ask: L1: 16bp x50 (100%)  L2: 32bp x35 (100%)  L3: 83bp x150 (100%)  L4: 147bp x120 (100%)  L5: 832bp x1500 (96%)  L6: 894bp x1500 (0%)
+  shape pre   bid: L1: 11bp x50 (100%)  L2: 21bp x35 (100%)  L3: 28bp x120 (99%)  L4: 65bp x120 (94%)  L5: 801bp x1500 (84%)
+  shape pre   ask: L1: 11bp x50 (100%)  L2: 21bp x35 (100%)  L3: 65bp x150 (100%)  L4: 101bp x120 (95%)  L5: 814bp x1500 (95%)
+
+MAT (L=700)
+  pre        cov    178s upd 0.20/s  hs   11.6 [ 11.2,  12.4]  touch 60/70  dep 119/224/482/492  (L/4=175)  lev 4.90  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.07/s  hs   32.5 [  2.9,  75.4]  touch 70/70  dep 0/70/212/378  (L/4=175)  lev 4.72  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.41/s  hs   16.1 [ 11.7,  30.5]  touch 70/70  dep 70/174/312/476  (L/4=175)  lev 4.92  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.30/s  hs   12.2 [ 10.2,  16.8]  touch 70/70  dep 119/216/380/482  (L/4=175)  lev 4.96  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.38/s  hs   15.5 [ 11.6,  22.8]  touch 70/70  dep 70/196/324/488  (L/4=175)  lev 4.95  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.92/s  hs   11.6 [  4.1,  21.3]  touch 70/70  dep 147/204/368/469  (L/4=175)  lev 4.87  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 16bp x70 (100%)  L2: 30bp x49 (100%)  L3: 66bp x199 (100%)  L4: 129bp x168 (100%)  L5: 786bp x2100 (89%)  L6: 912bp x2100 (0%)
+  shape storm ask: L1: 16bp x70 (100%)  L2: 31bp x49 (100%)  L3: 71bp x210 (100%)  L4: 129bp x168 (100%)  L5: 832bp x2100 (95%)  L6: 926bp x2100 (0%)
+  shape pre   bid: L1: 12bp x60 (100%)  L2: 20bp x49 (100%)  L3: 38bp x210 (100%)  L4: 73bp x168 (95%)  L5: 798bp x2100 (95%)
+  shape pre   ask: L1: 12bp x70 (100%)  L2: 22bp x49 (100%)  L3: 56bp x210 (100%)  L4: 92bp x168 (95%)  L5: 806bp x2100 (95%)
+
+GEN (L=600)
+  pre        cov    178s upd 0.17/s  hs   11.2 [ 10.5,  11.3]  touch 60/54  dep 96/264/408/420  (L/4=150)  lev 4.87  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.21/s  hs   37.2 [  1.4,  73.0]  touch 60/60  dep 0/60/150/278  (L/4=150)  lev 4.70  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.43/s  hs   16.1 [ 11.9,  26.5]  touch 60/60  dep 60/158/296/398  (L/4=150)  lev 4.94  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.27/s  hs   11.7 [ 10.3,  19.8]  touch 60/60  dep 102/180/351/416  (L/4=150)  lev 4.90  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.29/s  hs   17.1 [ 12.8,  21.1]  touch 60/60  dep 60/168/343/416  (L/4=150)  lev 4.83  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.56/s  hs   11.9 [  9.9,  16.1]  touch 60/60  dep 84/174/354/416  (L/4=150)  lev 4.90  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 16bp x60 (100%)  L2: 32bp x42 (100%)  L3: 69bp x180 (100%)  L4: 119bp x144 (100%)  L5: 762bp x1800 (96%)  L6: 870bp x1800 (0%)
+  shape storm ask: L1: 16bp x60 (100%)  L2: 29bp x42 (100%)  L3: 53bp x144 (100%)  L4: 98bp x144 (100%)  L5: 862bp x1800 (93%)
+  shape pre   bid: L1: 11bp x60 (100%)  L2: 21bp x42 (100%)  L3: 46bp x180 (100%)  L4: 71bp x144 (94%)  L5: 775bp x1800 (94%)
+  shape pre   ask: L1: 11bp x54 (100%)  L2: 21bp x42 (100%)  L3: 42bp x180 (100%)  L4: 79bp x144 (94%)  L5: 833bp x1800 (94%)
+
+HAVEN (L=250)
+  pre        cov    178s upd 0.48/s  hs   10.7 [  6.6,  11.5]  touch 25/25  dep 65/110/174/176  (L/4=62)  lev 4.82  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.74/s  hs   70.4 [  1.3, 250.1]  touch 25/25  dep 0/0/25/43  (L/4=62)  lev 4.64  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.83/s  hs   23.2 [ 11.5,  67.8]  touch 25/25  dep 20/43/80/148  (L/4=62)  lev 4.97  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.47/s  hs   11.4 [  7.4,  18.0]  touch 25/25  dep 43/80/146/173  (L/4=62)  lev 4.94  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.60/s  hs   12.7 [  5.2,  19.0]  touch 23/25  dep 43/77/138/172  (L/4=62)  lev 4.93  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.97/s  hs   12.7 [  9.6,  88.2]  touch 25/25  dep 42/66/146/163  (L/4=62)  lev 4.86  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 23bp x25 (100%)  L2: 50bp x18 (100%)  L3: 92bp x75 (100%)  L4: 159bp x60 (100%)  L5: 800bp x750 (95%)  L6: 698bp x750 (1%)
+  shape storm ask: L1: 23bp x25 (100%)  L2: 49bp x18 (100%)  L3: 117bp x75 (100%)  L4: 202bp x60 (100%)  L5: 794bp x750 (96%)  L6: 844bp x750 (3%)
+  shape pre   bid: L1: 11bp x25 (100%)  L2: 21bp x18 (99%)  L3: 60bp x75 (99%)  L4: 96bp x60 (96%)  L5: 829bp x750 (96%)
+  shape pre   ask: L1: 11bp x25 (100%)  L2: 21bp x18 (99%)  L3: 25bp x60 (99%)  L4: 61bp x60 (96%)  L5: 763bp x750 (80%)
+
+REIN (L=200)
+  pre        cov    178s upd 0.18/s  hs   10.6 [ 10.6,  11.1]  touch 18/20  dep 33/63/137/138  (L/4=50)  lev 4.77  1s 0.0% 0s 0.0%
+  early      cov    180s upd 0.32/s  hs   13.3 [ 10.6,  17.2]  touch 20/20  dep 30/64/114/136  (L/4=50)  lev 4.93  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.26/s  hs   12.2 [ 10.6,  15.6]  touch 20/20  dep 32/59/113/130  (L/4=50)  lev 4.97  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.20/s  hs   11.1 [ 10.5,  15.0]  touch 19/20  dep 32/50/98/120  (L/4=50)  lev 4.98  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.26/s  hs   13.9 [ 11.7,  15.0]  touch 20/20  dep 36/50/97/121  (L/4=50)  lev 4.99  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.67/s  hs   11.1 [ 10.5,  15.5]  touch 20/19  dep 32/48/100/120  (L/4=50)  lev 4.88  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 12bp x20 (100%)  L2: 24bp x14 (100%)  L3: 63bp x51 (100%)  L4: 108bp x48 (100%)  L5: 850bp x600 (98%)  L6: 832bp x600 (1%)
+  shape storm ask: L1: 12bp x20 (100%)  L2: 23bp x14 (100%)  L3: 38bp x42 (100%)  L4: 84bp x48 (100%)  L5: 744bp x600 (95%)  L6: 786bp x600 (0%)
+  shape pre   bid: L1: 11bp x18 (100%)  L2: 21bp x14 (99%)  L3: 53bp x60 (99%)  L4: 97bp x48 (90%)  L5: 841bp x600 (90%)
+  shape pre   ask: L1: 11bp x20 (100%)  L2: 21bp x14 (99%)  L3: 35bp x60 (99%)  L4: 76bp x48 (90%)  L5: 753bp x600 (90%)
+
+ARCH (L=50)
+  pre        cov    178s upd 0.28/s  hs   10.1 [ 10.1,  10.2]  touch 20/19  dep 34/93/142/142  (L/4=12)  lev 4.91  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.44/s  hs   19.4 [  0.1,  82.0]  touch 20/20  dep 18/37/46/88  (L/4=12)  lev 4.97  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.69/s  hs   15.8 [  9.1,  35.6]  touch 20/20  dep 20/59/92/139  (L/4=12)  lev 5.00  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.40/s  hs   10.2 [  5.7,  15.0]  touch 20/20  dep 34/62/118/140  (L/4=12)  lev 4.99  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.44/s  hs   13.2 [ 11.1,  16.1]  touch 19/19  dep 20/60/116/138  (L/4=12)  lev 4.99  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 1.15/s  hs   12.2 [  0.2,  22.2]  touch 20/20  dep 44/63/116/140  (L/4=12)  lev 4.94  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 16bp x20 (100%)  L2: 32bp x14 (100%)  L3: 66bp x59 (100%)  L4: 119bp x48 (100%)  L5: 795bp x150 (98%)  L6: 793bp x150 (2%)
+  shape storm ask: L1: 16bp x20 (100%)  L2: 32bp x14 (100%)  L3: 83bp x60 (100%)  L4: 143bp x48 (100%)  L5: 804bp x150 (99%)  L6: 856bp x150 (2%)
+  shape pre   bid: L1: 10bp x20 (100%)  L2: 20bp x14 (99%)  L3: 48bp x60 (99%)  L4: 83bp x48 (97%)  L5: 809bp x150 (97%)
+  shape pre   ask: L1: 10bp x19 (100%)  L2: 20bp x14 (99%)  L3: 35bp x60 (99%)  L4: 61bp x48 (97%)  L5: 790bp x150 (96%)
+
+REBLD (L=100)
+  pre        cov    178s upd 0.25/s  hs   10.2 [ 10.1,  10.4]  touch 40/40  dep 68/127/234/283  (L/4=25)  lev 4.78  1s 0.0% 0s 0.0%
+  early      cov    180s upd 1.02/s  hs   25.8 [  0.2,  65.4]  touch 40/40  dep 0/74/128/236  (L/4=25)  lev 4.88  1s 0.0% 0s 0.0%
+  storm      cov   1544s upd 0.47/s  hs   15.5 [ 10.7,  29.6]  touch 40/40  dep 40/120/212/280  (L/4=25)  lev 4.98  1s 0.0% 0s 0.0%
+  after      cov    960s upd 0.37/s  hs   10.4 [  4.4,  14.7]  touch 40/40  dep 68/119/216/274  (L/4=25)  lev 5.00  1s 0.0% 0s 0.1%
+  rep_prelim cov    128s upd 0.51/s  hs   11.6 [  3.9,  16.3]  touch 40/40  dep 92/122/176/278  (L/4=25)  lev 5.02  1s 0.0% 0s 0.0%
+  rep_final  cov     88s upd 0.81/s  hs   10.9 [  0.2,  16.2]  touch 40/40  dep 86/114/210/270  (L/4=25)  lev 4.97  1s 0.0% 0s 0.0%
+  shape storm bid: L1: 16bp x40 (100%)  L2: 31bp x28 (100%)  L3: 65bp x120 (100%)  L4: 115bp x96 (100%)  L5: 771bp x300 (98%)  L6: 899bp x300 (1%)
+  shape storm ask: L1: 16bp x40 (100%)  L2: 31bp x28 (100%)  L3: 57bp x120 (100%)  L4: 108bp x96 (100%)  L5: 822bp x300 (97%)  L6: 973bp x300 (0%)
+  shape pre   bid: L1: 10bp x40 (100%)  L2: 20bp x28 (98%)  L3: 52bp x120 (98%)  L4: 115bp x96 (91%)  L5: 802bp x300 (91%)
+  shape pre   ask: L1: 10bp x40 (100%)  L2: 20bp x28 (98%)  L3: 36bp x120 (97%)  L4: 90bp x96 (91%)  L5: 799bp x300 (91%)
+
+== first 10 s of each round: share of time with at most one level per side (open book state) ==
+  PORT: 1803-05-11: n/a; 1802-05-10: 18% (last thin t=2.0); 1802-05-11: 8% (last thin t=0.75); 1802-05-12: 13% (last thin t=1.5)
+  ISLE: 1803-05-11: n/a; 1802-05-10: 21% (last thin t=2.25); 1802-05-11: 10% (last thin t=1.0); 1802-05-12: 16% (last thin t=1.75)
+  AQUA: 1803-05-11: n/a; 1802-05-10: 0% (last thin t=None); 1802-05-11: 13% (last thin t=1.25); 1802-05-12: 18% (last thin t=2.0)
+  GRID: 1803-05-11: n/a; 1802-05-10: 0% (last thin t=None); 1802-05-11: 15% (last thin t=1.5); 1802-05-12: 0% (last thin t=None)
+  FERRY: 1803-05-11: n/a; 1802-05-10: 0% (last thin t=None); 1802-05-11: 18% (last thin t=1.75); 1802-05-12: 0% (last thin t=None)
+  RECON: 1803-05-11: n/a; 1802-05-10: 0% (last thin t=None); 1802-05-11: 0% (last thin t=None); 1802-05-12: 0% (last thin t=None)
+  MAT: 1803-05-11: n/a; 1802-05-10: 3% (last thin t=0.5); 1802-05-11: 0% (last thin t=None); 1802-05-12: 0% (last thin t=None)
+  GEN: 1803-05-11: n/a; 1802-05-10: 3% (last thin t=0.5); 1802-05-11: 0% (last thin t=None); 1802-05-12: 3% (last thin t=0.5)
+  HAVEN: 1803-05-11: n/a; 1802-05-10: 11% (last thin t=1.25); 1802-05-11: 0% (last thin t=None); 1802-05-12: 5% (last thin t=0.75)
+  REIN: 1803-05-11: n/a; 1802-05-10: 13% (last thin t=1.5); 1802-05-11: 0% (last thin t=None); 1802-05-12: 8% (last thin t=1.0)
+  ARCH: 1803-05-11: n/a; 1802-05-10: 13% (last thin t=1.5); 1802-05-11: 5% (last thin t=0.5); 1802-05-12: 8% (last thin t=1.0)
+  REBLD: 1803-05-11: n/a; 1802-05-10: 16% (last thin t=1.75); 1802-05-11: 8% (last thin t=0.75); 1802-05-12: 11% (last thin t=1.25)

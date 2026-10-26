@@ -1,0 +1,25 @@
+# Virtualenvs
+systematic/.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Run artifacts and raw market recordings: hundreds of MB of captured feed,
+# regenerable by replaying. Keep the analyses in version control, not the tape.
+systematic/bot/runs/
+systematic/testnet/recordings/
+systematic/overnight_20261024/recording.jsonl
+systematic/bot/tests/_tmp/
+*.jsonl
+
+# Credentials are passed with --key-file at runtime and never committed.
+bot_key
+key.txt
+
+# Generated simulation output (regenerable: sim/run_*.py)
+systematic/bot/sim/out/
+systematic/testnet/order_tests/
+systematic/testnet/analysis/out/
+
+# 15MB derived research library, rebuilt by the fit scripts
+systematic/engine/library_all.json

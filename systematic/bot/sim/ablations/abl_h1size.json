@@ -1,0 +1,4 @@
+{
+  "live_allowed": false,
+  "strategies": {"h1": {"size_r1": 1.0, "auto_size_from_check": false, "size_on_fail": 1.0}}
+}

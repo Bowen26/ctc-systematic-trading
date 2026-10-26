@@ -1,0 +1,255 @@
+{
+ "area": "storm wind / damage / closure physics -- VERIFIED",
+ "verdict": "confirmed_with_corrections",
+ "verified_against": "work/se/fits/physics.json (independent re-implementation in work/se/verify-physics/)",
+ "use_for_bot": "Keep the fitter's formulas and k/sigma (identical below). Corrections concern reported claims, not the fair-value formula.",
+ "wind_field": {
+  "formula": "w = intensity * exp(-(d/radius)^2) if d < 2*radius else 0",
+  "cutoff_q": 2.0,
+  "exponent": 2.0,
+  "evidence": "PORT: damage>0 iff min d/r < 2 over the 2-s obs (931 storms, no exceptions); free exponent fit b=1.993; Gaussian beats exp(-q), Rankine, modified Rankine, (1-q/2)^p and peak-wind models (see report table)"
+ },
+ "closure": {
+  "threshold": 0.35,
+  "rule": "site closed (hurricane conditions) while w_site >= 0.35; island impact = first second any company site on the island has w >= 0.35",
+  "independent_check": "train-only scan 0.345..0.355: best at 0.350 (train timing exact 0.828, holdout 0.806, within 1 s 0.987/0.988, holdout yes/no agreement 0.99917)"
+ },
+ "damage": {
+  "hazard": "H_s = sum over 2-s storm obs of 2 * w_s(t)   (wind-seconds; equivalent to 1-s integration)",
+  "site_fraction": "f_s = 1 - exp(-k_c * m * H_s) of the site's REMAINING value",
+  "noise": "log m ~ N(0, sigma_c^2), one m per company per storm, shared by the company's sites, independent across companies, storms and rounds",
+  "company_damage_pct": "D_c = 100 * sum_s weight_s * rem_s * f_s ; rem_s = prod over earlier storms (1 - f_s)",
+  "k": {
+   "PORT": 0.010997,
+   "ISLE": 0.008684,
+   "AQUA": 0.015515,
+   "GRID": 0.011654,
+   "FERRY": 0.008476
+  },
+  "sigma": {
+   "PORT": 0.3417,
+   "ISLE": 0.3507,
+   "AQUA": 0.3568,
+   "GRID": 0.3674,
+   "FERRY": 0.3554
+  },
+  "k_independent_train_censored_mle": {
+   "PORT": 0.010997,
+   "ISLE": 0.008684,
+   "AQUA": 0.015513,
+   "GRID": 0.011654,
+   "FERRY": 0.008476
+  },
+  "sigma_independent_train_censored_mle": {
+   "PORT": 0.3417,
+   "ISLE": 0.3507,
+   "AQUA": 0.3561,
+   "GRID": 0.3674,
+   "FERRY": 0.3554
+  },
+  "optional_production_refit_all_600_seasons": {
+   "k": {
+    "PORT": 0.011022,
+    "ISLE": 0.008646,
+    "AQUA": 0.015499,
+    "GRID": 0.011664,
+    "FERRY": 0.00856
+   },
+   "sigma": {
+    "PORT": 0.3397,
+    "ISLE": 0.3487,
+    "AQUA": 0.3482,
+    "GRID": 0.357,
+    "FERRY": 0.3503
+   },
+   "note": "Refit after validation on all 600 seasons (censored MLE). Differs from the train fit by <1% in k (FERRY +1.0%), within 1 SE; holdout point accuracy is unchanged by sigma choice. Optional."
+  },
+  "sigma_pooled_all_companies": {
+   "train_1_400": 0.3557,
+   "holdout_401_600": 0.3373,
+   "all_600": 0.3497,
+   "note": "company sigmas are statistically indistinguishable; pooled sigma gives identical holdout RMSE"
+  }
+ },
+ "insured_loss": {
+  "formula": "industry_loss_musd = sum_c loss_per_pt[c] * damage_pct[c]  (exact; train/holdout R2 0.99999997, RMSE 0.044 = report rounding)",
+  "loss_per_pt_musd": {
+   "PORT": 9.0,
+   "ISLE": 6.0,
+   "AQUA": 2.5,
+   "GRID": 7.0,
+   "FERRY": 1.2
+  },
+  "season_loss": "season_loss_musd = sum of the 3 storm losses (max abs diff 0.1)"
+ },
+ "prelim_report": {
+  "model": "log(prelim/final) ~ N(0, s^2), independent of the final (cov(u_prelim,u_final)/var(u_final) = 0.93..1.06)",
+  "prelim_log_sd": 0.302,
+  "prelim_log_sd_train_only": 0.3003,
+  "note": "fitter's 0.302 was estimated on all 600 seasons (minor holdout leakage); train-only 0.3003 gives the same holdout posterior RMSE"
+ },
+ "storm_dynamics": {
+  "intensity_age0": 1.0,
+  "radius_age0": 80.0,
+  "intensity_increment_2s_sd": 0.0293,
+  "intensity_mean_reversion": "inc = 0.0143 - 0.0117*I per 2 s (level ~1.22, half-life ~119 s); level differs by pattern",
+  "decline": "I(t) = I(420) * (480 - t) / 60 for t in [420, 480] (measured mean ratios 0.836/0.669/0.503/0.335/0.168 at 430..470)"
+ },
+ "corrections": [
+  "80% PI coverage 82-89% is inflated by zero-hazard company-storms (always trivially covered). Among company-storms with hazard > 0 (holdout): PORT 0.790, ISLE 0.819, AQUA 0.835, GRID 0.843, FERRY 0.818 -- calibrated.",
+  "'51% of damage locked in by age 300' is a share of unweighted damage POINTS summed over companies. Weighted by insured $ (what HAVEN/REIN care about) the share is 0.164/0.370/0.588/0.707/0.814/0.898/0.956/0.986 at ages 240/300/340/360/380/400/420/440. PORT alone: 0.01/0.10/0.35/0.53/0.69/0.83/0.93/0.98.",
+  "prelim_log_sd and the 0.35 threshold were estimated using all 600 seasons; re-estimated on 1-400 they are 0.3003 and 0.350 -- no material effect.",
+  "AQUA saturations (8 right-censored train cases) are all sites with remaining value ~0 after earlier storms or one extreme multiplier (s35 r2); no evidence of a damage cap or fleet sheltering."
+ ],
+ "lock_in_share_holdout": {
+  "ages": [
+   240,
+   300,
+   340,
+   360,
+   380,
+   400,
+   420,
+   440
+  ],
+  "unweighted_points": [
+   0.261,
+   0.508,
+   0.699,
+   0.79,
+   0.868,
+   0.927,
+   0.968,
+   0.99
+  ],
+  "insured_loss_weighted": [
+   0.164,
+   0.37,
+   0.588,
+   0.707,
+   0.814,
+   0.898,
+   0.956,
+   0.986
+  ],
+  "by_company": {
+   "PORT": [
+    0.01,
+    0.1,
+    0.35,
+    0.53,
+    0.69,
+    0.83,
+    0.93,
+    0.98
+   ],
+   "ISLE": [
+    0.35,
+    0.67,
+    0.83,
+    0.88,
+    0.92,
+    0.95,
+    0.97,
+    0.99
+   ],
+   "AQUA": [
+    0.43,
+    0.8,
+    0.92,
+    0.95,
+    0.97,
+    0.98,
+    0.99,
+    1.0
+   ],
+   "GRID": [
+    0.17,
+    0.42,
+    0.66,
+    0.78,
+    0.87,
+    0.93,
+    0.97,
+    0.99
+   ],
+   "FERRY": [
+    0.46,
+    0.73,
+    0.88,
+    0.92,
+    0.95,
+    0.97,
+    0.99,
+    0.99
+   ]
+  }
+ },
+ "independent_holdout_metrics": {
+  "company_damage_expected_at_storm_end": {
+   "PORT": {
+    "n": 600,
+    "r2": 0.9477,
+    "rmse": 5.3343,
+    "mae": 2.7127,
+    "bias": -0.2326,
+    "floor": 5.6662
+   },
+   "ISLE": {
+    "n": 600,
+    "r2": 0.9527,
+    "rmse": 2.4833,
+    "mae": 1.3145,
+    "bias": 0.1015,
+    "floor": 2.425
+   },
+   "AQUA": {
+    "n": 600,
+    "r2": 0.9681,
+    "rmse": 2.7142,
+    "mae": 1.4539,
+    "bias": -0.0211,
+    "floor": 2.7165
+   },
+   "GRID": {
+    "n": 600,
+    "r2": 0.8955,
+    "rmse": 3.1456,
+    "mae": 2.0687,
+    "bias": -0.0358,
+    "floor": 3.3756
+   },
+   "FERRY": {
+    "n": 600,
+    "r2": 0.91,
+    "rmse": 3.1612,
+    "mae": 2.1007,
+    "bias": -0.2969,
+    "floor": 3.4115
+   }
+  },
+  "pi80_coverage_hazard_gt0": {
+   "PORT": 0.79,
+   "ISLE": 0.819,
+   "AQUA": 0.835,
+   "GRID": 0.843,
+   "FERRY": 0.818
+  },
+  "insured_loss_model": {
+   "n": 600,
+   "r2": 0.954,
+   "rmse": 55.929,
+   "mae": 35.68,
+   "bias": -2.145
+  },
+  "model_plus_prelim_rmse": {
+   "PORT": 4.393,
+   "ISLE": 1.947,
+   "AQUA": 2.302,
+   "GRID": 2.786,
+   "FERRY": 2.577,
+   "loss_musd": 46.53
+  },
+  "house_price_leak_test": "house consensus change between real 532 s and 568 s has zero loading on (final - E[D]) (|coef| <= 0.005 $/pt, R2 <= 0.002): the multiplier m is not revealed before the prelim"
+ }
+}

@@ -1,0 +1,31 @@
+(224, 3) n=330  RMSE vs settlement (bp, log): consensus 623  book 588  engine 372
+    vs post-storm level at 600 s (consensus row 300): consensus 388 book 352 engine 144; vs book mid at 600 s: consensus 380 book 344 engine 137
+    S3 signal vs 600-s level: on consensus corr(eng-cons, C600-cons) 0.96; on book corr(eng-book, B600-book) 0.94
+    corr(book-cons, engine-cons) 0.70; corr(book-cons, S-cons) 0.68 slope 8.03; S3 signal on consensus corr(eng-cons, S-cons) 0.94 slope 2.11; on book corr(eng-book, S-book) 0.93 slope 2.24
+(225, 1) n=484  RMSE vs settlement (bp, log): consensus 1574  book 1127  engine 1336
+    vs post-storm level at 600 s (consensus row 300): consensus 226 book 351 engine 175; vs book mid at 600 s: consensus 385 book 241 engine 181
+    S3 signal vs 600-s level: on consensus corr(eng-cons, C600-cons) 0.77; on book corr(eng-book, B600-book) 0.74
+    corr(book-cons, engine-cons) 0.94; corr(book-cons, S-cons) 0.87 slope 2.68; S3 signal on consensus corr(eng-cons, S-cons) 0.81 slope 4.04; on book corr(eng-book, S-book) -0.69 slope -3.32
+(225, 2) n=451  RMSE vs settlement (bp, log): consensus 579  book 453  engine 579
+    vs post-storm level at 600 s (consensus row 300): consensus 124 book 160 engine 201; vs book mid at 600 s: consensus 219 book 148 engine 228
+    S3 signal vs 600-s level: on consensus corr(eng-cons, C600-cons) 0.29; on book corr(eng-book, B600-book) 0.13
+    corr(book-cons, engine-cons) 0.65; corr(book-cons, S-cons) 0.71 slope 2.14; S3 signal on consensus corr(eng-cons, S-cons) 0.20 slope 0.57; on book corr(eng-book, S-book) -0.59 slope -1.67
+(225, 3) n=484  RMSE vs settlement (bp, log): consensus 279  book 270  engine 355
+    vs post-storm level at 600 s (consensus row 300): consensus 344 book 326 engine 325; vs book mid at 600 s: consensus 321 book 306 engine 330
+    S3 signal vs 600-s level: on consensus corr(eng-cons, C600-cons) 0.57; on book corr(eng-book, B600-book) 0.50
+    corr(book-cons, engine-cons) 0.27; corr(book-cons, S-cons) 0.27 slope 0.83; S3 signal on consensus corr(eng-cons, S-cons) 0.42 slope 0.33; on book corr(eng-book, S-book) 0.37 slope 0.29
+
+per symbol, pooled 4 rounds: RMSE vs S (bp) consensus / book / engine; corr(eng-book, S-book)
+PORT   n=159    683 /   602 /   649   corr -0.14
+ISLE   n=159    878 /   603 /   728   corr -0.82
+AQUA   n=159   1286 /  1007 /  1145   corr -0.90
+GRID   n=159    742 /   588 /   630   corr 0.29
+FERRY  n=159    778 /   419 /   511   corr -0.33
+RECON  n=159    354 /   311 /   350   corr 0.05
+MAT    n=159    376 /   285 /   300   corr 0.23
+GEN    n=159    675 /   573 /   578   corr 0.37
+HAVEN  n=159   1977 /  1467 /  1724   corr -0.04
+ARCH   n=159    858 /   617 /   730   corr -0.10
+REBLD  n=159    351 /   294 /   292   corr 0.32
+sign rule |eng-P|>75bp, P=consensus: n=1220 mean +615 bp (round 3 only: n=450 mean +338 bp)
+sign rule |eng-P|>75bp, P=book     : n=1061 mean -264 bp (round 3 only: n=419 mean +304 bp)

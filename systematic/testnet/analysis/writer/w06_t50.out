@@ -1,0 +1,2 @@
+stocks: n=27 book t50 median 72.0 s (range 66.0-89.6); consensus t50 median 68.0 s; book minus consensus median +2.7 s
+ETFs: n=6 book t50 median 77.3 s (range 75.2-79.6); consensus t50 median 73.0 s; book minus consensus median +3.0 s

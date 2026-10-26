@@ -1,0 +1,14 @@
+ctcbot host mode: host cornelltradingcompetition.org, run dir /Users/bowentian/Documents/Fun Stuff/CTC2026/systematic/bot/runs/overnight_20261024_1, config 6760e13fb81f (DRY-RUN)
+running (DRY-RUN); type 'help' for commands, 'k' to kill, 'q' to quit
+[ALERT] h1_check_failed: H1 round-1 check failed (move -337.9422041797878 bp, cost None bp, 0 fills): rounds 2-3 at size_on_fail
+[ALERT] h1_check_failed: H1 round-1 check failed (move 940.8982322429587 bp, cost None bp, 0 fills): rounds 2-3 at size_on_fail
+[ALERT] law_check_failed: law check failed: round 2 prelim, misses FERRY, HAVEN
+[ALERT] h1_check_failed: H1 round-1 check failed (move 7.130334323487024 bp, cost None bp, 0 fills): rounds 2-3 at size_on_fail
+[ALERT] law_check_failed: law check failed: round 1 prelim, misses PORT, GRID, RECON, HAVEN
+[ALERT] law_check_failed: law check failed: round 1 final, misses PORT, GRID, HAVEN
+[ALERT] h1_check_failed: H1 round-1 check failed (move 1090.3714788513928 bp, cost None bp, 0 fills): rounds 2-3 at size_on_fail
+[ALERT] h1_check_failed: H1 round-1 check failed (move -156.37618842449046 bp, cost None bp, 0 fills): rounds 2-3 at size_on_fail
+[ALERT] law_check_failed: law check failed: round 1 final, misses AQUA, HAVEN
+[ALERT] h1_check_failed: H1 round-1 check failed (move -518.4671429648307 bp, cost None bp, 0 fills): rounds 2-3 at size_on_fail
+[ALERT] kill: KILL: signal: k
+[ALERT] kill: KILL (signal: k): cancel-all sent, executor frozen

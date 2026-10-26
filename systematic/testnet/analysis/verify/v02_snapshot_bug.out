@@ -1,0 +1,8 @@
+snapshot at 1803-05-11T11:30:00 (round 3) recovers official #3: posterior key/obs before ((3, 'Omar'), 11), after ((3, None), 0)
+   next live storm obs age 182: posterior key (3, 'Omar'), obs held 1
+   next live storm obs age 184: posterior key (3, 'Omar'), obs held 2
+   next live storm obs age 186: posterior key (3, 'Omar'), obs held 3
+snapshot at 1803-05-11T12:30:30 (round 3) recovers official #5: posterior key/obs before ((3, 'Omar'), 59), after ((3, None), 0)
+   next live storm obs age 302: posterior key (3, 'Omar'), obs held 1
+   next live storm obs age 304: posterior key (3, 'Omar'), obs held 2
+   next live storm obs age 306: posterior key (3, 'Omar'), obs held 3

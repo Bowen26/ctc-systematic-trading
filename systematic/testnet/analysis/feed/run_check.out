@@ -1,0 +1,7 @@
+season 224 (season-224): received 193 of 877, joined at seq 682; missing 2, different 4, unexpected 0, duplicates dropped 0
+    missing: seq 746, 747
+    different: seq 712, 782, 818, 855
+season 225 (season-225): received 844 of 866; missing 22, different 24, unexpected 0, duplicates dropped 0
+    missing: seq 250, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404 ...
+    different: seq 17, 53, 89, 126, 162, 196, 230, 265, 306, 341, 378, 415, 449, 487, 522, 557, 597, 631, 666, 700 ...
+differences found

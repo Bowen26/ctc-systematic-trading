@@ -1,0 +1,3 @@
+(225, 1): touch inside 1% after median 1.01 s (range 0.31-2.50, n=12); trades >= 0.25 L in 0-3 s: 7, cost vs 20-s mid $8,522: PORT 200@77.81 (+773 bp); ISLE 300@54.23 (+800 bp); MAT 275@32.99 (+782 bp); GEN 558@36.98 (+802 bp); HAVEN 250@42.04 (+774 bp); ARCH 50@312.2 (+800 bp); REBLD 100@199.5 (+794 bp)
+(225, 2): touch inside 1% after median 0.64 s (range 0.05-1.97, n=12); trades >= 0.25 L in 0-3 s: 0, cost vs 20-s mid $0: 
+(225, 3): touch inside 1% after median 0.95 s (range 0.21-2.15, n=12); trades >= 0.25 L in 0-3 s: 2, cost vs 20-s mid $37: ARCH 20@364.36 (+39 bp); REBLD 40@192.59 (+11 bp)
